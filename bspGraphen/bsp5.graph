@@ -1,0 +1,27 @@
+#directed #weighted
+
+b,j::2
+b,i::2
+b,k::2
+c,a::5
+c,d::5
+d,e::1
+e,b::2
+e,c::-7
+e,f::2
+f,a::3
+f,c::-6
+f,g::5
+g,e::2
+g,b::-1
+g,d::4
+h,b::1
+h,c::-2
+h,c::3
+i,a::5
+i,c::4
+j,k::2
+j,c::2
+k,c::3
+k,b::5
+k,c::4
