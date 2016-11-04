@@ -48,11 +48,11 @@ public class GraphBuilder {
 	 * @return ein Graph
 	 */
 	public static MultiGraph createGraph(List<String> lines) {
-		if (_graph == null || lines.isEmpty())
-			return null;
-
+		if (_graph == null || lines.isEmpty()) return null;
+		// Durchlaufe Zeile für Zeile
 		for (String line : lines) {
 			Matcher m = REGEX.matcher(line);
+			// Suche solange Substring gefunden wird
 			while (m.find()) {
 				src = m.group("source");
 				edg = m.group("edge");
@@ -60,7 +60,7 @@ public class GraphBuilder {
 				eName = m.group("eName");
 				eWeight = m.group("eWeight");
 			}
-
+			// Wenn die Knanten und die Knoten vom Source null sind
 			if (edg == null && _graph.getNode(src) == null)
 				_graph.addNode(src);
 			else {
@@ -68,13 +68,11 @@ public class GraphBuilder {
 				seteLabel(eName);
 				e = _graph.addEdge(eName, src, target, isDirected());
 				e.addAttribute("ui.label", geteLabel());
-				if (eWeight != null)
-					e.addAttribute("weight", eWeight);
+				if (eWeight != null) e.addAttribute("weight", eWeight);
 			}
 		}
-		for (Node n : _graph)
-			n.addAttribute("ui.label", n.getId());
-
+		// Füge Labels hinzu zu den Knoten
+		for (Node n : _graph) n.addAttribute("ui.label", n.getId());
 		return _graph;
 	}
 
@@ -82,8 +80,11 @@ public class GraphBuilder {
 	 * setGraphSettings()
 	 */
 	private static void setGraphSettings() {
-		_graph.setStrict(false);
-		_graph.setAutoCreate(true);
+		_graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
+									// von nicht existierenden Elementen usw.
+		_graph.setAutoCreate(true); // nodes are automatically created when
+									// referenced when creating a edge, even if
+									// not yet inserted in the graph.
 		_graph.addAttribute("ui.stylesheet",
 				"url('file:src/graph/subwerkzeuge/stylesheet')");
 		System.setProperty("org.graphstream.ui.renderer",
