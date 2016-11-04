@@ -2,6 +2,7 @@ package startup;
 
 import java.io.File;
 import org.graphstream.graph.Graph;
+import algorithmen.BreadthFirstSearch;
 import io.GraphReader;
 import io.GraphSaver;
 
@@ -32,6 +33,11 @@ public class Run {
 			GraphReader reader = GraphReader.create();
 			Graph g = GraphReader.openFile(new File("bspGraphen/graph01.gka"));
 			GraphSaver.saveGraph(g, new File("bspGraphen/saved/graph01.gka"));
+			BreadthFirstSearch bfs = BreadthFirstSearch.getInstance();
+			bfs.initA(g, g.getNode("a"), g.getNode("d"));
+			BreadthFirstSearch.startSearchEngine();
+			bfs.resultShortestWay();
+			System.out.println(bfs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

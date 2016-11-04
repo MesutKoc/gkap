@@ -41,7 +41,7 @@ public class GraphSaver {
 	public static void saveGraph(Graph graph, File file) throws IOException {
 		if(graph == null) throw new IOException("Graph konnte nicht gelesen werden");
 		if(!file.exists()) file.createNewFile();
-
+	
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for (String strLines : GraphReader.getStrLines())
