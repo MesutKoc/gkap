@@ -22,8 +22,7 @@ public class BreadthFirstSearch {
 	private static Queue<Node> queue = new LinkedList<Node>();
 	private static LinkedList<Node> visited = new LinkedList<Node>();
 	private static Integer count = -1;
-	private static Node startVertex,
-						endVertex;
+	private static Node startVertex, endVertex;
 	private static Graph graph;
 	
 	private BreadthFirstSearch(){}
@@ -92,8 +91,12 @@ public class BreadthFirstSearch {
 	}
 	
 	/**
+	 * Die Methode iteriert über alle Knoten und prüft, ob der Vorgänger vom
+	 * Knoten weniger Schritte braucht als der Nachgängger vom Knoten
+	 * 
 	 * @param node
-	 * @return
+	 * @return falls kein kürzerster Weg gefunden wurde, ansonsten der kürzseste
+	 *         Knoten
 	 */
 	@NonNull
 	private Node getShortestNode(@NonNull Node node) {
@@ -101,6 +104,8 @@ public class BreadthFirstSearch {
 		while (nodeIterator.hasNext()) {
 			Node next = nodeIterator.next();
 			if (next.getAttribute("steps").equals((((Integer) node.getAttribute("steps")) - 1))) {
+//				System.out.println("steps von shortednext: "+next.getAttribute("steps").toString());
+//				System.out.println("steps von shortednode:"+node.getAttribute("steps"));
 				return next;
 			}
 		}
@@ -108,8 +113,14 @@ public class BreadthFirstSearch {
 	}
 
 	/**
+	 * Die Methode liefert uns alle Nachbarn von einem Knoten. Dabei iteriert
+	 * Sie üer alle Kanten und nimmt sich das nächste und prüft somit, ob der
+	 * Knoten ungleich der Knoten von der Kante ist. Falls ja, dann wird unser
+	 * Knoten der Knoten von der Kante. Falls nicht, holen wir uns so den
+	 * Nachgänger.
+	 * 
 	 * @param node
-	 * @return
+	 * @return die Liste, die die Nachbarn enthält
 	 */
 	@NonNull
 	private static List<Node> getNeighbours(@NonNull Node node) {
@@ -129,30 +140,29 @@ public class BreadthFirstSearch {
 		return newTaggedNeighbors;
 	}
 
-//	private static boolean isVisited() {
-//		return (!endVertex.getAttribute("steps").equals(-1));
-//	}
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	@NonNull
 	public String toString() {
-		return String.format("BreadthFirstSearch [von=%s], [nach=%s], [benötigteKanten=%d]", startVertex, endVertex, count);
+		return String.format(
+				"BreadthFirstSearch [von=%s], [nach=%s], [benötigteKanten=%d]",
+				startVertex, endVertex, count);
 	}
 	
 	/**
-	 * @param node
-	 * @param steps
-	 * @return
+	 * @param node der Knoten
+	 * @param steps de Schritte
+	 * @return der veränderte Knoten
 	 */
-	private static Node setVisited(Node node, Integer steps){
+	private static Node setVisited(Node node, Integer steps) {
 		node.setAttribute("steps", steps + 1);
-		node.setAttribute("ui.label", node.getAttribute("ui.label") + "("+(steps + 1)+")");
+		node.setAttribute("ui.label", node.getAttribute("ui.label") + "(" + (steps + 1) + ")");
 		return node;
 	}
-	
+
 	/**
 	 * @param startVertex the startVertex to set
 	 */
@@ -172,7 +182,7 @@ public class BreadthFirstSearch {
 	}
 	
 	/**
-	 * @param g
+	 * @param g der Graph
 	 */
 	@SuppressWarnings("static-access")
 	public void setGraph(Graph g){

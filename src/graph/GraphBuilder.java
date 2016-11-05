@@ -16,15 +16,25 @@ import org.graphstream.graph.implementations.MultiGraph;
  */
 public class GraphBuilder {
 	private static MultiGraph _graph = new MultiGraph("Graph");
+	/*
+	 * Node1: Suche mit Wiederholung, welches Alparumerisches Zeichen enthält
+	 * Kanten: Suche mit Wiederhoung, welche die Zeichen -- oder -> enthalten
+	 * Node2: Suche mit Wiederholung, welche Alpanumerische Zeichen enthält,
+	 * dabei wiederholt sich das alles nur 1x. Kantennamen: Suche mit
+	 * Wiederholung, welche Zeichenklasse "(" und danch ein Alpanumerisches
+	 * Zeichen entählt und danac Zeichenklasse ")" enthält. Kantengewichtung:
+	 * Suche mit Wiederholung nach einer Ziffer, die danach ein beliebes Zeichen
+	 * enthält und weitere Ziffern enthalten kann. Gewicht kann sich
+	 * wiederholen. Und das ganze Pattern kann sich wiederholen.
+	 */
 	private static final Pattern REGEX = Pattern.compile(
-			"((?<source>\\w+)" + "((((?<edge>--|->)(?<target>\\w+)){1}"
+			"((?<source>\\w+)" + "((( (?<edge>--|->) (?<target>\\w+)){1}"
 					+ "(?<eName>[(]\\w+[)])?"
 					+ "(?<eWeight>:\\d+(\\.\\d+)?)?))?)",
 					Pattern.UNICODE_CHARACTER_CLASS);
 	private static Edge e;
 	private static boolean directed;
-	private static String eLabel = "";
-	private static String target, src, eName, eWeight, edg;
+	private static String target, src, eName, eWeight, edg, eLabel = "";
 
 	/**
 	 * Konstruktor
@@ -64,11 +74,12 @@ public class GraphBuilder {
 			if (edg == null && _graph.getNode(src) == null)
 				_graph.addNode(src);
 			else {
-				setDirected(edg.equals("--") ? false : true);
+				setDirected(!edg.equals("--"));
 				seteLabel(eName);
 				e = _graph.addEdge(eName, src, target, isDirected());
 				e.addAttribute("ui.label", geteLabel());
-				if (eWeight != null) e.addAttribute("weight", eWeight);
+				if (eWeight != null)
+					e.addAttribute("weight", eWeight);
 			}
 		}
 		// Füge Labels hinzu zu den Knoten

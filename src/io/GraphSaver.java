@@ -19,12 +19,10 @@ public class GraphSaver {
 	/**
 	 * 
 	 */
-	private GraphSaver() {
-		GraphSaver.create();
-	}
+	private GraphSaver() {}
 
 	/**
-	 * @return
+	 * @return new Instance
 	 */
 	public static GraphSaver create() {
 		return new GraphSaver();
