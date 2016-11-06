@@ -41,7 +41,7 @@ public class Run {
 			
 			// Starte BFS
 			BreadthFirstSearch bfs = new BreadthFirstSearch();
-			bfs.initB(g, g.getNode("a"), g.getNode("c"));
+			bfs.initB(g, g.getNode("a"), g.getNode("h"));
 			bfs.startSearchEngine().getShortestPath();
 			System.out.println(bfs);
 		} catch (Exception e) {

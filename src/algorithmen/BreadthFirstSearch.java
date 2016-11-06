@@ -28,7 +28,13 @@ public class BreadthFirstSearch {
 
 	/**
 	 * @param g
+	 *            der Graph der eingelesen wurde
+	 * @param start
+	 *            der Startvertex
+	 * @param end
+	 *            der Endvertex
 	 * @throws Exception
+	 *             falls die Knoten nicht existieren
 	 */
 	public void initB(Graph g, Node start, Node end) throws Exception {
 		setGraph(g);
@@ -117,12 +123,9 @@ public class BreadthFirstSearch {
 	 */
 	@NonNull
 	private Node getShortestNode(@NonNull Node node) {
-		System.out.println("Aktueller Node: "+node+" Steps:"+node.getAttribute("steps"));
 		Iterator<Node> nodeIterator = node.getNeighborNodeIterator();
 		while (nodeIterator.hasNext()) {
 			Node next = nodeIterator.next();
-			System.out.println("next: "+next+" Steps: "+next.getAttribute("steps"));
-			System.out.println("node: "+node+" Steps: "+((Integer) node.getAttribute("steps") - 1));
 			if (next.getAttribute("steps").equals((((Integer) node.getAttribute("steps")) - 1))) {
 				return next;
 			}

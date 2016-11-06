@@ -23,9 +23,7 @@ import graph.GraphBuilder;
 public class GraphReader {
 	private List<String> strLines;
 	private GraphBuilder builder = new GraphBuilder();
-	/**
-	 * Constructor
-	 */
+
 	public GraphReader() {}
 
 	/**
@@ -47,11 +45,11 @@ public class GraphReader {
 				.map(string -> string.replaceAll(" ", ""))
 				.flatMap(line -> Stream.of(line.split(";")))
 				.collect(Collectors.toList());
-		System.out.println("hier");
+	
 		for (String data : strLines)
 			if (!builder.getRegex().matcher(data).matches())
 				throw new ParseException("Ungültiger Graph", 0);
-		System.out.println("hier2");
+		
 		return builder.createGraph(strLines);
 	}
 	
