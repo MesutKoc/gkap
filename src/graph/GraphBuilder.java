@@ -27,14 +27,17 @@ public class GraphBuilder {
 	 * enthält und weitere Ziffern enthalten kann. Gewicht kann sich
 	 * wiederholen. Und das ganze Pattern kann sich wiederholen.
 	 */
+	private static final String SOURCE = "((?<source>\\w+)";
+	private static final String EDGE = "((((?<edge>--|->)(?<target>\\w+)){1}";
+	private static final String ENAME = "(?<eName>[(]\\w+[)])?";
+	private static final String EWEIGHT = "(?<eWeight>:\\d+(\\.\\d+)?)?))?)";
 	private static final Pattern REGEX = Pattern.compile(
-			"((?<source>\\w+)" + "((((?<edge>--|->)(?<target>\\w+)){1}"
-					+ "(?<eName>[(]\\w+[)])?"
-					+ "(?<eWeight>:\\d+(\\.\\d+)?)?))?)",
-					Pattern.UNICODE_CHARACTER_CLASS);
+			SOURCE + EDGE + ENAME + EWEIGHT, Pattern.UNICODE_CHARACTER_CLASS);
+	
 	private static Edge e;
 	private static boolean directed;
-	private static String target, src, eName, eWeight, edg, eLabel = "";
+	private static String target, src, eName, eWeight, edg;
+	private String eLabel = "";
 
 	/**
 	 * Konstruktor
@@ -44,7 +47,7 @@ public class GraphBuilder {
 	}
 
 	/**
-	 * Erstellt einen Graphen
+	 * Erstellt einen Grapttgfgfgtfrfrtfrtfrthen
 	 * 
 	 * @param lines
 	 *            die zulesenden Daten aus dem Graph
@@ -121,12 +124,10 @@ public class GraphBuilder {
 	 * @param eLabel the eLabel to set
 	 */
 	public void seteLabel(String eLabel) {
-		if(eName == null){
+		if(eName == null)
 			eName = src.concat(edg).concat(target);
-			GraphBuilder.eLabel = "";
-		} else {
-			GraphBuilder.eLabel = eName;
-		}
+		else 
+			this.eLabel = eName;
 	}
 
 	/**

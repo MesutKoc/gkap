@@ -78,7 +78,7 @@ public class BreadthFirstSearch {
 	 */
 	@NonNull
 	private List<Node> getNeighbours(@NonNull Node node) {
-		List<Node> newTaggedNeighbors = new ArrayList<Node>();
+		List<Node> allNeighbours = new ArrayList<Node>();
 		Iterator<Edge> edgeIterator = node.getLeavingEdgeIterator();
 		while (edgeIterator.hasNext()) {
 			Edge nextEdge = edgeIterator.next();
@@ -90,10 +90,10 @@ public class BreadthFirstSearch {
 			
 			// Wenn der Node noch nicht besucht wurde
 			if (nextNode.getAttribute("steps").toString().equals("-1"))
-				newTaggedNeighbors.add(setVisited(nextNode,
+				allNeighbours.add(setVisited(nextNode,
 						Integer.valueOf(node.getAttribute("steps").toString())));
 		}
-		return newTaggedNeighbors;
+		return allNeighbours;
 	}
 
 	/**
@@ -103,13 +103,13 @@ public class BreadthFirstSearch {
 	 * @return allPaths die Liste wo die Wege enthalten sind
 	 */
 	public List<Node> getShortestPath() {
-        LinkedList<Node> shortestWay = new LinkedList<Node>();
-        shortestWay.add(endVertex);
-        while (!shortestWay.getLast().getAttribute("steps").equals(0)) { 
-            Node next = getShortestNode(shortestWay.getLast()); 
-            shortestWay.add(next);
+        LinkedList<Node> allPaths = new LinkedList<Node>();
+        allPaths.add(endVertex);
+        while (!allPaths.getLast().getAttribute("steps").equals(0)) { 
+            Node next = getShortestNode(allPaths.getLast()); 
+            allPaths.add(next);
         }
-        return shortestWay;
+        return allPaths;
     }
 	
 	/**
