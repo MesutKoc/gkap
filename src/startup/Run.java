@@ -13,6 +13,7 @@ import io.GraphSaver;
  * @version 1.1
  * @since 2016-10-18
  */
+@SuppressWarnings("unused")
 public class Run {
 	/**
 	 * Startet die Applikation
@@ -40,10 +41,8 @@ public class Run {
 			
 			// Starte BFS
 			BreadthFirstSearch bfs = new BreadthFirstSearch();
-			bfs.initA(g);
-			bfs.setDestination(g.getNode("a"), g.getNode("c"));
-			bfs.startSearchEngine();
-			bfs.resultShortestWay();
+			bfs.initB(g, g.getNode("a"), g.getNode("c"));
+			bfs.startSearchEngine().getShortestPath();
 			System.out.println(bfs);
 		} catch (Exception e) {
 			e.printStackTrace();

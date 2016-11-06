@@ -20,103 +20,46 @@ import org.graphstream.graph.Node;
  */
 public class BreadthFirstSearch {
 	private Queue<Node> queue = new LinkedList<Node>();
-	private  int steps = -1;
 	private Node startVertex, endVertex;
 	private Graph graph;
+	private int steps = -1;
 	
 	public BreadthFirstSearch(){}
 
 	/**
 	 * @param g
-	 *            der Graph
-	 * @param startVertex
-	 *            wo der Travisier anfangen soll
-	 * @param endVertex
-	 *            wo der Travisier aufhören soll
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public void initA(Graph g) throws Exception {
+	public void initB(Graph g, Node start, Node end) throws Exception {
 		setGraph(g);
-		setDestination(g.getNode(0), g.getNode(g.getNodeCount() - 1));
+		setDestination(start, end);
 	}
-
+	
 	/**
-	 * Startet die Breitensuche, sollte der Graph oder die angegebenen Vertexe
-	 * nicht vorhanden sein wird einfach mit return passiert. Die Methode fügt
-	 * den Startvertex in eine Queue mit dem Schritt -1 ein, da es sich selbst
-	 * noch zählt und dann bei Schritt 0 ankommt. Die Suchenengine muss vorher
-	 * gestartet werden, bevor die Methode
-	 * {@link algorithmen.BreadthFirstSearch#resultShortestWay()} aufgerufen
-	 * wird.
+	 * Diese Methode startet die Breitensuche, dabei setzt Sie erstmal alle
+	 * Attribute von einem Node auf -1, dabei markiert die -1, ob der Knoten
+	 * besucht oder unbesucht wurde. Danach fügen wir das erste Element mit -1
+	 * Schritten in die Queue und iterieren solange, bis die Queue leer ist.
+	 * Nehmen uns immer das Element und vergleichen danach seine Nachbarn und
+	 * fügen Sie in die Queue ein. Sobald der Targetvertex nicht mehr mit -1
+	 * Schritten belegt ist, gehen wir raus aus der Schleife.
+	 * 
+	 * @return BFS Object
 	 */
-	public void startSearchEngine() {
+	public BreadthFirstSearch startSearchEngine() {
+		resetAllAtributes();
 		queue.add(setVisited(startVertex, -1));
-		setAttribute();
 		while (!queue.isEmpty()) {
-			Node tmp = queue.peek();
+			Node tmp = queue.poll();
 			queue.addAll(getNeighbours(tmp));
-			if(isTargetTagged()){
+			if(!endVertex.getAttribute("steps").equals(-1)){
 				steps = endVertex.getAttribute("steps");
 				break;
 			}
-			queue.remove(tmp);
 		}
-	}
-
-	
-	private Boolean isTargetTagged() {
-        return (!endVertex.getAttribute("steps").equals(-1));
-    }
-	
-	private void setAttribute(){
-		this.steps = -1;
-		for (Node node : graph.getEachNode()) node.setAttribute("steps", -1);
+		return this;
 	}
 	
-	/**
-	 * Die Methode liefert den kürzersten Weg der angegebenen Vertexe. Dabei
-	 * geht es rücksuchend und bis ein Knoten gefunden wurde, der den Kürzsesten
-	 * Weg repräsentiert.
-	 * 
-	 * @return allPaths die Liste wo die Wege enthalten sind
-	 */
-	public List<Node> resultShortestWay() {
-        if (endVertex.getAttribute("steps").equals(-1))
-            throw new IllegalArgumentException("do compute before this method");
-        LinkedList<Node> shortestWay = new LinkedList<Node>();
-        for (Node node : graph.getEachNode()) {
-            node.setAttribute("ui.class", "");
-        }
-        shortestWay.add(endVertex);
-        endVertex.setAttribute("ui.class", "markRed");
-        while (!shortestWay.getLast().getAttribute("steps").equals(0)) { // TODO noch eine Abbruchbedingung
-            Node next = getShortestNode(shortestWay.getLast()); // TODO Nullable
-            next.setAttribute("ui.class", "markRed");
-            shortestWay.add(next);
-        }
-        return shortestWay;
-    }
-	
-	/**
-	 * Die Methode iteriert über alle Knoten und prüft, ob der Vorgänger vom
-	 * Knoten weniger Schritte braucht als der Nachgängger vom Knoten
-	 * 
-	 * @param node
-	 * @return falls kein kürzerster Weg gefunden wurde, ansonsten der kürzseste
-	 *         Knoten
-	 */
-	@NonNull
-	private Node getShortestNode(@NonNull Node node) {
-		Iterator<Node> nodeIterator = node.getNeighborNodeIterator();
-		while (nodeIterator.hasNext()) {
-			Node next = nodeIterator.next();
-			if (next.getAttribute("steps").equals((((Integer) node.getAttribute("steps")) - 1))) {
-				return next;
-			}
-		}
-		return null;
-	}
-
 	/**
 	 * Die Methode liefert uns alle Nachbarn von einem Knoten. Dabei iteriert
 	 * Sie üer alle Kanten und nimmt sich das nächste und prüft somit, ob der
@@ -134,16 +77,57 @@ public class BreadthFirstSearch {
 		while (edgeIterator.hasNext()) {
 			Edge nextEdge = edgeIterator.next();
 			Node nextNode;
-			if (node != nextEdge.getNode1())
-				nextNode = nextEdge.getNode1();
-			else
-				nextNode = nextEdge.getNode0();
+			if (node != nextEdge.getNode1()) // Falls es zwei gleiche Nodes existieren
+				nextNode = nextEdge.getNode1(); //Liefert den Second Node über die Kanten
+			else 							 
+				nextNode = nextEdge.getNode0(); //Liefer den first Node über die Kanten
 			
+			// Wenn der Node noch nicht besucht wurde
 			if (nextNode.getAttribute("steps").toString().equals("-1"))
 				newTaggedNeighbors.add(setVisited(nextNode,
 						Integer.valueOf(node.getAttribute("steps").toString())));
 		}
 		return newTaggedNeighbors;
+	}
+
+	/**
+	 * Diese Methode liefert eine Liste mit dem kürzesten Weg, dabei arbeitet
+	 * der Algorithmus rückwärts.
+	 * 
+	 * @return allPaths die Liste wo die Wege enthalten sind
+	 */
+	public List<Node> getShortestPath() {
+        LinkedList<Node> shortestWay = new LinkedList<Node>();
+        shortestWay.add(endVertex);
+        while (!shortestWay.getLast().getAttribute("steps").equals(0)) { 
+            Node next = getShortestNode(shortestWay.getLast()); 
+            shortestWay.add(next);
+        }
+        return shortestWay;
+    }
+	
+	/**
+	 * Die Methode sucht den kürsestzen Weg wieder rückwärts an den Anfang über
+	 * die Knoten. Dabei vergleicht es die Schritte der Knoten - wenn sie gleich
+	 * sind wird der aktuelle Knoten auf next gesetzt bzw. zurückgegeben
+	 * 
+	 * @param node
+	 * @return falls kein kürzerster Weg gefunden wurde, ansonsten der kürzseste
+	 *         Knoten
+	 */
+	@NonNull
+	private Node getShortestNode(@NonNull Node node) {
+		System.out.println("Aktueller Node: "+node+" Steps:"+node.getAttribute("steps"));
+		Iterator<Node> nodeIterator = node.getNeighborNodeIterator();
+		while (nodeIterator.hasNext()) {
+			Node next = nodeIterator.next();
+			System.out.println("next: "+next+" Steps: "+next.getAttribute("steps"));
+			System.out.println("node: "+node+" Steps: "+((Integer) node.getAttribute("steps") - 1));
+			if (next.getAttribute("steps").equals((((Integer) node.getAttribute("steps")) - 1))) {
+				return next;
+			}
+		}
+		return null;
 	}
 
 	/*
@@ -153,7 +137,15 @@ public class BreadthFirstSearch {
 	 */
 	@Override
 	public String toString() {
-		return String.format("BreadthFirstSearch [von=%s], [nach=%s], [benötigteKanten=%d]", startVertex, endVertex, steps);
+		return String.format("[%s] [von=%s], [nach=%s], [benötigteKanten=%d]", this.getClass(), startVertex, endVertex, steps);
+	}
+	
+	/**
+	 * Resetet alle Attribute
+	 */
+	private void resetAllAtributes(){
+		for (Node node : graph.getEachNode()) 
+			node.setAttribute("steps", -1);
 	}
 	
 	/**
@@ -167,12 +159,13 @@ public class BreadthFirstSearch {
 		return node;
 	}
 	
-	public void setDestination(Node node, Node node2) throws Exception {
+	/**
+	 * @param node
+	 * @param node2
+	 * @throws Exception
+	 */
+	private void setDestination(Node node, Node node2) throws Exception {
 		if(node == null || node2 == null) throw new Exception("Ungültige Knoten");
-		if (this.startVertex != null && this.startVertex.hasAttribute("title"))
-            this.startVertex.removeAttribute("title");
-        if (this.endVertex != null && this.endVertex.hasAttribute("title"))
-            this.endVertex.removeAttribute("title");
         this.startVertex = node;
         this.endVertex = node2;
         startVertex.setAttribute("title", "source");
@@ -183,8 +176,16 @@ public class BreadthFirstSearch {
 	 * @param g der Graph
 	 * @throws Exception 
 	 */
-	public void setGraph(Graph g) throws Exception{
+	private void setGraph(Graph g) throws Exception{
 		if(g == null) throw new Exception("Ungültiger Graph");
 		this.graph = g;
+	}
+	
+	/**
+	 * Gibt die Schritte zurück
+	 * @return die Schritte
+	 */
+	public final int getSteps() {
+		return steps;
 	}
 }
