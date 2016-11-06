@@ -27,25 +27,24 @@ public class Run {
 	/**
 	 * run
 	 */
-	@SuppressWarnings("unused")
 	public static void run() {
 		try {
 			// Starte Reader
-			GraphReader reader = GraphReader.create();
+			GraphReader reader = new GraphReader();
 			
 			// Erstelle Graphen
-			Graph g = GraphReader.openFile(new File("bspGraphen/graph01.gka"));
+			Graph g = reader.openFile(new File("bspGraphen/graph01.gka"));
 			
 			// Speicher Graphen ab
-			GraphSaver.saveGraph(g, new File("bspGraphen/saved/graph01.gka"));
+			//GraphSaver.saveGraph(g, new File("bspGraphen/saved/graph01.gka"));
 			
 			// Starte BFS
-			BreadthFirstSearch bfs = BreadthFirstSearch.getInstance();
-			bfs.initA(g, g.getNode("a"), g.getNode("d"));
-			BreadthFirstSearch.startSearchEngine();
+			BreadthFirstSearch bfs = new BreadthFirstSearch();
+			bfs.initA(g);
+			bfs.setDestination(g.getNode("a"), g.getNode("c"));
+			bfs.startSearchEngine();
 			bfs.resultShortestWay();
 			System.out.println(bfs);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

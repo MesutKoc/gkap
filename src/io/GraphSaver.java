@@ -16,17 +16,11 @@ import org.graphstream.graph.Graph;
  * @since 2016-11-01
  */
 public class GraphSaver {
+	private static GraphReader reader1 = new GraphReader();
 	/**
 	 * 
 	 */
-	private GraphSaver() {}
-
-	/**
-	 * @return new Instance
-	 */
-	public static GraphSaver create() {
-		return new GraphSaver();
-	}
+	public GraphSaver() {}
 
 	/**
 	 * @param graph
@@ -42,7 +36,7 @@ public class GraphSaver {
 	
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-			for (String strLines : GraphReader.getStrLines())
+			for (String strLines : reader1.getStrLines())
 				writer.write("" + strLines + ";"
 						+ System.getProperty("line.separator"));
 		}

@@ -19,21 +19,12 @@ import org.graphstream.graph.Node;
  * @since 2016-10-30
  */
 public class BreadthFirstSearch {
-	private static Queue<Node> queue = new LinkedList<Node>();
-	private static LinkedList<Node> visited = new LinkedList<Node>();
-	private static Integer count = -1;
-	private static Node startVertex, endVertex;
-	private static Graph graph;
+	private Queue<Node> queue = new LinkedList<Node>();
+	private  int steps = -1;
+	private Node startVertex, endVertex;
+	private Graph graph;
 	
-	private BreadthFirstSearch(){}
-	
-	/**
-	 * Single Ton
-	 * @return new Instance of the Class
-	 */
-	public static BreadthFirstSearch getInstance(){
-		return new BreadthFirstSearch();
-	}
+	public BreadthFirstSearch(){}
 
 	/**
 	 * @param g
@@ -42,37 +33,46 @@ public class BreadthFirstSearch {
 	 *            wo der Travisier anfangen soll
 	 * @param endVertex
 	 *            wo der Travisier aufhören soll
+	 * @throws Exception 
 	 */
-	public void initA(Graph g, Node startVertex, Node endVertex) {
+	public void initA(Graph g) throws Exception {
 		setGraph(g);
-		setStartVertex(startVertex);
-		setEndVertex(endVertex);
+		setDestination(g.getNode(0), g.getNode(g.getNodeCount() - 1));
 	}
-	
+
 	/**
 	 * Startet die Breitensuche, sollte der Graph oder die angegebenen Vertexe
 	 * nicht vorhanden sein wird einfach mit return passiert. Die Methode fügt
 	 * den Startvertex in eine Queue mit dem Schritt -1 ein, da es sich selbst
 	 * noch zählt und dann bei Schritt 0 ankommt. Die Suchenengine muss vorher
-	 * gestartet werden, bevor die Methode @see
-	 * BreathFirstSearch#resultShortestWay() aufgerufen wird.
+	 * gestartet werden, bevor die Methode
+	 * {@link algorithmen.BreadthFirstSearch#resultShortestWay()} aufgerufen
+	 * wird.
 	 */
-	public static void startSearchEngine() {
-		if (graph == null || startVertex == null || endVertex == null) return;
+	public void startSearchEngine() {
 		queue.add(setVisited(startVertex, -1));
-		visited.add(setVisited(startVertex, -1));
-
+		setAttribute();
 		while (!queue.isEmpty()) {
 			Node tmp = queue.peek();
 			queue.addAll(getNeighbours(tmp));
-			visited.addAll(getNeighbours(tmp));
-			if (visited.contains(endVertex)) {
-				count = tmp.getAttribute("steps");
+			if(isTargetTagged()){
+				steps = endVertex.getAttribute("steps");
+				break;
 			}
 			queue.remove(tmp);
 		}
 	}
 
+	
+	private Boolean isTargetTagged() {
+        return (!endVertex.getAttribute("steps").equals(-1));
+    }
+	
+	private void setAttribute(){
+		this.steps = -1;
+		for (Node node : graph.getEachNode()) node.setAttribute("steps", -1);
+	}
+	
 	/**
 	 * Die Methode liefert den kürzersten Weg der angegebenen Vertexe. Dabei
 	 * geht es rücksuchend und bis ein Knoten gefunden wurde, der den Kürzsesten
@@ -81,14 +81,21 @@ public class BreadthFirstSearch {
 	 * @return allPaths die Liste wo die Wege enthalten sind
 	 */
 	public List<Node> resultShortestWay() {
-		LinkedList<Node> allPaths = new LinkedList<>();
-		allPaths.add(endVertex);
-		while (!allPaths.getLast().getAttribute("steps").equals(0)) { 
-			Node next = getShortestNode(allPaths.getLast());
-			allPaths.add(next);
-		}
-		return allPaths;
-	}
+        if (endVertex.getAttribute("steps").equals(-1))
+            throw new IllegalArgumentException("do compute before this method");
+        LinkedList<Node> shortestWay = new LinkedList<Node>();
+        for (Node node : graph.getEachNode()) {
+            node.setAttribute("ui.class", "");
+        }
+        shortestWay.add(endVertex);
+        endVertex.setAttribute("ui.class", "markRed");
+        while (!shortestWay.getLast().getAttribute("steps").equals(0)) { // TODO noch eine Abbruchbedingung
+            Node next = getShortestNode(shortestWay.getLast()); // TODO Nullable
+            next.setAttribute("ui.class", "markRed");
+            shortestWay.add(next);
+        }
+        return shortestWay;
+    }
 	
 	/**
 	 * Die Methode iteriert über alle Knoten und prüft, ob der Vorgänger vom
@@ -104,8 +111,6 @@ public class BreadthFirstSearch {
 		while (nodeIterator.hasNext()) {
 			Node next = nodeIterator.next();
 			if (next.getAttribute("steps").equals((((Integer) node.getAttribute("steps")) - 1))) {
-//				System.out.println("steps von shortednext: "+next.getAttribute("steps").toString());
-//				System.out.println("steps von shortednode:"+node.getAttribute("steps"));
 				return next;
 			}
 		}
@@ -123,7 +128,7 @@ public class BreadthFirstSearch {
 	 * @return die Liste, die die Nachbarn enthält
 	 */
 	@NonNull
-	private static List<Node> getNeighbours(@NonNull Node node) {
+	private List<Node> getNeighbours(@NonNull Node node) {
 		List<Node> newTaggedNeighbors = new ArrayList<Node>();
 		Iterator<Edge> edgeIterator = node.getLeavingEdgeIterator();
 		while (edgeIterator.hasNext()) {
@@ -133,9 +138,10 @@ public class BreadthFirstSearch {
 				nextNode = nextEdge.getNode1();
 			else
 				nextNode = nextEdge.getNode0();
-
-			newTaggedNeighbors.add(setVisited(nextNode,
-					Integer.valueOf(node.getAttribute("steps").toString())));
+			
+			if (nextNode.getAttribute("steps").toString().equals("-1"))
+				newTaggedNeighbors.add(setVisited(nextNode,
+						Integer.valueOf(node.getAttribute("steps").toString())));
 		}
 		return newTaggedNeighbors;
 	}
@@ -147,9 +153,7 @@ public class BreadthFirstSearch {
 	 */
 	@Override
 	public String toString() {
-		return String.format(
-				"BreadthFirstSearch [von=%s], [nach=%s], [benötigteKanten=%d]",
-				startVertex, endVertex, count);
+		return String.format("BreadthFirstSearch [von=%s], [nach=%s], [benötigteKanten=%d]", startVertex, endVertex, steps);
 	}
 	
 	/**
@@ -157,35 +161,30 @@ public class BreadthFirstSearch {
 	 * @param steps de Schritte
 	 * @return der veränderte Knoten
 	 */
-	private static Node setVisited(Node node, Integer steps) {
+	private Node setVisited(Node node, Integer steps) {
 		node.setAttribute("steps", steps + 1);
 		node.setAttribute("ui.label", node.getAttribute("ui.label") + "(" + (steps + 1) + ")");
 		return node;
 	}
-
-	/**
-	 * @param startVertex the startVertex to set
-	 */
-	@SuppressWarnings("static-access")
-	public void setStartVertex(Node startVertex) {
-		this.startVertex = startVertex;
-		this.startVertex.setAttribute("title", "startVertex");
-	}
-
-	/**
-	 * @param endVertex the endVertex to set
-	 */
-	@SuppressWarnings("static-access")
-	public void setEndVertex(Node endVertex) {
-		this.endVertex = endVertex;
-		this.endVertex.setAttribute("title", "endVertex");
+	
+	public void setDestination(Node node, Node node2) throws Exception {
+		if(node == null || node2 == null) throw new Exception("Ungültige Knoten");
+		if (this.startVertex != null && this.startVertex.hasAttribute("title"))
+            this.startVertex.removeAttribute("title");
+        if (this.endVertex != null && this.endVertex.hasAttribute("title"))
+            this.endVertex.removeAttribute("title");
+        this.startVertex = node;
+        this.endVertex = node2;
+        startVertex.setAttribute("title", "source");
+        endVertex.setAttribute("title", "target");
 	}
 	
 	/**
 	 * @param g der Graph
+	 * @throws Exception 
 	 */
-	@SuppressWarnings("static-access")
-	public void setGraph(Graph g){
+	public void setGraph(Graph g) throws Exception{
+		if(g == null) throw new Exception("Ungültiger Graph");
 		this.graph = g;
 	}
 }

@@ -21,23 +21,12 @@ import graph.GraphBuilder;
  * @since 2016-10-30
  */
 public class GraphReader {
-	private static List<String> strLines;
-
+	private List<String> strLines;
+	private GraphBuilder builder = new GraphBuilder();
 	/**
 	 * Constructor
 	 */
-	private GraphReader() {
-		GraphBuilder.create();
-	}
-
-	/**
-	 * Creates an object form the class GraphReader
-	 * 
-	 * @return the GraphReader
-	 */
-	public static GraphReader create() {
-		return new GraphReader();
-	}
+	public GraphReader() {}
 
 	/**
 	 * @param file
@@ -48,7 +37,7 @@ public class GraphReader {
 	 * @throws IOException
 	 *             wenn bei I/O ein Fehler auftritt
 	 */
-	public static Graph openFile(File file) throws ParseException, IOException {
+	public Graph openFile(File file) throws ParseException, IOException {
 		if (!file.exists() && !file.isDirectory()
 				&& !file.toString().endsWith(".gka"))
 			throw new IOException("Datei wurde nicht gefunden!");
@@ -58,15 +47,15 @@ public class GraphReader {
 				.map(string -> string.replaceAll(" ", ""))
 				.flatMap(line -> Stream.of(line.split(";")))
 				.collect(Collectors.toList());
-
+		System.out.println("hier");
 		for (String data : strLines)
-			if (!GraphBuilder.getRegex().matcher(data).matches())
+			if (!builder.getRegex().matcher(data).matches())
 				throw new ParseException("Ungültiger Graph", 0);
-
-		return GraphBuilder.createGraph(strLines);
+		System.out.println("hier2");
+		return builder.createGraph(strLines);
 	}
 	
-	public static final List<String> getStrLines() {
+	public final List<String> getStrLines() {
 		return strLines;
 	}
 

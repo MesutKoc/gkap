@@ -28,7 +28,7 @@ public class GraphBuilder {
 	 * wiederholen. Und das ganze Pattern kann sich wiederholen.
 	 */
 	private static final Pattern REGEX = Pattern.compile(
-			"((?<source>\\w+)" + "((( (?<edge>--|->) (?<target>\\w+)){1}"
+			"((?<source>\\w+)" + "((((?<edge>--|->)(?<target>\\w+)){1}"
 					+ "(?<eName>[(]\\w+[)])?"
 					+ "(?<eWeight>:\\d+(\\.\\d+)?)?))?)",
 					Pattern.UNICODE_CHARACTER_CLASS);
@@ -39,15 +39,8 @@ public class GraphBuilder {
 	/**
 	 * Konstruktor
 	 */
-	private GraphBuilder() {
+	public GraphBuilder() {
 		setGraphSettings();
-	}
-
-	/**
-	 * @return GraphBuilder
-	 */
-	public static GraphBuilder create() {
-		return new GraphBuilder();
 	}
 
 	/**
@@ -57,7 +50,7 @@ public class GraphBuilder {
 	 *            die zulesenden Daten aus dem Graph
 	 * @return ein Graph
 	 */
-	public static MultiGraph createGraph(List<String> lines) {
+	public MultiGraph createGraph(List<String> lines) {
 		if (_graph == null || lines.isEmpty()) return null;
 		// Durchlaufe Zeile für Zeile
 		for (String line : lines) {
@@ -71,10 +64,10 @@ public class GraphBuilder {
 				eWeight = m.group("eWeight");
 			}
 			// Wenn die Knanten und die Knoten vom Source null sind
-			if (edg == null && _graph.getNode(src) == null)
+			if (edg == null & _graph.getNode(src) == null)
 				_graph.addNode(src);
 			else {
-				setDirected(!edg.equals("--"));
+				setDirected(edg.equals("--") ? false : true);
 				seteLabel(eName);
 				e = _graph.addEdge(eName, src, target, isDirected());
 				e.addAttribute("ui.label", geteLabel());
@@ -90,7 +83,7 @@ public class GraphBuilder {
 	/**
 	 * setGraphSettings()
 	 */
-	private static void setGraphSettings() {
+	private void setGraphSettings() {
 		_graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
 									// von nicht existierenden Elementen usw.
 		_graph.setAutoCreate(true); // nodes are automatically created when
@@ -106,28 +99,28 @@ public class GraphBuilder {
 	/**
 	 * @return the directed
 	 */
-	public static boolean isDirected() {
+	public boolean isDirected() {
 		return directed;
 	}
 
 	/**
 	 * @param directed the directed to set
 	 */
-	public static void setDirected(boolean directed) {
+	public void setDirected(boolean directed) {
 		GraphBuilder.directed = directed;
 	}
 
 	/**
 	 * @return the eLabel
 	 */
-	public static String geteLabel() {
+	public String geteLabel() {
 		return eLabel;
 	}
 
 	/**
 	 * @param eLabel the eLabel to set
 	 */
-	public static void seteLabel(String eLabel) {
+	public void seteLabel(String eLabel) {
 		if(eName == null){
 			eName = src.concat(edg).concat(target);
 			GraphBuilder.eLabel = "";
@@ -139,7 +132,7 @@ public class GraphBuilder {
 	/**
 	 * @return REGEX
 	 */
-	public static final Pattern getRegex() {
+	public final Pattern getRegex() {
 		return REGEX;
 	}
 }
