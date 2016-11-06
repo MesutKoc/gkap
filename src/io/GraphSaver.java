@@ -38,7 +38,7 @@ public class GraphSaver {
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for(Edge edge : graph.getEachEdge()) {
-				writer.write(convertsGraph(edge, false, edge.getAttribute("weight") != null ? true : true));
+				writer.write(convertsGraph(edge, false, edge.getAttribute("weight") != null ? true : false));
 				writer.newLine();
 			}
 //			for (String strLines : reader1.getStrLines())
