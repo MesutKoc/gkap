@@ -34,6 +34,7 @@ public class Run {
 		try {
 			// Starte Reader
 			GraphReader reader = new GraphReader();
+			GraphSaver saver   = new GraphSaver();
 			
 			// Erstelle Graphen
 //			Graph g = reader.openFile(new File("bspGraphen/graph01.gka"));
@@ -57,7 +58,7 @@ public class Run {
 	        pentaCircle.display();
 			
 			// Speicher Graphen ab
-			GraphSaver.saveGraph(pentaCircle, new File("bspGraphen/saved/graph_new.gka"));
+	        saver.saveGraph(pentaCircle, new File("bspGraphen/saved/graph_new.gka"));
 			
 			// Starte BFS
 //			BreadthFirstSearch bfs = new BreadthFirstSearch();

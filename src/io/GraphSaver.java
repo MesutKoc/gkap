@@ -31,26 +31,33 @@ public class GraphSaver {
 	 * @throws IOException
 	 *             falls nicht der Graph gelesen werden kann
 	 */
-	public static void saveGraph(Graph graph, File file) throws IOException {
+	public void saveGraph(Graph graph, File file) throws IOException {
 		if(graph == null) throw new IOException("Graph konnte nicht gelesen werden");
 		if(!file.exists()) file.createNewFile();
-	
+
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for(Edge edge : graph.getEachEdge()) {
 				writer.write(convertsGraph(edge, false, edge.getAttribute("weight") != null ? true : false));
 				writer.newLine();
 			}
-//			for (String strLines : reader1.getStrLines())
-//				writer.write("" + strLines + ";"
-//						+ System.getProperty("line.separator"));
 		}
 	}
 	
+	/**
+	 * @param edge
+	 *            die Kante die konventiert werden soll
+	 * @param showName
+	 *            ob der Name der Kante angezeigt werden soll
+	 * @param showWeight
+	 *            ob die Gewichtung vorhanden ist
+	 * @return liefert ein String in der Graph-Syntax
+	 */
 	public static String convertsGraph(Edge edge, Boolean showName, Boolean showWeight){
 		String name = showName ? " (" + edge.getId() + ")" : "",
 			   conn = edge.isDirected() ? "-->" : "--",
 			   weight = edge.getAttribute("weight") != null ? " : " + edge.getAttribute("weight") : "";
-		return edge.getNode0() + conn + edge.getNode1() + name + weight + ";";
+			  
+		 return edge.getNode0() + conn + edge.getNode1() + name + weight + ";";
 	}
 }
