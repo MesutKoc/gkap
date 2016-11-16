@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Queue;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -18,29 +19,38 @@ import org.graphstream.graph.Node;
  * @version 1.4
  * @since 2016-10-30
  */
-public class BreadthFirstSearch {
+public class BreadthFirstSearch implements Algorithm {
 	private Queue<Node> queue = new LinkedList<Node>();
 	private Node startVertex, endVertex;
 	private Graph graph;
 	private int steps = -1;
 	
 	public BreadthFirstSearch(){}
-
-	/**
-	 * @param g
-	 *            der Graph der eingelesen wurde
-	 * @param start
-	 *            der Startvertex
-	 * @param end
-	 *            der Endvertex
-	 * @throws Exception
-	 *             falls die Knoten nicht existieren
-	 */
-	public void initB(Graph g, Node start, Node end) throws Exception {
-		setGraph(g);
-		setDestination(start, end);
-	}
 	
+	@Override
+	public void compute() {
+		resetAllAtributes();
+		queue.add(setVisited(startVertex, -1));
+		while (!queue.isEmpty()) {
+			Node tmp = queue.poll();
+			queue.addAll(getNeighbours(tmp));
+			if(!endVertex.getAttribute("steps").equals(-1)){
+				steps = endVertex.getAttribute("steps");
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void init(Graph arg0) {
+		try {
+			setGraph(arg0);
+			setDestination(graph.getNode(0), graph.getNode(graph.getNodeCount()-1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Diese Methode startet die Breitensuche, dabei setzt Sie erstmal alle
 	 * Attribute von einem Node auf -1, dabei markiert die -1, ob der Knoten
@@ -52,20 +62,7 @@ public class BreadthFirstSearch {
 	 * 
 	 * @return BFS Object
 	 */
-	public BreadthFirstSearch startSearchEngine() {
-		resetAllAtributes();
-		queue.add(setVisited(startVertex, -1));
-		while (!queue.isEmpty()) {
-			Node tmp = queue.poll();
-			queue.addAll(getNeighbours(tmp));
-			if(!endVertex.getAttribute("steps").equals(-1)){
-				steps = endVertex.getAttribute("steps");
-				break;
-			}
-		}
-		return this;
-	}
-	
+
 	/**
 	 * Die Methode liefert uns alle Nachbarn von einem Knoten. Dabei iteriert
 	 * Sie üer alle Kanten und nimmt sich das nächste und prüft somit, ob der
@@ -167,7 +164,7 @@ public class BreadthFirstSearch {
 	 * @param node2
 	 * @throws Exception
 	 */
-	private void setDestination(Node node, Node node2) throws Exception {
+	public void setDestination(Node node, Node node2) throws Exception {
 		if(node == null || node2 == null) throw new Exception("Ungültige Knoten");
         this.startVertex = node;
         this.endVertex = node2;
