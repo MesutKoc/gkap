@@ -1,6 +1,8 @@
 package algorithmen;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
@@ -49,7 +51,31 @@ public class Dijkstra implements Algorithm {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Diese Methode liefert eine Liste mit dem kürzesten Weg für den Knoten
+	 * 
+	 * @param target
+	 *            der Knoten zu dem kürzesten Weg gesucht wird
+	 * @return path die Liste wo die Wege enthalten sind
+	 */
+	public List<Node> getShortestPath(Node target) {
+		LinkedList<Node> path = new LinkedList<>();
+		Node u = target;
+		path.add(target);
+		
+		if (target.getAttribute("Predecessor") == null)
+			return path;
+		
+		while (u.getAttribute("Predecessor") != u) {
+			u = u.getAttribute("Predecessor");
+			path.add(u);
+		}
+		
+		Collections.reverse(path);
+		return path;
+	}
+	
 	/**
 	 * Diese Methode durchläuft alle Kanten und guckt, ob der Graph gerichtet ist oder nicht. 
 	 * @param currentNode
