@@ -1,9 +1,11 @@
 package graph;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.graphstream.graph.Edge;
+import org.graphstream.graph.EdgeRejectedException;
+import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
 
@@ -14,126 +16,101 @@ import org.graphstream.graph.implementations.MultiGraph;
  * @version 1.4
  * @since 2016-10-30
  */
-public class GraphBuilder {
-	private static MultiGraph _graph = new MultiGraph("Graph");
-	/*
-	 * Node1: Suche mit Wiederholung, welches Alparumerisches Zeichen enthält
-	 * Kanten: Suche mit Wiederhoung, welche die Zeichen -- oder -> enthalten
-	 * Node2: Suche mit Wiederholung, welche Alpanumerische Zeichen enthält,
-	 * dabei wiederholt sich das alles nur 1x. Kantennamen: Suche mit
-	 * Wiederholung, welche Zeichenklasse "(" und danch ein Alpanumerisches
-	 * Zeichen entählt und danac Zeichenklasse ")" enthält. Kantengewichtung:
-	 * Suche mit Wiederholung nach einer Ziffer, die danach ein beliebes Zeichen
-	 * enthält und weitere Ziffern enthalten kann. Gewicht kann sich
-	 * wiederholen. Und das ganze Pattern kann sich wiederholen.
-	 */
-	private static final String SOURCE = "((?<source>\\w+)";
-	private static final String EDGE = "((((?<edge>--|->)(?<target>\\w+)){1}";
-	private static final String ENAME = "(?<eName>[(]\\w+[)])?";
-	private static final String EWEIGHT = "(?<eWeight>:\\d+(\\.\\d+)?)?))?)";
-	private static final Pattern REGEX = Pattern.compile(
-			SOURCE + EDGE + ENAME + EWEIGHT, Pattern.UNICODE_CHARACTER_CLASS);
-	
-	private static Edge e;
-	private static boolean directed;
-	private static String target, src, eName, eWeight, edg;
-	private String eLabel = "";
-
+public class GraphBuilder {	
 	/**
 	 * Konstruktor
 	 */
-	public GraphBuilder() {
-		setGraphSettings();
-	}
+	private GraphBuilder() {}
 
 	/**
-	 * Erstellt einen Grapttgfgfgtfrfrtfrtfrthen
+	 * Erstellt einen Graphen
 	 * 
 	 * @param lines
 	 *            die zulesenden Daten aus dem Graph
 	 * @return ein Graph
+	 * @throws FileNotFoundException 
 	 */
-	public MultiGraph createGraph(List<String> lines) {
-		if (_graph == null || lines.isEmpty()) return null;
+	public static Graph createGraph(List<String> arr) throws FileNotFoundException {
+		final String uml = "[_öÖäÄüÜßa-zA-Z0-9]";
+		final String ws = "\\p{Blank}*";
+		final String edgePattern = "(" + uml + "+)(" + ws + "(-[->])"
+				+ ws + "(" + uml + "+))?(" + ws + "\\((" + uml + "*)\\))?(" + ws
+				+ ":" + ws + "(\\d+))?" + ws + ";";
+		
+		if(arr.isEmpty()) new Exception();
+		Graph graph = new MultiGraph("Test");
+
 		// Durchlaufe Zeile für Zeile
-		for (String line : lines) {
-			Matcher m = REGEX.matcher(line);
-			// Suche solange Substring gefunden wird
-			while (m.find()) {
-				src = m.group("source");
-				edg = m.group("edge");
-				target = m.group("target");
-				eName = m.group("eName");
-				eWeight = m.group("eWeight");
-			}
-			// Wenn die Knanten und die Knoten vom Source null sind
-			if (edg == null & _graph.getNode(src) == null)
-				_graph.addNode(src);
-			else {
-				setDirected(edg.equals("--") ? false : true);
-				seteLabel(eName);
-				e = _graph.addEdge(eName, src, target, isDirected());
-				e.addAttribute("ui.label", geteLabel());
-				if (eWeight != null)
-					e.addAttribute("weight", eWeight);
+		for(String line : arr){
+			Matcher lineMatcher = Pattern.compile(edgePattern).matcher(line);
+
+			if (lineMatcher.matches()) {
+				Boolean isDirected = false;
+				String edgeID = "", edgeWeight = "", direction = "", node1 = ""; 
+				String node0 = lineMatcher.group(1); 
+				createNode(graph, node0);
+
+				if (lineMatcher.group(3) != null && lineMatcher.group(4) != null) {
+					direction = lineMatcher.group(3);
+					node1 = lineMatcher.group(4);
+					createNode(graph, node1);
+
+					if (lineMatcher.group(6) != null) { 
+						edgeID = lineMatcher.group(6);
+						if (graph.getEdge(edgeID) != null) 
+							edgeID = node0 + "_to_" + node1;
+					} else
+						edgeID = node0 + "_to_" + node1;
+					if (lineMatcher.group(8) != null) edgeWeight = lineMatcher.group(8);
+					if (direction.equals("->")) isDirected = true;
+				} else { // SINGLE NODE OR LOOP
+					if (lineMatcher.group(6) != null) { // edgeID is given so we create a node with loop
+						node1 = node0;
+					} else {
+						break; 
+					}
+				}
+				graph.addEdge(edgeID, node0, node1, isDirected);
+				if(edgeWeight != null){
+					graph.getEdge(edgeID).addAttribute("weight", Double.parseDouble(edgeWeight));
+				}
+//				addEdge(graph, edgeID, node0, node1, isDirected, edgeWeight);
 			}
 		}
-		// Füge Labels hinzu zu den Knoten
-		for (Node n : _graph) n.addAttribute("ui.label", n.getId());
-		return _graph;
+		for (Node node : graph) node.addAttribute("ui.label", node.getId());
+		setGraphSettings(graph);
+		return graph;
 	}
+
+//	private static void addEdge(Graph graph, String edge, String node0,
+//			String node1, Boolean isDirected, String weight) {
+//		try {
+//			if (weight.equals("") || weight == null) // without edgeWeight
+//				graph.addEdge(edge, node0, node1, isDirected);
+//			else 
+//			  graph.addEdge(edge, node0, node1, isDirected).setAttribute("weight", Double.parseDouble(weight));
+//		} catch (EdgeRejectedException e) {
+//			System.err.println(e);
+//		}
+//	}
+	
+	private static void createNode(Graph graph, String node0) {
+        if (graph.getNode(node0) == null) graph.addNode(node0);
+    }
 
 	/**
 	 * setGraphSettings()
 	 */
-	private void setGraphSettings() {
-		_graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
+	private static void setGraphSettings(Graph graph) {
+		graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
 									// von nicht existierenden Elementen usw.
-		_graph.setAutoCreate(true); // nodes are automatically created when
+		graph.setAutoCreate(true); // nodes are automatically created when
 									// referenced when creating a edge, even if
 									// not yet inserted in the graph.
-		_graph.addAttribute("ui.stylesheet",
+		graph.addAttribute("ui.stylesheet",
 				"url('file:src/graph/subwerkzeuge/stylesheet')");
 		System.setProperty("org.graphstream.ui.renderer",
 				"org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-		_graph.display();
-	}
-
-	/**
-	 * @return the directed
-	 */
-	public boolean isDirected() {
-		return directed;
-	}
-
-	/**
-	 * @param directed the directed to set
-	 */
-	public void setDirected(boolean directed) {
-		GraphBuilder.directed = directed;
-	}
-
-	/**
-	 * @return the eLabel
-	 */
-	public String geteLabel() {
-		return eLabel;
-	}
-
-	/**
-	 * @param eLabel the eLabel to set
-	 */
-	public void seteLabel(String eLabel) {
-		if(eName == null)
-			eName = src.concat(edg).concat(target);
-		else 
-			this.eLabel = eName;
-	}
-
-	/**
-	 * @return REGEX
-	 */
-	public final Pattern getRegex() {
-		return REGEX;
+		graph.display();
 	}
 }

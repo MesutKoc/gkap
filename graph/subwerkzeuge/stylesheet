@@ -1,7 +1,7 @@
 node {
 	fill-color: blue;
 	size: 10px;
-	text-size: 20px;
+	text-size: 10px;
 	text-alignment: left;
 	text-background-mode: rounded-box;
 	text-background-color: white;

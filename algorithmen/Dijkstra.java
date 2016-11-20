@@ -1,6 +1,7 @@
 package algorithmen;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -20,128 +21,121 @@ public class Dijkstra implements Algorithm {
 	private Node source, target;
 	private Queue<Node> allNodes = new LinkedList<Node>();
 	private Queue<Node> _queueNode = new LinkedList<Node>();
+	private LinkedList<Node> uncheckedNodes;
 	private int graphAcc = 0;
-	
+	private Double distance;
+
 	@Override
 	public void compute() {
-		allNodes = config();
-		while (!allNodes.isEmpty()) {
-			_queueNode.clear();
-			_queueNode.addAll(allNodes);
-			Node currentNode = allNodes.remove();
-			// TODO getNodeWithMinDistance
-			//Node currentNode = getNodeWithMinDistance();
-			while (!allNodes.isEmpty())
-				if (currentNode.getNumber("Distance") > allNodes.element().getNumber("Distance"))
-					currentNode = allNodes.remove();
-				else
-					allNodes.remove();
-			allNodes.addAll(_queueNode);
-			allNodes.remove(currentNode);
+		initDijkstra(); 
+		calcNewDistance(source);
+		while (!uncheckedNodes.isEmpty()) {
+			Node currentNode = withMinDistance();
+			uncheckedNodes.remove(currentNode);
 			calcNewDistance(currentNode);
 		}
+		distance = (Double) target.getAttribute("Distance");
+		reset();
 	}
-	
+
 	@Override
 	public void init(Graph g) {
 		try {
 			setGraph(g);
 			setDestination(graph.getNode(0), graph.getNode(graph.getNodeCount() - 1));
+			uncheckedNodes = new LinkedList<Node>();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Diese Methode liefert eine Liste mit dem kürzesten Weg für den Knoten
-	 * 
-	 * @param target
-	 *            der Knoten zu dem kürzesten Weg gesucht wird
-	 * @return path die Liste wo die Wege enthalten sind
-	 */
-	public List<Node> getShortestPath(Node target) {
-		LinkedList<Node> path = new LinkedList<>();
-		Node u = target;
-		path.add(target);
-		
-		if (target.getAttribute("Predecessor") == null)
-			return path;
-		
-		while (u.getAttribute("Predecessor") != u) {
-			u = u.getAttribute("Predecessor");
-			path.add(u);
+
+	private void calcNewDistance(Node currNode) {
+		Iterator<Edge> leavingEdgeIterator = currNode.getLeavingEdgeIterator();
+
+		while (leavingEdgeIterator.hasNext()) {
+			Edge leavingEdge = leavingEdgeIterator.next();
+			// Ist dieser Wert für einen Knoten kleiner als die dort gespeicherte Distanz, aktualisiere sie und setze den aktuellen Knoten als Vorgänger.
+			Double newDist = ((Double) currNode.getAttribute("Distance")) + ((Double) leavingEdge.getAttribute("weight"));
+			Node nodeFromLeavingEdge = getRightNode(currNode, leavingEdge); // TODO ist das notwendig?
+
+			if (!((Boolean) nodeFromLeavingEdge.getAttribute("OK")) &&
+					(newDist < (Double) nodeFromLeavingEdge.getAttribute("Distance"))) {
+				nodeFromLeavingEdge.setAttribute("Distance", newDist);
+				nodeFromLeavingEdge.setAttribute("Predecessor", currNode);
+			}
 		}
-		
-		Collections.reverse(path);
-		return path;
+		currNode.setAttribute("ui.class", "");
 	}
-	
-	/**
-	 * Diese Methode durchläuft alle Kanten und guckt, ob der Graph gerichtet ist oder nicht. 
-	 * @param currentNode
-	 */
-	private void calcNewDistance(Node currentNode) {
-		for (Edge edge : graph.getEachEdge()) {
-			graphAcc++;
-			if (edge.getSourceNode() == currentNode && allNodes.contains(edge.getTargetNode()))
-				updateDistance(currentNode, edge.getTargetNode(), edge);
-		}
+
+	private Node getRightNode(Node currNode, Edge leavingEdge) {
+		Node node;
+		if (leavingEdge.getNode1().equals(currNode))
+			node = leavingEdge.getNode0();
+		else
+			node = leavingEdge.getNode1();
+		return node;
 	}
-	
-	/**
-	 * Akutliaisiert die Distanzen
-	 * @param u 
-	 * @param v
-	 * @param e die Kante die gerade durchläuft wird
-	 */
-	private void updateDistance(Node u, Node v, Edge e){
-		double alternativ =  u.getNumber("Distance") + e.getNumber("weight"); // Die Weglänge vom Startknoten nach v über u
-		if (alternativ < v.getNumber("Distance")) {
-			v.addAttribute("Distance", alternativ);
-			v.addAttribute("Predecessor", u);
-			updateLabel(v);
-		}
+
+	public List<Node> getShortestPath(Node ziel) {
+		return null;
 	}
-	
+
+	private Node withMinDistance() {
+		Node min = uncheckedNodes.getFirst();
+		for (Node cur : uncheckedNodes) 
+			if (((Double) cur.getAttribute("Distance") < ((Double) min.getAttribute("Distance"))))
+				min = cur;
+
+		return min;
+	}
+
 	/**
 	 * Aktualisiert die Labels im Graph
 	 * @param node der Knoten, wo die Information angezeigt werden soll
 	 */
 	private void updateLabel(Node node) {
 		node.setAttribute("ui.label",
-				node.getId() + " | Dist: " + node.getNumber("Distance")
-						+ " | OK: " + node.getAttribute("OK") + " | Pred: "
+						node.getId() + " | Dist: "
+						+ (double) node.getAttribute("Distance") + " | OK: "
+						+ node.getAttribute("OK") + " | Pred: "
 						+ node.getAttribute("Predecessor"));
 	}
-	
+
 	/**
 	 * Diese Funktion dient dazu, um die Attribute mit Startwerten zu belegen
 	 * und die Queue zu befüllen
 	 * 
 	 * @return veränderte Queue
 	 */
-	private Queue<Node> config() {
-		for(Node node : graph) {
-			if(node == source){
-				node.addAttribute("Distance", 0.0); // endgueltige Länge zum Startknoten
-				node.addAttribute("OK", true);	// sich selbst OK
-				node.addAttribute("Predecessor", node); // Vorgänger self
+	private void initDijkstra() {
+		for (Node node : graph) {
+			if (!node.equals(source)) {
+				node.addAttribute("Distance", Double.POSITIVE_INFINITY);
+				node.addAttribute("OK", false);
+				node.addAttribute("Predecessor", 0);
+				uncheckedNodes.add(node);
+				updateLabel(node);
 			} else {
-				node.addAttribute("Distance", Double.POSITIVE_INFINITY); // Entfernung ist unendlich
-				node.addAttribute("OK", false); // Knoten noch nicht gesehen
-				node.addAttribute("Predecessor", 0); // Vorgaenger noch nicht ermittelt
+				source.addAttribute("Distance", 0.0);
+				source.addAttribute("OK", true);
+				source.addAttribute("Predecessor", source);
+//				updateLabel(node);
 			}
-			allNodes.add(node);
-			updateLabel(node);
-		}
-		
-		// Zeige alle Gewichtungen von dem Knoten im Graph an
-		for (Edge edge : graph.getEachEdge()) 
+		} 
+		for (Edge edge : graph.getEachEdge())
 			edge.addAttribute("ui.label", edge.getAttribute("weight").toString());
-  
-		return allNodes;
 	}
-	
+
+	private void reset() {
+		for (Node node : graph.getEachNode()) {
+			node.removeAttribute("Distance");
+			node.removeAttribute("OK");
+			node.removeAttribute("Predecessor");
+		}
+		source.removeAttribute("title");
+		target.removeAttribute("title");
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -150,10 +144,10 @@ public class Dijkstra implements Algorithm {
 		return String.format(
 				"[%s] [von=%s], [nach=%s], [distance=%f], [zugriffe=%d]",
 				this.getClass(), source, target,
-				(double) target.getNumber("Distance"),
+				distance,
 				graphAcc);
 	}
-	
+
 	/**
 	 * @param g
 	 * @throws Exception falls g == null oder g != gewichtet
@@ -176,7 +170,7 @@ public class Dijkstra implements Algorithm {
 				return true;
 		return false;
 	}
-	
+
 	/**
 	 * @param node
 	 * @param node2
@@ -187,7 +181,7 @@ public class Dijkstra implements Algorithm {
 		for (Edge e : graph.getEachEdge())
 			if (e.getNumber("weight") < 0)
 				throw new Exception("Negative Kantengewichte nicht erlaubt!"); // Ungültiges Kantengewicht
-        this.source = node;
-        this.target = node2;
+		this.source = node;
+		this.target = node2;
 	}
 }
