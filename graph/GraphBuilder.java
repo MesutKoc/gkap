@@ -108,7 +108,7 @@ public class GraphBuilder {
 									// referenced when creating a edge, even if
 									// not yet inserted in the graph.
 		graph.addAttribute("ui.stylesheet",
-				"url('file:src/graph/subwerkzeuge/stylesheet')");
+				"url('file:graph/subwerkzeuge/stylesheet')");
 		System.setProperty("org.graphstream.ui.renderer",
 				"org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 		graph.display();

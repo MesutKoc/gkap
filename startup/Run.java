@@ -40,7 +40,7 @@ public class Run {
 //			displayMenu();
 //			// Speicher Graphen ab
 //	        saver.saveGraph(pentaCircle, new File("bspGraphen/saved/graph_new.gka"));
-			Graph g = GraphReader.openFile(new File("src/graph/subwerkzeuge/bspGraphen/graph03.gka"));
+			Graph g = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
 //			Dijkstra DK = new Dijkstra();
 //			DK.init(g);
 //			DK.setDestination(g.getNode("Paderborn"), g.getNode("Walsrode"));

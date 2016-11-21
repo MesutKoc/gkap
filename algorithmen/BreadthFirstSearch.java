@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
@@ -73,8 +72,8 @@ public class BreadthFirstSearch implements Algorithm {
 	 * @param node
 	 * @return die Liste, die die Nachbarn enthält
 	 */
-	@NonNull
-	private List<Node> getNeighbours(@NonNull Node node) {
+
+	private List<Node> getNeighbours( Node node) {
 		List<Node> allNeighbours = new ArrayList<Node>();
 		Iterator<Edge> edgeIterator = node.getLeavingEdgeIterator();
 		while (edgeIterator.hasNext()) {
@@ -118,8 +117,8 @@ public class BreadthFirstSearch implements Algorithm {
 	 * @return falls kein kürzerster Weg gefunden wurde, ansonsten der kürzseste
 	 *         Knoten
 	 */
-	@NonNull
-	private Node getShortestNode(@NonNull Node node) {
+
+	private Node getShortestNode( Node node) {
 		Iterator<Node> nodeIterator = node.getNeighborNodeIterator();
 		while (nodeIterator.hasNext()) {
 			Node next = nodeIterator.next();
