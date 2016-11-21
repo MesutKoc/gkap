@@ -70,11 +70,11 @@ public class GraphBuilder {
 						break; 
 					}
 				}
-				graph.addEdge(edgeID, node0, node1, isDirected);
-				if(edgeWeight != null){
-					graph.getEdge(edgeID).addAttribute("weight", Double.parseDouble(edgeWeight));
-				}
-//				addEdge(graph, edgeID, node0, node1, isDirected, edgeWeight);
+//				graph.addEdge(edgeID, node0, node1, isDirected);
+//				if(edgeWeight != null){
+//					graph.getEdge(edgeID).addAttribute("weight", Integer.valueOf(edgeWeight));
+//				}
+				addEdge(graph, edgeID, node0, node1, isDirected, edgeWeight);
 			}
 		}
 		for (Node node : graph) node.addAttribute("ui.label", node.getId());
@@ -82,17 +82,17 @@ public class GraphBuilder {
 		return graph;
 	}
 
-//	private static void addEdge(Graph graph, String edge, String node0,
-//			String node1, Boolean isDirected, String weight) {
-//		try {
-//			if (weight.equals("") || weight == null) // without edgeWeight
-//				graph.addEdge(edge, node0, node1, isDirected);
-//			else 
-//			  graph.addEdge(edge, node0, node1, isDirected).setAttribute("weight", Double.parseDouble(weight));
-//		} catch (EdgeRejectedException e) {
-//			System.err.println(e);
-//		}
-//	}
+	private static void addEdge(Graph graph, String edge, String node0,
+			String node1, Boolean isDirected, String weight) {
+		try {
+			if (weight.equals("") || weight == null) // without edgeWeight
+				graph.addEdge(edge, node0, node1, isDirected);
+			else 
+			  graph.addEdge(edge, node0, node1, isDirected).setAttribute("weight", Integer.valueOf(weight));
+		} catch (EdgeRejectedException e) {
+			System.err.println(e);
+		}
+	}
 	
 	private static void createNode(Graph graph, String node0) {
         if (graph.getNode(node0) == null) graph.addNode(node0);

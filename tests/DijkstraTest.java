@@ -127,11 +127,11 @@ public class DijkstraTest {
 		DK.setDestination(graph04.getNode("Paderborn"), graph04.getNode("Walsrode"));
 		DK.compute();
 		
-		DKresult.init(graph04);
-		DKresult.setDestination(graph04.getNode("Paderborn"), graph04.getNode("Walsrode"));
-		DKresult.compute();
+//		DKresult.init(graph04);
+//		DKresult.setDestination(graph04.getNode("Paderborn"), graph04.getNode("Walsrode"));
+//		DKresult.compute();
 		System.out.println(DK);
-		assertEquals(DK.toString(), DKresult.toString());
+		assertEquals(DK, liste1.toString());
 	}
 	
 //	@Test
