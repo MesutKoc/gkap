@@ -1,19 +1,7 @@
 package startup;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.List;
-import java.util.Scanner;
-
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
-import algorithmen.*;
-import graph.GraphBuilder;
-import io.GraphReader;
-import io.GraphSaver;
-import org.graphstream.graph.Node;
 /**
  * <h1>Run.java</h1> Diese Klasse startet die Applikation
  *
@@ -63,8 +51,8 @@ public class Run {
             graph.addEdge("v5v4", "v5", "v4").addAttribute("weight", "3");
             graph.addEdge("v5v6", "v5", "v6").addAttribute("weight", "1");
 
-			DijkstraAlgorithmAcc DK1 = new DijkstraAlgorithmAcc();
-			DK1.init(graph);
+//			DijkstraAlgorithmAcc DK1 = new DijkstraAlgorithmAcc();
+//			DK1.init(graph);
 //			DK.execute(g.getNode("Paderborn"));
 //			DK.getPath(g.getNode("Paderborn"), g.getNode("Walsrode"));
 			//List<Node> path1 = DK1.getPath(graph.getNode("v1"), graph.getNode("v6"));

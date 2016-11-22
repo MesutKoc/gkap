@@ -1,27 +1,25 @@
 package algorithmen;
 
-import java.util.*;
-import java.util.stream.Collectors;
 import org.graphstream.algorithm.Algorithm;
-import org.graphstream.graph.*;
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 
+import java.util.*;
+
+/**
+ * <h1>DijkstraAlgorithm.java</h1> Diese Klasse führt den Dijkstra Algorithmus aus
+ *
+ * @author Mesut koc
+ * @version 1.0
+ * @since 2016-11-22
+ */
 public class DijkstraAlgorithm implements Algorithm {
     private Graph graph;
     private Set<Node> settledNodes, unSettledNodes;
     private Map<Node, Node> predecessors;
-
     private Map<Node, Double> distance;
-    private Node source;
-
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortDistanceValue(Map<K, V> map) {
-        return map.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(/*Collections.reverseOrder()*/))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
-    }
+    private Node source, target;
 
     /* (non-Javadoc)
      * @see org.graphstream.algorithm.Algorithm#compute()
@@ -32,15 +30,15 @@ public class DijkstraAlgorithm implements Algorithm {
         unSettledNodes = new HashSet<>();
         distance = new HashMap<>();
         predecessors = new HashMap<>();
-
+        // insert the source with 0.0 distance
         distance.put(source, 0.0);
+        // add source to unsettled
         unSettledNodes.add(source);
-        initDijkstraToViz();
-
+        // while we settled all nodes
         while (!unSettledNodes.isEmpty()) {
             Node node = getMinimum(unSettledNodes); // Select the Node with min. Distance
             settledNodes.add(node); // Add to settledNodes
-            unSettledNodes.remove(node); // Remove, cuz we visited the Node
+            unSettledNodes.remove(node); // Remove, cuz we settled the Node
             findMinimalDistances(node); // Find for the new Node die new Distance
         }
     }
@@ -62,9 +60,9 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     public List<Node> getPath(Node source, Node target) {
         this.source = Objects.requireNonNull(source);
-        Node target1 = Objects.requireNonNull(target);
+        this.target = Objects.requireNonNull(target);
         compute();
-        return getPath(target1);
+        return getPath(target);
     }
 
     /**
@@ -86,7 +84,6 @@ public class DijkstraAlgorithm implements Algorithm {
         }
 
         Collections.reverse(path);
-        path.forEach(this::updateLabel);
         return path;
     }
 
@@ -103,6 +100,12 @@ public class DijkstraAlgorithm implements Algorithm {
 				});
 	}
 
+    /**
+     * Returns a List with the neighbors from the node
+     *
+     * @param node a node
+     * @return a list with the neighbors from the node
+     */
     private List<Node> getNeighbors(Node node) {
         List<Node> neighbors = new ArrayList<>();
         for (Edge edge : graph.getEachEdge()) {
@@ -136,8 +139,8 @@ public class DijkstraAlgorithm implements Algorithm {
     /**
      * Returns the node with the Distance
      *
-     * @param destination the set with the nodes
-     * @return INF if the Distance not settled or the Distance value
+     * @param destination a node
+     * @return INF if the Distance not settled or if true the Distance value
      */
     private double getShortestDistance(Node destination) {
         Double d = distance.get(destination);
@@ -154,44 +157,44 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private int getDistance(Node node, Node target) {
         for (Edge edge : graph.getEachEdge()) {
-            if (edge.getSourceNode().equals(node) && edge.getTargetNode().equals(target) ||
-                    edge.getTargetNode().equals(node) && edge.getSourceNode().equals(target)) {
+            boolean equalsWithNode = edge.getSourceNode().equals(node),
+                    equalsWithTarget = edge.getTargetNode().equals(target),
+                    equalsWithTargetNode = edge.getTargetNode().equals(node),
+                    equalsWithSourceTarget = edge.getSourceNode().equals(target);
+
+            if (equalsWithNode && equalsWithTarget || equalsWithTargetNode && equalsWithSourceTarget)
                 return Integer.parseInt(edge.getAttribute("weight").toString());
-            }
         }
-        throw new RuntimeException("Runetime Error");
+        throw new RuntimeException("Distance not found");
     }
 
-    private void initDijkstraToViz() {
-        for (Node node : graph) {
-            if (!node.equals(source)) {
-                node.addAttribute("Distance", Double.POSITIVE_INFINITY);
-                node.addAttribute("OK", false);
-                node.addAttribute("Predecessor", 0);
-                updateLabel(node);
-            } else {
-                source.addAttribute("Distance", 0.0);
-                source.addAttribute("OK", true);
-                source.addAttribute("Predecessor", source);
-            }
-        }
-
-        for (Edge edge : graph.getEachEdge())
-            edge.addAttribute("ui.label", edge.getAttribute("weight").toString());
-    }
-
-    private void updateLabel(Node node) {
-        node.setAttribute("ui.label",
-                node.getId() + " | Dist: "
-                        + distance.get(node) + " | OK: "
-                        + node.getAttribute("OK") + " | Pred: "
-                        + node.getAttribute("Predecessor"));
-    }
-
+    /**
+     * Proofs if the node settled
+     *
+     * @param node a node
+     * @return true if the node settled or false if not
+     */
     private boolean isSettled(Node node) {
         return settledNodes.contains(node);
     }
 
+    /**
+     * Returns the Distance from the target node
+     *
+     * @return distance as double if the distance has a value, else INF
+     */
+    public Double getDistanceLength() {
+        return distance.get(target);
+    }
+
+    /**
+     * Proofs if the node settled
+     *
+     * @param g  a graph
+     * @param v1 a Node
+     * @param v2 a Node
+     * @return the runtime value
+     */
     public long dijkstraRtm(Graph g, Node v1, Node v2) {
         init(g);
         long resultTime;

@@ -1,13 +1,14 @@
 package graph;
 
-import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.graphstream.graph.EdgeRejectedException;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
+
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <h1>GraphBuilder.java</h1> Diese Klasse generiert einen Graphen
@@ -78,7 +79,6 @@ public class GraphBuilder {
 			}
 		}
 		for (Node node : graph) node.addAttribute("ui.label", node.getId());
-		setGraphSettings(graph);
 		return graph;
 	}
 
@@ -101,16 +101,18 @@ public class GraphBuilder {
 	/**
 	 * setGraphSettings()
 	 */
-	private static void setGraphSettings(Graph graph) {
-		graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
-									// von nicht existierenden Elementen usw.
-		graph.setAutoCreate(true); // nodes are automatically created when
-									// referenced when creating a edge, even if
-									// not yet inserted in the graph.
-		graph.addAttribute("ui.stylesheet",
-				"url('file:graph/subwerkzeuge/stylesheet')");
-		System.setProperty("org.graphstream.ui.renderer",
-				"org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-		graph.display();
-	}
+    private static void setGraphSettings(Graph graph, boolean showGraph) {
+        if (showGraph) {
+            graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
+            // von nicht existierenden Elementen usw.
+            graph.setAutoCreate(true); // nodes are automatically created when
+            // referenced when creating a edge, even if
+            // not yet inserted in the graph.
+            graph.addAttribute("ui.stylesheet",
+                    "url('file:graph/subwerkzeuge/stylesheet')");
+            System.setProperty("org.graphstream.ui.renderer",
+                    "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+            graph.display();
+        }
+    }
 }
