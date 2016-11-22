@@ -101,8 +101,8 @@ public class GraphBuilder {
 	/**
 	 * setGraphSettings()
 	 */
-    private static void setGraphSettings(Graph graph, boolean showGraph) {
-        if (showGraph) {
+	public static void setGraphSettings(Graph graph, boolean showGraph) {
+		if (showGraph) {
             graph.setStrict(false); // Überprüft zB doppelte Knotennamen,benutzung
             // von nicht existierenden Elementen usw.
             graph.setAutoCreate(true); // nodes are automatically created when

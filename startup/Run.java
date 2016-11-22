@@ -1,7 +1,11 @@
 package startup;
 
+import algorithmen.DijkstraAlgorithm;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+
+import static graph.GraphBuilder.setGraphSettings;
+
 /**
  * <h1>Run.java</h1> Diese Klasse startet die Applikation
  *
@@ -29,8 +33,8 @@ public class Run {
 //			displayMenu();
 //			// Speicher Graphen ab
 //	        saver.saveGraph(pentaCircle, new File("bspGraphen/saved/graph_new.gka"));
-			//Graph g = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
-            Graph graph = new SingleGraph("graph");
+			//Graph graph = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
+			Graph graph = new SingleGraph("graph");
 
             graph.addNode("v1");
             graph.addNode("v2");
@@ -51,10 +55,10 @@ public class Run {
             graph.addEdge("v5v4", "v5", "v4").addAttribute("weight", "3");
             graph.addEdge("v5v6", "v5", "v6").addAttribute("weight", "1");
 
-//			DijkstraAlgorithmAcc DK1 = new DijkstraAlgorithmAcc();
-//			DK1.init(graph);
-//			DK.execute(g.getNode("Paderborn"));
-//			DK.getPath(g.getNode("Paderborn"), g.getNode("Walsrode"));
+			DijkstraAlgorithm DK = new DijkstraAlgorithm();
+			DK.init(graph);
+			DK.getPath(graph.getNode("v1"), graph.getNode("v6"));
+			setGraphSettings(graph, true);
 			//List<Node> path1 = DK1.getPath(graph.getNode("v1"), graph.getNode("v6"));
 			//System.out.println(path1.toString());
 			//System.out.println(DK1.getGraphAcc());

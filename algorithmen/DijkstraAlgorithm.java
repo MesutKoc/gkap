@@ -4,9 +4,14 @@ import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+import static java.lang.Double.POSITIVE_INFINITY;
+import static java.lang.Integer.parseInt;
+import static java.util.Objects.*;
 /**
  * <h1>DijkstraAlgorithm.java</h1> Diese Klasse führt den Dijkstra Algorithmus aus
  *
@@ -47,8 +52,8 @@ public class DijkstraAlgorithm implements Algorithm {
      * @see org.graphstream.algorithm.Algorithm#init(org.graphstream.graph.Graph)
      */
     @Override
-    public void init(Graph g) {
-        this.graph = Objects.requireNonNull(g);
+    public void init(@NotNull Graph g) {
+        this.graph = requireNonNull(g);
     }
 
     /**
@@ -59,8 +64,8 @@ public class DijkstraAlgorithm implements Algorithm {
      * @return the shortest path
      */
     public List<Node> getPath(Node source, Node target) {
-        this.source = Objects.requireNonNull(source);
-        this.target = Objects.requireNonNull(target);
+        this.source = requireNonNull(source);
+        this.target = requireNonNull(target);
         compute();
         return getPath(target);
     }
@@ -71,14 +76,15 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param target a selected target
      * @return the path from source to the
      */
+    @Nullable
     private List<Node> getPath(Node target) {
         LinkedList<Node> path = new LinkedList<>();
         Node step = target;
 
-        if (Objects.isNull(predecessors.get(step))) return null;
+        if (isNull(predecessors.get(step))) return null;
         path.add(step);
 
-        while (Objects.nonNull(predecessors.get(step))) {
+        while (nonNull(predecessors.get(step))) {
             step = predecessors.get(step);
             path.add(step);
         }
@@ -109,14 +115,15 @@ public class DijkstraAlgorithm implements Algorithm {
     private List<Node> getNeighbors(Node node) {
         List<Node> neighbors = new ArrayList<>();
         for (Edge edge : graph.getEachEdge()) {
-            if (edge.getSourceNode().equals(node) && !isSettled(edge.getTargetNode())) {
+            if (Objects.equals(edge.getSourceNode(), node) && isNotSettled(edge.getTargetNode())) {
                 neighbors.add(edge.getTargetNode());
-            } else if (edge.getTargetNode().equals(node) && !isSettled(edge.getSourceNode())) {
+            } else if (Objects.equals(edge.getTargetNode(), node) && !isNotSettled(edge.getSourceNode())) {
                 neighbors.add(edge.getSourceNode());
             }
         }
         return neighbors;
     }
+
 
     /**
      * Returns the node with min. Distance
@@ -126,13 +133,10 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private Node getMinimum(Set<Node> nodes) {
         Node minimum = null;
-        for (Node node : nodes) {
-            if (Objects.isNull(minimum)) {
+        for (Node node : nodes)
+            if (isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
                 minimum = node;
-            } else if (getShortestDistance(node) < getShortestDistance(minimum)) {
-                minimum = node;
-            }
-        }
+
         return minimum;
     }
 
@@ -143,8 +147,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @return INF if the Distance not settled or if true the Distance value
      */
     private double getShortestDistance(Node destination) {
-        Double d = distance.get(destination);
-        return Objects.isNull(d) ? Double.POSITIVE_INFINITY : d;
+        return !isNull(distance.get(destination)) ? distance.get(destination) : POSITIVE_INFINITY;
     }
 
     /**
@@ -157,13 +160,13 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private int getDistance(Node node, Node target) {
         for (Edge edge : graph.getEachEdge()) {
-            boolean equalsWithNode = edge.getSourceNode().equals(node),
-                    equalsWithTarget = edge.getTargetNode().equals(target),
-                    equalsWithTargetNode = edge.getTargetNode().equals(node),
-                    equalsWithSourceTarget = edge.getSourceNode().equals(target);
+            boolean equalsWithNode = Objects.equals(edge.getSourceNode(), node),
+                    equalsWithTarget = Objects.equals(edge.getTargetNode(), target),
+                    equalsWithTargetNode = Objects.equals(edge.getTargetNode(), node),
+                    equalsWithSourceTarget = Objects.equals(edge.getSourceNode(), target);
 
-            if (equalsWithNode && equalsWithTarget || equalsWithTargetNode && equalsWithSourceTarget)
-                return Integer.parseInt(edge.getAttribute("weight").toString());
+            if ((equalsWithNode && equalsWithTarget) || (equalsWithTargetNode && equalsWithSourceTarget))
+                return parseInt(edge.getAttribute("weight").toString());
         }
         throw new RuntimeException("Distance not found");
     }
@@ -174,8 +177,8 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param node a node
      * @return true if the node settled or false if not
      */
-    private boolean isSettled(Node node) {
-        return settledNodes.contains(node);
+    private boolean isNotSettled(Node node) {
+        return !settledNodes.contains(node);
     }
 
     /**
@@ -183,7 +186,7 @@ public class DijkstraAlgorithm implements Algorithm {
      *
      * @return distance as double if the distance has a value, else INF
      */
-    public Double getDistanceLength() {
+    Double getDistanceLength() {
         return distance.get(target);
     }
 
@@ -195,7 +198,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param v2 a Node
      * @return the runtime value
      */
-    public long dijkstraRtm(Graph g, Node v1, Node v2) {
+    long dijkstraRtm(Graph g, Node v1, Node v2) {
         init(g);
         long resultTime;
         long startTime = System.nanoTime();
