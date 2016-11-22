@@ -38,11 +38,8 @@ public class benchmark {
      ====================================*/
     public static void main(String args[]) throws Exception {
         StringBuilder tempResult = new StringBuilder();
-        tempResult.append("Graph" + DELIMETER +
-                "Algorithmus" + DELIMETER +
-                "Laufzeit" + DELIMETER +
-                "Distance " + DELIMETER +
-                "Kuerzester Weg" + DELIMETER + "\n");
+        tempResult.append(String.format("Graph%sAlgorithmus%sLaufzeit%sDistance %sKuerzester Weg%s\n",
+                DELIMETER, DELIMETER, DELIMETER, DELIMETER, DELIMETER));
 
         for (int i = 0; i < IMPORTLIST.length; i++) {
             Graph g = GraphReader.openFile(new File(IMPORTLIST[i]));
@@ -53,12 +50,12 @@ public class benchmark {
             // Initialisiere Graphen
             dijkstra.init(g);
             // Angabe der Graphdatei
-            tempResult.append(IMPORTLIST[i].replace("graph/subwerkzeuge/bspGraphen/", "") + DELIMETER);
-            tempResult.append("Dijkstra" + DELIMETER);
+            tempResult.append(String.format("%s%s", IMPORTLIST[i].replace("graph/subwerkzeuge/bspGraphen/", ""), DELIMETER));
+            tempResult.append(String.format("Dijkstra%s", DELIMETER));
             // Messungen der Laufzeit des Algorithmus
-            tempResult.append(dijkstra.dijkstraRtm(g, source, target) + DELIMETER);
+            tempResult.append(String.format("%d%s", dijkstra.dijkstraRtm(g, source, target), DELIMETER));
             // Messung für Distance
-            tempResult.append(dijkstra.getDistanceLength() + DELIMETER);
+            tempResult.append(String.format("%s%s", dijkstra.getDistanceLength(), DELIMETER));
             // Darstellung des kürzesten Weges
             List<Node> shortestRouteBF = dijkstra.getPath(source, target);
             printRoute(shortestRouteBF, tempResult);
@@ -71,10 +68,10 @@ public class benchmark {
     }
 
     private static void printRoute(List<Node> route, StringBuilder tempResult) {
-        if (route.size() != 0) {
+        if (!(route.size() == 0)) {
             String printedRoute = "";
-            for (Node v : route) printedRoute = printedRoute.concat(v.getId() + "->");
-            tempResult.append(printedRoute.substring(0, printedRoute.length() - 2) + "\n");
-        } else tempResult.append("Kein Weg gefunden oder negativer Kreis wurde entdeckt" + "\n");
+            for (Node v : route) printedRoute = printedRoute.concat(String.format("%s->", v.getId()));
+            tempResult.append(String.format("%s\n", printedRoute.substring(0, printedRoute.length() - 2)));
+        } else tempResult.append("Kein Weg gefunden oder negativer Kreis wurde entdeckt\n");
     }
 }

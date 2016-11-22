@@ -115,9 +115,9 @@ public class DijkstraAlgorithm implements Algorithm {
     private List<Node> getNeighbors(Node node) {
         List<Node> neighbors = new ArrayList<>();
         for (Edge edge : graph.getEachEdge()) {
-            if (Objects.equals(edge.getSourceNode(), node) && isNotSettled(edge.getTargetNode())) {
+            if (edge.getSourceNode().equals(node) && isNotSettled(edge.getTargetNode())) {
                 neighbors.add(edge.getTargetNode());
-            } else if (Objects.equals(edge.getTargetNode(), node) && !isNotSettled(edge.getSourceNode())) {
+            } else if (edge.getTargetNode().equals(node) && isNotSettled(edge.getSourceNode())) {
                 neighbors.add(edge.getSourceNode());
             }
         }
