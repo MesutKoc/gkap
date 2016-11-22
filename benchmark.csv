@@ -1,0 +1,3 @@
+Graph;Algorithmus;Laufzeit;Anzahl der Zugriffe;Distance ;Kuerzester Weg;
+graph03.gka;Dijkstra;8878949;2160;250.0;Paderborn->Hameln->Walsrode
+graph11.gka;Dijkstra;349536;2293;3.0;v1->v6
