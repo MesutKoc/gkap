@@ -25,6 +25,7 @@ public class DijkstraAlgorithm implements Algorithm {
     private Map<Node, Node> predecessors;
     private Map<Node, Double> distance;
     private Node source, target;
+    private int graphAccCounter;
 
     /* (non-Javadoc)
      * @see org.graphstream.algorithm.Algorithm#compute()
@@ -63,7 +64,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param target a target node
      * @return the shortest path
      */
-    public List<Node> getPath(Node source, Node target) {
+    public List<Node> getPath(Node source, Node target) throws Exception {
         this.source = requireNonNull(source);
         this.target = requireNonNull(target);
         compute();
@@ -115,6 +116,7 @@ public class DijkstraAlgorithm implements Algorithm {
     private List<Node> getNeighbors(Node node) {
         List<Node> neighbors = new ArrayList<>();
         for (Edge edge : graph.getEachEdge()) {
+            graphAccCounter++;
             if (edge.getSourceNode().equals(node) && isNotSettled(edge.getTargetNode())) {
                 neighbors.add(edge.getTargetNode());
             } else if (edge.getTargetNode().equals(node) && isNotSettled(edge.getSourceNode())) {
@@ -133,10 +135,11 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private Node getMinimum(Set<Node> nodes) {
         Node minimum = null;
-        for (Node node : nodes)
+        for (Node node : nodes) {
+            graphAccCounter++;
             if (isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
                 minimum = node;
-
+        }
         return minimum;
     }
 
@@ -160,6 +163,7 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private int getDistance(Node node, Node target) {
         for (Edge edge : graph.getEachEdge()) {
+            graphAccCounter++;
             boolean equalsWithNode = Objects.equals(edge.getSourceNode(), node),
                     equalsWithTarget = Objects.equals(edge.getTargetNode(), target),
                     equalsWithTargetNode = Objects.equals(edge.getTargetNode(), node),
@@ -236,6 +240,9 @@ public class DijkstraAlgorithm implements Algorithm {
         return distance.get(target);
     }
 
+    public int getGraphAccCounter() {
+        return graphAccCounter;
+    }
     /**
      * Proofs if the node settled
      *
@@ -244,7 +251,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param v2 a Node
      * @return the runtime value
      */
-    long dijkstraRtm(Graph g, Node v1, Node v2) {
+    long dijkstraRtm(Graph g, Node v1, Node v2) throws Exception {
         init(g);
         long resultTime;
         long startTime = System.nanoTime();
