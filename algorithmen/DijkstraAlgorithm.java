@@ -44,8 +44,8 @@ public class DijkstraAlgorithm implements Algorithm {
         unSettledNodes.add(source);
         // Der Startwert für alle Werte von i ist false.
         for (Node n : graph.getEachNode()) ok.put(n, false);
-        // while we settled all nodes
-        while (!unSettledNodes.isEmpty() && ok.entrySet().iterator().hasNext()) {
+        // while we settled all nodes and while we have false in the matrix ok
+        while (!unSettledNodes.isEmpty() && whileWeHaveFalse()) {
             Node currentNode = getMinimum(unSettledNodes); // Select the Node with min. Distance
             ok.replace(currentNode, false, true);
             settledNodes.add(currentNode); // Add to settledNodes
@@ -104,12 +104,9 @@ public class DijkstraAlgorithm implements Algorithm {
         adjacentNodes.stream()
                 .filter(target -> getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target))
                 .forEach(target -> {
-                    if (!ok.entrySet().equals(target)) {
-                        System.out.println("target: " + target + " entry: " + !ok.entrySet().iterator().hasNext());
                         distance.put(target, getShortestDistance(node) + getDistance(node, target));
                         predecessors.put(target, node);
                         unSettledNodes.add(target);
-                    }
                 });
     }
 
@@ -142,7 +139,7 @@ public class DijkstraAlgorithm implements Algorithm {
     private Node getMinimum(Set<Node> nodes) {
         Node minimum = null;
         for (Node node : nodes) {
-            if (!ok.get(node) || isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
+            if (isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
                 minimum = node;
         }
         return minimum;
@@ -178,6 +175,19 @@ public class DijkstraAlgorithm implements Algorithm {
                 return parseInt(edge.getAttribute("weight").toString());
         }
         throw new RuntimeException("Distance not found");
+    }
+
+    /**
+     * Returns if we have some 'false' values in the OK MATRIX
+     *
+     * @return true if we have false values
+     * else false if we processed all nodes with true
+     */
+    private boolean whileWeHaveFalse() {
+        for (Boolean test : ok.values())
+            if (!test) return true;
+
+        return false;
     }
 
     /**
@@ -251,6 +261,7 @@ public class DijkstraAlgorithm implements Algorithm {
     public int getGraphAccCounter() {
         return graphAccCounter;
     }
+
     /**
      * Proofs if the node settled
      *
