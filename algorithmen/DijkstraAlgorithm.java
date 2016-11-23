@@ -93,8 +93,8 @@ public class DijkstraAlgorithm implements Algorithm {
         return path;
     }
 
-	private void findMinimalDistances(Node node) {
-		List<Node> adjacentNodes = getNeighbors(node);
+    private void findMinimalDistances(Node node) {
+        List<Node> adjacentNodes = getNeighbors(node);
 		adjacentNodes.stream()
 				.filter(target -> getShortestDistance(
 						target) > getShortestDistance(node)
@@ -179,6 +179,52 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     private boolean isNotSettled(Node node) {
         return !settledNodes.contains(node);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("DijkstraAlgorithm\n" +
+                        "source=%s\n" +
+                        "target=%s\n" +
+                        "settledNodes=%s\n" +
+                        "unSettledNodes=%s\n" +
+                        "predecessors=%s\n" +
+                        "distance=%s\n",
+                source, target, settledNodes, unSettledNodes, predecessors, distance);
+    }
+
+    public void showMatrizen() {
+        System.out.print("\t\t");
+        for (Node node1 : graph.getEachNode())
+            System.out.printf("%s\t\t\t", node1.getId());
+
+        System.out.println();
+        System.out.print("entf |\t");
+
+        for (Node node1 : graph.getEachNode())
+            distance.forEach((key, value) -> {
+                if (Objects.equals(node1, key))
+                    System.out.printf("%s\t\t\t", distance.get(node1));
+            });
+
+        System.out.println();
+        System.out.print("vorg |\t");
+
+        for (Node node1 : graph.getEachNode())
+            predecessors.forEach((key, value) -> {
+                if (Objects.equals(node1, key))
+                    System.out.printf("%s\t\t\t", predecessors.get(node1));
+            });
+
+        System.out.println();
+        System.out.print("ok  |\t");
+
+        for (Node t : settledNodes) {
+            System.out.printf("ok\t\t");
+        }
+
+        System.out.println();
+        System.out.println();
     }
 
     /**

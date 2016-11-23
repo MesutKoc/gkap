@@ -4,8 +4,6 @@ import algorithmen.DijkstraAlgorithm;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 
-import static graph.GraphBuilder.setGraphSettings;
-
 /**
  * <h1>Run.java</h1> Diese Klasse startet die Applikation
  *
@@ -58,7 +56,8 @@ public class Run {
 			DijkstraAlgorithm DK = new DijkstraAlgorithm();
 			DK.init(graph);
 			DK.getPath(graph.getNode("v1"), graph.getNode("v6"));
-			setGraphSettings(graph, true);
+			//System.out.println(DK.toString());
+			DK.showMatrizen();
 			//List<Node> path1 = DK1.getPath(graph.getNode("v1"), graph.getNode("v6"));
 			//System.out.println(path1.toString());
 			//System.out.println(DK1.getGraphAcc());

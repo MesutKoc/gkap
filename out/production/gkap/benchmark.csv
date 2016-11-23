@@ -1,4 +1,4 @@
 Graph;Algorithmus;Laufzeit;Distance ;Kuerzester Weg;
-graph03.gka;Dijkstra;91059419;265.0;Paderborn->Hamburg->Buxtehude
-graph03.gka;Dijkstra;1492008;250.0;Paderborn->Hameln->Walsrode
-graph03.gka;Dijkstra;1423408;101.0;Hamburg->Walsrode
+graph03.gka;Dijkstra;112091451;265.0;Paderborn->Hamburg->Buxtehude
+graph03.gka;Dijkstra;1702039;250.0;Paderborn->Hameln->Walsrode
+graph03.gka;Dijkstra;1422264;101.0;Hamburg->Walsrode
