@@ -37,7 +37,7 @@ public class DijkstraAlgorithm implements Algorithm {
         unSettledNodes = new HashSet<>();
         distance = new HashMap<>();
         predecessors = new HashMap<>();
-        ok = new LinkedHashMap<>();
+        ok = new HashMap<>();
         //Der Startwert ist 0 fürr i = 1 und ∞ sonst
         distance.put(source, 0.0);
         // Der Startwert ist v1 für i = 1 und undefiniert sonst.
