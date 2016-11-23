@@ -24,6 +24,7 @@ public class DijkstraAlgorithm implements Algorithm {
     private Set<Node> settledNodes, unSettledNodes;
     private Map<Node, Node> predecessors;
     private Map<Node, Double> distance;
+    private Map<Node, Boolean> ok;
     private Node source, target;
     private int graphAccCounter;
 
@@ -36,16 +37,20 @@ public class DijkstraAlgorithm implements Algorithm {
         unSettledNodes = new HashSet<>();
         distance = new HashMap<>();
         predecessors = new HashMap<>();
-        // insert the source with 0.0 distance
+        ok = new LinkedHashMap<>();
+        //Der Startwert ist 0 fürr i = 1 und ∞ sonst
         distance.put(source, 0.0);
-        // add source to unsettled
+        // Der Startwert ist v1 für i = 1 und undefiniert sonst.
         unSettledNodes.add(source);
+        // Der Startwert für alle Werte von i ist false.
+        for (Node n : graph.getEachNode()) ok.put(n, false);
         // while we settled all nodes
-        while (!unSettledNodes.isEmpty()) {
-            Node node = getMinimum(unSettledNodes); // Select the Node with min. Distance
-            settledNodes.add(node); // Add to settledNodes
-            unSettledNodes.remove(node); // Remove, cuz we settled the Node
-            findMinimalDistances(node); // Find for the new Node die new Distance
+        while (!unSettledNodes.isEmpty() && ok.entrySet().iterator().hasNext()) {
+            Node currentNode = getMinimum(unSettledNodes); // Select the Node with min. Distance
+            ok.replace(currentNode, false, true);
+            settledNodes.add(currentNode); // Add to settledNodes
+            unSettledNodes.remove(currentNode); // Remove, cuz we settled the Node
+            findMinimalDistances(currentNode); // Find for the new Node die new Distance
         }
     }
 
@@ -96,16 +101,17 @@ public class DijkstraAlgorithm implements Algorithm {
 
     private void findMinimalDistances(Node node) {
         List<Node> adjacentNodes = getNeighbors(node);
-		adjacentNodes.stream()
-				.filter(target -> getShortestDistance(
-						target) > getShortestDistance(node)
-								+ getDistance(node, target))
-				.forEach(target -> {
-					distance.put(target, getShortestDistance(node) + getDistance(node, target));
-					predecessors.put(target, node);
-					unSettledNodes.add(target);
-				});
-	}
+        adjacentNodes.stream()
+                .filter(target -> getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target))
+                .forEach(target -> {
+                    if (!ok.entrySet().equals(target)) {
+                        System.out.println("target: " + target + " entry: " + !ok.entrySet().iterator().hasNext());
+                        distance.put(target, getShortestDistance(node) + getDistance(node, target));
+                        predecessors.put(target, node);
+                        unSettledNodes.add(target);
+                    }
+                });
+    }
 
     /**
      * Returns a List with the neighbors from the node
@@ -136,8 +142,7 @@ public class DijkstraAlgorithm implements Algorithm {
     private Node getMinimum(Set<Node> nodes) {
         Node minimum = null;
         for (Node node : nodes) {
-            graphAccCounter++;
-            if (isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
+            if (!ok.get(node) || isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
                 minimum = node;
         }
         return minimum;
@@ -187,49 +192,52 @@ public class DijkstraAlgorithm implements Algorithm {
 
     @Override
     public String toString() {
-        return String.format("DijkstraAlgorithm\n" +
-                        "source=%s\n" +
-                        "target=%s\n" +
-                        "settledNodes=%s\n" +
-                        "unSettledNodes=%s\n" +
-                        "predecessors=%s\n" +
-                        "distance=%s\n",
-                source, target, settledNodes, unSettledNodes, predecessors, distance);
+        return "DijkstraAlgorithm{" +
+                "graph=" + graph +
+                ", \nsettledNodes=" + settledNodes +
+                ", \nunSettledNodes=" + unSettledNodes +
+                ", \npredecessors=" + predecessors +
+                ", \ndistance=" + distance +
+                ", \nok=" + ok +
+                ", \nsource=" + source +
+                ", \ntarget=" + target +
+                ", \ngraphAccCounter=" + graphAccCounter +
+                '}';
     }
 
-    public void showMatrizen() {
-        System.out.print("\t\t");
-        for (Node node1 : graph.getEachNode())
-            System.out.printf("%s\t\t\t", node1.getId());
-
-        System.out.println();
-        System.out.print("entf |\t");
-
-        for (Node node1 : graph.getEachNode())
-            distance.forEach((key, value) -> {
-                if (Objects.equals(node1, key))
-                    System.out.printf("%s\t\t\t", distance.get(node1));
-            });
-
-        System.out.println();
-        System.out.print("vorg |\t");
-
-        for (Node node1 : graph.getEachNode())
-            predecessors.forEach((key, value) -> {
-                if (Objects.equals(node1, key))
-                    System.out.printf("%s\t\t\t", predecessors.get(node1));
-            });
-
-        System.out.println();
-        System.out.print("ok  |\t");
-
-        for (Node t : settledNodes) {
-            System.out.printf("ok\t\t");
-        }
-
-        System.out.println();
-        System.out.println();
-    }
+//    public void showMatrizen() {
+//        System.out.print("\t\t");
+//        for (Node node1 : graph.getEachNode())
+//            System.out.printf("%s\t\t\t", node1.getId());
+//
+//        System.out.println();
+//        System.out.print("entf |\t");
+//
+//        for (Node node1 : graph.getEachNode())
+//            distance.forEach((key, value) -> {
+//                if (Objects.equals(node1, key))
+//                    System.out.printf("%s\t\t\t", distance.get(node1));
+//            });
+//
+//        System.out.println();
+//        System.out.print("vorg |\t");
+//
+//        for (Node node1 : graph.getEachNode())
+//            predecessors.forEach((key, value) -> {
+//                if (Objects.equals(node1, key))
+//                    System.out.printf("%s\t\t\t", predecessors.get(node1));
+//            });
+//
+//        System.out.println();
+//        System.out.print("ok  |\t");
+//
+//        for (Node t : settledNodes) {
+//            System.out.printf("ok\t\t");
+//        }
+//
+//        System.out.println();
+//        System.out.println();
+//    }
 
     /**
      * Returns the Distance from the target node

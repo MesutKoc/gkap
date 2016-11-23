@@ -38,7 +38,7 @@ public class benchmark {
      ====================================*/
     public static void main(String args[]) throws Exception {
         StringBuilder tempResult = new StringBuilder();
-        tempResult.append(String.format("Graph%sAlgorithmus%sLaufzeit%sDistance %sKuerzester Weg%s\n",
+        tempResult.append(String.format("Graph%sAlgorithmus%sLaufzeit%sDistance%sKuerzester Weg%s\n",
                 DELIMETER, DELIMETER, DELIMETER, DELIMETER, DELIMETER));
 
         for (int i = 0; i < IMPORTLIST.length; i++) {

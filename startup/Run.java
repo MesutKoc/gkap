@@ -3,8 +3,10 @@ package startup;
 import algorithmen.DijkstraAlgorithm;
 import io.GraphReader;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * <h1>Run.java</h1> Diese Klasse startet die Applikation
@@ -58,10 +60,10 @@ public class Run {
 
 			DijkstraAlgorithm DK = new DijkstraAlgorithm();
 			DK.init(graph);
-			DK.getPath(graph.getNode("Paderborn"), graph.getNode("Walsrode"));
-			System.out.println(DK.getGraphAccCounter());
-			//List<Node> path1 = DK1.getPath(graph.getNode("v1"), graph.getNode("v6"));
-			//System.out.println(path1.toString());
+			//DK.getPath(graph.getNode("Paderborn"), graph.getNode("Walsrode"));
+			List<Node> path1 = DK.getPath(graph.getNode("Paderborn"), graph.getNode("Walsrode"));
+			System.out.println(path1.toString());
+			System.out.println(DK.toString());
 			//System.out.println(DK1.getGraphAcc());
 
 //			Dijkstra DK = new Dijkstra();
