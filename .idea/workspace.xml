@@ -4,10 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Final Version">
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="So, jetzt aber FINAL!">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/startup/benchmark.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" afterPath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gkap.iml" afterPath="$PROJECT_DIR$/gkap.iml" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,10 +40,8 @@
         <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,9 +71,11 @@
       <file leaf-file-name="benchmark.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/startup/benchmark.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-660">
-              <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding />
+            <state relative-caret-position="202">
+              <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,8 +131,8 @@
         <option value="$PROJECT_DIR$/algorithmen/FloydWarshall.java" />
         <option value="$PROJECT_DIR$/gkap.iml" />
         <option value="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
-        <option value="$PROJECT_DIR$/startup/benchmark.java" />
         <option value="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
+        <option value="$PROJECT_DIR$/startup/benchmark.java" />
       </list>
     </option>
   </component>
@@ -488,6 +487,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="startup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -816,7 +829,7 @@
       <workItem from="1479909884423" duration="3519000" />
       <workItem from="1479929128719" duration="8400000" />
       <workItem from="1479982264555" duration="2530000" />
-      <workItem from="1479984833202" duration="618000" />
+      <workItem from="1479984833202" duration="739000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -916,7 +929,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479985162307</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="So, jetzt aber FINAL!">
+      <created>1479985472391</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1479985472391</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -952,7 +972,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40516000" />
+    <option name="totallyTimeSpent" value="40637000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -975,7 +995,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27258566" sideWeight="0.6260097" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24313408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24313408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24878837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1051,7 +1071,8 @@
     <MESSAGE value="Tests verbessert&#10;Algorithmus angepasst an Folien" />
     <MESSAGE value="Projektsturktur" />
     <MESSAGE value="Final Version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Version" />
+    <MESSAGE value="So, jetzt aber FINAL!" />
+    <option name="LAST_COMMIT_MESSAGE" value="So, jetzt aber FINAL!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1066,13 +1087,13 @@
         <state relative-caret-position="855">
           <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2297#2298#0" expanded="false" />
-            <element signature="e#2343#2344#0" expanded="false" />
-            <element signature="e#6822#6823#0" expanded="false" />
-            <element signature="e#6873#6874#0" expanded="false" />
-            <element signature="e#8658#8659#0" expanded="false" />
-            <element signature="e#8701#8702#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2299#2300#0" expanded="false" />
+            <element signature="e#2345#2346#0" expanded="false" />
+            <element signature="e#6824#6825#0" expanded="false" />
+            <element signature="e#6875#6876#0" expanded="false" />
+            <element signature="e#8660#8661#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1121,13 +1142,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2297#2298#0" expanded="false" />
-            <element signature="e#2343#2344#0" expanded="false" />
-            <element signature="e#6822#6823#0" expanded="false" />
-            <element signature="e#6873#6874#0" expanded="false" />
-            <element signature="e#8658#8659#0" expanded="false" />
-            <element signature="e#8701#8702#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2299#2300#0" expanded="false" />
+            <element signature="e#2345#2346#0" expanded="false" />
+            <element signature="e#6824#6825#0" expanded="false" />
+            <element signature="e#6875#6876#0" expanded="false" />
+            <element signature="e#8660#8661#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1167,13 +1188,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2297#2298#0" expanded="false" />
-            <element signature="e#2343#2344#0" expanded="false" />
-            <element signature="e#6822#6823#0" expanded="false" />
-            <element signature="e#6873#6874#0" expanded="false" />
-            <element signature="e#8658#8659#0" expanded="false" />
-            <element signature="e#8701#8702#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2299#2300#0" expanded="false" />
+            <element signature="e#2345#2346#0" expanded="false" />
+            <element signature="e#6824#6825#0" expanded="false" />
+            <element signature="e#6875#6876#0" expanded="false" />
+            <element signature="e#8660#8661#0" expanded="false" />
+            <element signature="e#8703#8704#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1410,18 +1431,18 @@
     <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/startup/benchmark.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="202">
+          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
