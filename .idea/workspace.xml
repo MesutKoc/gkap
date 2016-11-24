@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="So, jetzt aber FINAL!">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/startup/benchmark.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/startup/Run.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" afterPath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/startup/benchmark.java" afterPath="$PROJECT_DIR$/startup/benchmark.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" afterPath="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,9 +42,36 @@
       <file leaf-file-name="DijkstraAlgorithm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="150">
+              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="benchmark.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/startup/benchmark.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="60" column="65" lean-forward="false" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Run.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/startup/Run.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#323#350#0" expanded="true" />
+                <element signature="e#501#502#0" expanded="true" />
+                <element signature="e#522#523#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,42 +79,18 @@
       <file leaf-file-name="BreadthFirstSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithmen/BreadthFirstSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="-690">
               <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DijkstraAlgorithmTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DijkstraAlgorithmTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="benchmark.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/startup/benchmark.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -125,14 +131,15 @@
         <option value="$PROJECT_DIR$/algorithmen/DijkstraAlgorithmAcc.java" />
         <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
         <option value="$PROJECT_DIR$/algorithmen/benchmark.java" />
-        <option value="$PROJECT_DIR$/startup/Run.java" />
         <option value="$PROJECT_DIR$/src/algorithmen/DijkstraAlgorithm.java" />
         <option value="$PROJECT_DIR$/algorithmen/BreadthFirstSearch.java" />
         <option value="$PROJECT_DIR$/algorithmen/FloydWarshall.java" />
         <option value="$PROJECT_DIR$/gkap.iml" />
-        <option value="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
-        <option value="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
         <option value="$PROJECT_DIR$/startup/benchmark.java" />
+        <option value="$PROJECT_DIR$/startup/Run.java" />
+        <option value="$PROJECT_DIR$/algorithmen/DijkstraImpl.java" />
+        <option value="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
+        <option value="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
       </list>
     </option>
   </component>
@@ -148,9 +155,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1280" />
     <option name="y" value="22" />
-    <option name="width" value="1280" />
-    <option name="height" value="734" />
+    <option name="width" value="2560" />
+    <option name="height" value="1418" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -497,7 +505,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="startup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithmen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -829,7 +865,8 @@
       <workItem from="1479909884423" duration="3519000" />
       <workItem from="1479929128719" duration="8400000" />
       <workItem from="1479982264555" duration="2530000" />
-      <workItem from="1479984833202" duration="739000" />
+      <workItem from="1479984833202" duration="1089000" />
+      <workItem from="1479993825307" duration="14484000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -936,43 +973,50 @@
       <option name="project" value="LOCAL" />
       <updated>1479985472391</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="So, jetzt aber FINAL!">
+      <created>1479985587824</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1479985587825</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 09m 40s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 17h 16m 19s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 10m 00s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 17h 23m 00s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 10m 15s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 17h 24m 10s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 20m 17s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 18h 50m 52s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 20m 43s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 20m 52s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 27m 11s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 22m 06s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 29m 29s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 22m 19s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 41m 24s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 23m 27s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 45m 42s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 36m 38s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 47m 57s.xml">
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 19h 39m 42s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40637000" />
+    <option name="totallyTimeSpent" value="55471000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -984,32 +1028,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="734" extended-state="6" />
+    <frame x="1280" y="22" width="2560" height="1418" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49353796" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.49205717" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.326546" sideWeight="0.45512313" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3271028" sideWeight="0.5371567" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.47738287" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27258566" sideWeight="0.6260097" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27224737" sideWeight="0.40786338" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1591252" sideWeight="0.4725973" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27224737" sideWeight="0.5921366" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24313408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12112788" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24878837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.49205717" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24861" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39969835" sideWeight="0.49682286" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39969835" sideWeight="0.49046862" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3271028" sideWeight="0.4628433" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49353796" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1082,22 +1126,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2345#2346#0" expanded="false" />
-            <element signature="e#6824#6825#0" expanded="false" />
-            <element signature="e#6875#6876#0" expanded="false" />
-            <element signature="e#8660#8661#0" expanded="false" />
-            <element signature="e#8703#8704#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithmAcc.java" />
     <entry file="file://$PROJECT_DIR$/startup/benchmark.java" />
     <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/graph03.gka">
@@ -1141,15 +1169,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2345#2346#0" expanded="false" />
-            <element signature="e#6824#6825#0" expanded="false" />
-            <element signature="e#6875#6876#0" expanded="false" />
-            <element signature="e#8660#8661#0" expanded="false" />
-            <element signature="e#8703#8704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1187,15 +1207,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2345#2346#0" expanded="false" />
-            <element signature="e#6824#6825#0" expanded="false" />
-            <element signature="e#6875#6876#0" expanded="false" />
-            <element signature="e#8660#8661#0" expanded="false" />
-            <element signature="e#8703#8704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1364,7 +1376,6 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractGraph.java" />
     <entry file="file://$PROJECT_DIR$/tests/DijkstraTest.java" />
-    <entry file="file://$PROJECT_DIR$/startup/Run.java" />
     <entry file="file://$PROJECT_DIR$/src/algorithmen/BreadthFirstSearch.java" />
     <entry file="file://$PROJECT_DIR$/src/gkap.iml" />
     <entry file="file://$PROJECT_DIR$/src/algorithmen/DijkstraAlgorithm.java" />
@@ -1372,7 +1383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1390,7 +1400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,17 +1407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1416,33 +1414,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-60">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithmen/BreadthFirstSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="-690">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
+    <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="512">
+          <caret line="146" column="49" lean-forward="false" selection-start-line="146" selection-start-column="49" selection-end-line="146" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/startup/benchmark.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        <state relative-caret-position="765">
+          <caret line="60" column="65" lean-forward="false" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startup/Run.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#323#350#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -11,6 +11,7 @@ import java.util.*;
 
 import static java.lang.Double.POSITIVE_INFINITY;
 import static java.lang.Integer.parseInt;
+import static java.util.Collections.reverse;
 import static java.util.Objects.*;
 /**
  * <h1>DijkstraAlgorithm.java</h1> Diese Klasse führt den Dijkstra Algorithmus aus
@@ -21,10 +22,9 @@ import static java.util.Objects.*;
  */
 public class DijkstraAlgorithm implements Algorithm {
     private Graph graph;
-    private Set<Node> settledNodes, unSettledNodes;
+    private Set<Node> trueNodes, falseNodes;
     private Map<Node, Node> predecessors;
     private Map<Node, Double> distance;
-    private Map<Node, Boolean> ok;
     private Node source, target;
     private int graphAccCounter;
 
@@ -33,31 +33,29 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     @Override
     public void compute() {
-        settledNodes = new HashSet<>();
-        unSettledNodes = new HashSet<>();
+        trueNodes = new HashSet<>();
+        falseNodes = new HashSet<>();
         distance = new HashMap<>();
         predecessors = new HashMap<>();
-        ok = new HashMap<>();
-        //Der Startwert ist 0 fürr i = 1 und ∞ sonst
+
+        //Der Startwert ist 0 für i = 1 und ∞ sonst
         distance.put(source, 0.0);
-        // Der Startwert ist v1 für i = 1 und undefiniert sonst.
-        unSettledNodes.add(source);
-        // Der Startwert für alle Werte von i ist false.
-        for (Node n : graph.getEachNode()) ok.put(n, false);
+        // Source als vorerst einzigen Wert in _falseList schreiben
+        falseNodes.add(source);
 
         do {
             // 1.) Suche unter den Knoten v(i) mit OK(i) = false einen Knoten v(h) mit dem kleinsten Wert von Entf(i)
-            Node currentNode = getMinimum(unSettledNodes);
+            Node currentNode = getNodeWithShortDistance(falseNodes);
 
             // 2.) Setze OK(h) = true
-            ok.replace(currentNode, false, true);
-            settledNodes.add(currentNode);
-            unSettledNodes.remove(currentNode);
+            //ok.replace(currentNode, false, true);
+            trueNodes.add(currentNode);
+            falseNodes.remove(currentNode);
 
             // 3.) Für alle Knoten v(j) mit OK(j) = false, für die die Kante v(h),v(j)
             // exisitiert die Entfernung und gegebenenfalls den Vorgänger neuberechnen
-            findMinimalDistances(currentNode);
-        } while (whileWeHaveFalse());
+            calcNewDistances(currentNode);
+        } while (!falseNodes.isEmpty());
     }
 
     /* (non-Javadoc)
@@ -69,27 +67,28 @@ public class DijkstraAlgorithm implements Algorithm {
     }
 
     /**
-     * Computes and returns the shortest Path from the source node to the target node
+     * Führt den eigentlichen Algorithmus aus. Dabei prüft die Methode, ob es sich um gültige Knoten handelt
+     * und führt danach den Algorithmus aus.
      *
-     * @param source a start node
-     * @param target a target node
-     * @return the shortest path
+     * @param source der Startknoten
+     * @param target der Zielknotem
+     * @return der Kürzeste Weg von {@code source} zu {@code target}
      */
-    public List<Node> getPath(Node source, Node target) throws Exception {
+    public List<Node> getShortestPath(Node source, Node target) throws Exception {
         this.source = requireNonNull(source);
         this.target = requireNonNull(target);
         compute();
-        return getPath(target);
+        return getShortestPath(target);
     }
 
     /**
-     * Returns the path from the source to the selected target or null if no path exists
+     * Liefert den kürzesten Pfad vom Startknoten zu dem Zielknoten oder liefert null, wenn der Pfad nicht existiert.
      *
-     * @param target a selected target
-     * @return the path from source to the
+     * @param target der Zielknoten
+     * @return der kürzeste Weg zum Zielknoten vom Startknoten
      */
     @Nullable
-    private List<Node> getPath(Node target) {
+    private List<Node> getShortestPath(Node target) {
         LinkedList<Node> path = new LinkedList<>();
         Node step = target;
 
@@ -101,60 +100,98 @@ public class DijkstraAlgorithm implements Algorithm {
             path.add(step);
         }
 
-        Collections.reverse(path);
+        reverse(path);
         return path;
     }
 
-    private void findMinimalDistances(Node node) {
-        List<Node> adjacentNodes = getNeighbors(node);
-        adjacentNodes.stream()
-                .filter(target -> getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target))
-                .forEach(target -> {
-                    distance.put(target, getShortestDistance(node) + getDistance(node, target));
-                    predecessors.put(target, node);
-                    unSettledNodes.add(target);
-                });
-    }
-
     /**
-     * Returns a List with the neighbors from the node
+     * Diese Methode überprüft in der FALSE-Liste,
+     * welcher Knoten die kürzeste Distance hat.
      *
-     * @param node a node
-     * @return a list with the neighbors from the node
+     * @param nodes die Liste mit dem Knoten
+     * @return minimum der kürzeste Distance Weg
      */
-    private List<Node> getNeighbors(Node node) {
-        List<Node> neighbors = new ArrayList<>();
-        for (Edge edge : graph.getEachEdge()) {
-            graphAccCounter++;
-            if (edge.getSourceNode().equals(node) && isNotSettled(edge.getTargetNode())) {
-                neighbors.add(edge.getTargetNode());
-            } else if (edge.getTargetNode().equals(node) && isNotSettled(edge.getSourceNode())) {
-                neighbors.add(edge.getSourceNode());
-            }
-        }
-        return neighbors;
-    }
-
-
-    /**
-     * Returns the node with min. Distance
-     *
-     * @param nodes the set with the nodes
-     * @return the node with the min distance
-     */
-    private Node getMinimum(Set<Node> nodes) {
+    private Node getNodeWithShortDistance(Set<Node> nodes) {
         Node minimum = null;
-        for (Node node : nodes) {
-            if (isNull(minimum) || (getShortestDistance(node) < getShortestDistance(minimum)))
-                minimum = node;
+        for (Node nodeItems : nodes) {
+            if (isNull(minimum) || (getShortestDistance(nodeItems) < getShortestDistance(minimum)))
+                minimum = nodeItems;
         }
         return minimum;
     }
 
+    private void calcNewDistances(Node source) {
+        List<Node> adjacentNodes = getNeighbors(source);
+        adjacentNodes.stream()
+                .filter(child -> getShortestDistance(child) > getShortestDistance(source) + getDistance(source, child))
+                .forEach(target -> {
+                    distance.put(target, getShortestDistance(source) + getDistance(source, target));
+                    predecessors.put(target, source);
+                    falseNodes.add(target);
+                });
+    }
+
     /**
-     * Returns the node with the Distance
+     * Liefert alle Nachbarn des angegebenen Knotens
+     * Dabei prüft es, ob der Knoten noch in der OK(FALSE) Liste
      *
-     * @param destination a node
+     * @param node ein Knoten
+     * @return List mit Nachbarn des Knotens
+     */
+    private List<Node> getNeighbors(Node node) {
+        List<Node> adjacentNodes = new ArrayList<>();
+        for (Edge edge : graph.getEachEdge()) {
+            graphAccCounter++;
+            if (edge.getSourceNode().equals(node) && isNotTrueNode(edge.getTargetNode())) {
+                adjacentNodes.add(edge.getTargetNode());
+            } else if (edge.getTargetNode().equals(node) && isNotTrueNode(edge.getSourceNode())) {
+                adjacentNodes.add(edge.getSourceNode());
+            }
+        }
+        return adjacentNodes;
+    }
+
+    /**
+     * Returns the Weight from the reading Graph
+     *
+     * @param source the startNode
+     * @param target the targetNode
+     *
+     * @return Weight from the Graph if found else 0
+     */
+    private int getDistance(Node source, Node target) {
+        for (Edge edge : graph.getEachEdge()) {
+            graphAccCounter++;
+
+            boolean sourceNodeEquals = Objects.equals(edge.getSourceNode(), source),
+                    targetNodeEquals = Objects.equals(edge.getTargetNode(), target),
+                    targetNodeEqualsSource = Objects.equals(edge.getTargetNode(), source),
+                    sourceNodeEqualsTarget = Objects.equals(edge.getSourceNode(), target);
+
+            if ((sourceNodeEquals && targetNodeEquals) || (targetNodeEqualsSource && sourceNodeEqualsTarget))
+                return parseInt(edge.getAttribute("weight").toString());
+        }
+        throw new RuntimeException("Distance not found");
+    }
+
+    @Override
+    public String toString() {
+        return "DijkstraAlgorithm{" +
+                "  \ngraph=" + graph +
+                ", \ntrueNodes=" + trueNodes +
+                ", \nfalseNodes=" + falseNodes +
+                ", \npredecessors=" + predecessors +
+                ", \ndistance=" + distance +
+                ", \nsource=" + source +
+                ", \ntarget=" + target +
+                ", \ngraphAccCounter=" + graphAccCounter +
+                '}';
+    }
+
+    /**
+     * Liefert von der Distance Map die Distance vom aktuellen Knoten
+     *
+     * @param destination ein Knoten
      * @return INF if the Distance not settled or if true the Distance value
      */
     private double getShortestDistance(Node destination) {
@@ -162,101 +199,7 @@ public class DijkstraAlgorithm implements Algorithm {
     }
 
     /**
-     * Returns the Weight from the reading Graph
-     *
-     * @param node the startNode
-     * @param target the targetNode
-     *
-     * @return Weight from the Graph if found else 0
-     */
-    private int getDistance(Node node, Node target) {
-        for (Edge edge : graph.getEachEdge()) {
-            graphAccCounter++;
-            boolean equalsWithNode = Objects.equals(edge.getSourceNode(), node),
-                    equalsWithTarget = Objects.equals(edge.getTargetNode(), target),
-                    equalsWithTargetNode = Objects.equals(edge.getTargetNode(), node),
-                    equalsWithSourceTarget = Objects.equals(edge.getSourceNode(), target);
-
-            if ((equalsWithNode && equalsWithTarget) || (equalsWithTargetNode && equalsWithSourceTarget))
-                return parseInt(edge.getAttribute("weight").toString());
-        }
-        throw new RuntimeException("Distance not found");
-    }
-
-    /**
-     * Returns if we have some 'false' values in the OK MATRIX
-     *
-     * @return true if we have false values
-     * else false if we processed all nodes with true
-     */
-    private boolean whileWeHaveFalse() {
-        for (Boolean test : ok.values())
-            if (!test) return true;
-
-        return false;
-    }
-
-    /**
-     * Proofs if the node settled
-     *
-     * @param node a node
-     * @return true if the node settled or false if not
-     */
-    private boolean isNotSettled(Node node) {
-        return !settledNodes.contains(node);
-    }
-
-    @Override
-    public String toString() {
-        return "DijkstraAlgorithm{" +
-                "graph=" + graph +
-                ", \nsettledNodes=" + settledNodes +
-                ", \nunSettledNodes=" + unSettledNodes +
-                ", \npredecessors=" + predecessors +
-                ", \ndistance=" + distance +
-                ", \nok=" + ok +
-                ", \nsource=" + source +
-                ", \ntarget=" + target +
-                ", \ngraphAccCounter=" + graphAccCounter +
-                '}';
-    }
-
-//    public void showMatrizen() {
-//        System.out.print("\t\t");
-//        for (Node node1 : graph.getEachNode())
-//            System.out.printf("%s\t\t\t", node1.getId());
-//
-//        System.out.println();
-//        System.out.print("entf |\t");
-//
-//        for (Node node1 : graph.getEachNode())
-//            distance.forEach((key, value) -> {
-//                if (Objects.equals(node1, key))
-//                    System.out.printf("%s\t\t\t", distance.get(node1));
-//            });
-//
-//        System.out.println();
-//        System.out.print("vorg |\t");
-//
-//        for (Node node1 : graph.getEachNode())
-//            predecessors.forEach((key, value) -> {
-//                if (Objects.equals(node1, key))
-//                    System.out.printf("%s\t\t\t", predecessors.get(node1));
-//            });
-//
-//        System.out.println();
-//        System.out.print("ok  |\t");
-//
-//        for (Node t : settledNodes) {
-//            System.out.printf("ok\t\t");
-//        }
-//
-//        System.out.println();
-//        System.out.println();
-//    }
-
-    /**
-     * Returns the Distance from the target node
+     * Returns the total Distance from the target node
      *
      * @return distance as double if the distance has a value, else INF
      */
@@ -264,8 +207,23 @@ public class DijkstraAlgorithm implements Algorithm {
         return distance.get(target);
     }
 
+    /**
+     * Liefert die gesamt Zugriffe auf den Grphen
+     *
+     * @return int mit dem Zugriffen
+     */
     public int getGraphAccCounter() {
         return graphAccCounter;
+    }
+
+    /**
+     * Proofs if the node false
+     *
+     * @param node a node
+     * @return true if the node settled or false if not
+     */
+    private boolean isNotTrueNode(Node node) {
+        return !trueNodes.contains(node);
     }
 
     /**
@@ -280,7 +238,7 @@ public class DijkstraAlgorithm implements Algorithm {
         init(g);
         long resultTime;
         long startTime = System.nanoTime();
-        getPath(v1, v2);
+        getShortestPath(v1, v2);
         long endTime = System.nanoTime();
         resultTime = endTime - startTime;
         return resultTime;

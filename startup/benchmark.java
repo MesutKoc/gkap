@@ -58,7 +58,7 @@ public class benchmark {
             // Messung für Distance
             tempResult.append(String.format("%s%s", dijkstra.getDistanceLength(), DELIMETER));
             // Darstellung des kürzesten Weges
-            List<Node> shortestRouteBF = dijkstra.getPath(source, target);
+            List<Node> shortestRouteBF = dijkstra.getShortestPath(source, target);
             printRoute(shortestRouteBF, tempResult);
         }
         try {
