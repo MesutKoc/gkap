@@ -1,14 +1,14 @@
 package io;
 
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import org.graphstream.graph.Edge;
-import org.graphstream.graph.Graph;
 
 /**
  * <h1>GraphSaver.java</h1> Diese Klasse speicher den Graphen in einem File
@@ -18,10 +18,8 @@ import org.graphstream.graph.Graph;
  * @since 2016-11-01
  */
 public class GraphSaver {
-	/**
-	 * 
-	 */
-	public GraphSaver() {}
+    private GraphSaver() {
+    }
 
 	/**
 	 * @param graph
@@ -31,15 +29,15 @@ public class GraphSaver {
 	 * @throws IOException
 	 *             falls nicht der Graph gelesen werden kann
 	 */
-	public void saveGraph(Graph graph, File file) throws IOException {
-		if(graph == null) throw new IOException("Graph konnte nicht gelesen werden");
+    public static void saveGraph(Graph graph, File file) throws IOException {
+        if(graph == null) throw new IOException("Graph konnte nicht gelesen werden");
 		if(!file.exists()) file.createNewFile();
 
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for(Edge edge : graph.getEachEdge()) {
-				writer.write(convertsGraph(edge, false, edge.getAttribute("weight") != null ? true : false));
-				writer.newLine();
+                writer.write(convertsGraph(edge, false));
+                writer.newLine();
 			}
 		}
 	}
@@ -49,15 +47,13 @@ public class GraphSaver {
 	 *            die Kante die konventiert werden soll
 	 * @param showName
 	 *            ob der Name der Kante angezeigt werden soll
-	 * @param showWeight
-	 *            ob die Gewichtung vorhanden ist
-	 * @return liefert ein String in der Graph-Syntax
+     *
+     * @return liefert ein String in der Graph-Syntax
 	 */
-	public static String convertsGraph(Edge edge, Boolean showName, Boolean showWeight){
-		String name = showName ? " (" + edge.getId() + ")" : "",
-			   conn = edge.isDirected() ? "-->" : "--",
-			   weight = edge.getAttribute("weight") != null ? " : " + edge.getAttribute("weight") : "";
-			  
-		 return edge.getNode0() + conn + edge.getNode1() + name + weight + ";";
-	}
+    public static String convertsGraph(Edge edge, Boolean showName) {
+        String name = showName ? String.format(" (%s)", edge.getId()) : "",
+                conn = edge.isDirected() ? "-->" : "--",
+                weight = (edge.getAttribute("weight") != null) ? (" : " + edge.getAttribute("weight")) : "";
+        return String.format("%s%s%s%s%s;", edge.getNode0(), conn, edge.getNode1(), name, weight);
+    }
 }
