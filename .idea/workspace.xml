@@ -4,12 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="So, jetzt aber FINAL!">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/startup/Run.java" />
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Dijkstra mit Folien angepasst (diesmal aber wirklich)&#10;Neue Tests&#10;Code verbesserungen &#10;">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" afterPath="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/startup/benchmark.java" afterPath="$PROJECT_DIR$/startup/benchmark.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" afterPath="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -65,12 +63,12 @@
         <entry file="file://$PROJECT_DIR$/startup/Run.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="494">
-              <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="74" />
+              <caret line="62" column="74" lean-forward="false" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#323#350#0" expanded="true" />
-                <element signature="e#501#502#0" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
+                <element signature="e#512#513#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,9 +87,11 @@
       <file leaf-file-name="DijkstraAlgorithmTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="300">
+              <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -866,7 +866,7 @@
       <workItem from="1479929128719" duration="8400000" />
       <workItem from="1479982264555" duration="2530000" />
       <workItem from="1479984833202" duration="1089000" />
-      <workItem from="1479993825307" duration="14484000" />
+      <workItem from="1479993825307" duration="14653000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -980,7 +980,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479985587825</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Dijkstra mit Folien angepasst (diesmal aber wirklich)&#10;Neue Tests&#10;Code verbesserungen &#10;">
+      <created>1480012875127</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1480012875127</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1016,7 +1023,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55471000" />
+    <option name="totallyTimeSpent" value="55640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1116,7 +1123,8 @@
     <MESSAGE value="Projektsturktur" />
     <MESSAGE value="Final Version" />
     <MESSAGE value="So, jetzt aber FINAL!" />
-    <option name="LAST_COMMIT_MESSAGE" value="So, jetzt aber FINAL!" />
+    <MESSAGE value="Dijkstra mit Folien angepasst (diesmal aber wirklich)&#10;Neue Tests&#10;Code verbesserungen &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dijkstra mit Folien angepasst (diesmal aber wirklich)&#10;Neue Tests&#10;Code verbesserungen &#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1383,6 +1391,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1414,6 +1423,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-60">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1446,12 +1456,12 @@
     <entry file="file://$PROJECT_DIR$/startup/Run.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
-          <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="74" />
+          <caret line="62" column="74" lean-forward="false" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#323#350#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1459,16 +1469,18 @@
     <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="300">
+          <caret line="20" column="55" lean-forward="false" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
