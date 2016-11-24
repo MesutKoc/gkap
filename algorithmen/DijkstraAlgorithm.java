@@ -44,14 +44,20 @@ public class DijkstraAlgorithm implements Algorithm {
         unSettledNodes.add(source);
         // Der Startwert für alle Werte von i ist false.
         for (Node n : graph.getEachNode()) ok.put(n, false);
-        // while we settled all nodes and while we have false in the matrix ok
-        while (!unSettledNodes.isEmpty() && whileWeHaveFalse()) {
-            Node currentNode = getMinimum(unSettledNodes); // Select the Node with min. Distance
+
+        do {
+            // 1.) Suche unter den Knoten v(i) mit OK(i) = false einen Knoten v(h) mit dem kleinsten Wert von Entf(i)
+            Node currentNode = getMinimum(unSettledNodes);
+
+            // 2.) Setze OK(h) = true
             ok.replace(currentNode, false, true);
-            settledNodes.add(currentNode); // Add to settledNodes
-            unSettledNodes.remove(currentNode); // Remove, cuz we settled the Node
-            findMinimalDistances(currentNode); // Find for the new Node die new Distance
-        }
+            settledNodes.add(currentNode);
+            unSettledNodes.remove(currentNode);
+
+            // 3.) Für alle Knoten v(j) mit OK(j) = false, für die die Kante v(h),v(j)
+            // exisitiert die Entfernung und gegebenenfalls den Vorgänger neuberechnen
+            findMinimalDistances(currentNode);
+        } while (whileWeHaveFalse());
     }
 
     /* (non-Javadoc)
@@ -104,9 +110,9 @@ public class DijkstraAlgorithm implements Algorithm {
         adjacentNodes.stream()
                 .filter(target -> getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target))
                 .forEach(target -> {
-                        distance.put(target, getShortestDistance(node) + getDistance(node, target));
-                        predecessors.put(target, node);
-                        unSettledNodes.add(target);
+                    distance.put(target, getShortestDistance(node) + getDistance(node, target));
+                    predecessors.put(target, node);
+                    unSettledNodes.add(target);
                 });
     }
 
