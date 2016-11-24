@@ -260,7 +260,7 @@ public class DijkstraAlgorithm implements Algorithm {
      *
      * @return distance as double if the distance has a value, else INF
      */
-    Double getDistanceLength() {
+    public Double getDistanceLength() {
         return distance.get(target);
     }
 
@@ -276,7 +276,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param v2 a Node
      * @return the runtime value
      */
-    long dijkstraRtm(Graph g, Node v1, Node v2) throws Exception {
+    public long dijkstraRtm(Graph g, Node v1, Node v2) throws Exception {
         init(g);
         long resultTime;
         long startTime = System.nanoTime();

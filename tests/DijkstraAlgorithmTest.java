@@ -4,6 +4,7 @@ import algorithmen.DijkstraAlgorithm;
 import io.GraphReader;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import static java.lang.Math.random;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -19,6 +21,23 @@ import static org.junit.Assert.assertNotNull;
  * Created by Mesut on 23.11.16.
  */
 public class DijkstraAlgorithmTest {
+    private static Graph generateBigOne(int numNodes, int numEdge) {
+        Graph result = new MultiGraph("big");
+        int edgeIdent = 0;
+
+        for (Integer i = 0; i < numNodes; i++) result.addNode(String.format("%d", i));
+        while (result.getEdgeCount() < numEdge) {
+            for (int i = 0; i <= numEdge; i++) {
+                int x = (int) (random() * ((numNodes - 1) + 1));
+                int y = (int) (random() * ((numNodes - 1) + 1));
+                result.addEdge(String.format("%d%d|%d", x, y, edgeIdent), String.format("%d", x), String.format("%d", y), true)
+                        .addAttribute("weight", 1);
+                edgeIdent++;
+            }
+        }
+        return result;
+    }
+
     //===============================
     // compute TESTS
     //===============================
@@ -50,6 +69,7 @@ public class DijkstraAlgorithmTest {
         result.init(graph03);
         expected.getPath(graph03.getNode("ExistiertNicht"), graph03.getNode("ExistiertNicht"));
         result.getPath(graph03.getNode("ExistiertNicht"), graph03.getNode("ExistiertNicht"));
+        System.out.println("negGetPath() ok");
     }
 
     //===============================
@@ -63,6 +83,7 @@ public class DijkstraAlgorithmTest {
         result.init(graph03);
         assertNotNull(expected);
         assertNotNull(result);
+        System.out.println("init() ok");
     }
 
     @Test
@@ -73,6 +94,36 @@ public class DijkstraAlgorithmTest {
         result.init(graphNotWeighted);
         assertEquals(expected.toString(), result.toString());
         System.out.println("negInit() ok");
+    }
+
+    //===============================
+    // getDistanceLength TESTS
+    //===============================
+    @Test
+    public void getDistanceLength() throws Exception {
+        Graph graph03 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
+        DijkstraAlgorithm expected = new DijkstraAlgorithm(), result = new DijkstraAlgorithm();
+        expected.init(graph03);
+        result.init(graph03);
+        expected.getPath(graph03.getNode(0), graph03.getNode(graph03.getNodeCount() - 1));
+        result.getPath(graph03.getNode(0), graph03.getNode(graph03.getNodeCount() - 1));
+        assertEquals(expected.getDistanceLength(), result.getDistanceLength());
+        System.out.println("getDistanceLength() ok");
+    }
+
+    //===============================
+    // getGraphAccCounter TESTS
+    //===============================
+    @Test
+    public void getGraphAccCounter() throws Exception {
+        Graph graph03 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
+        DijkstraAlgorithm expected = new DijkstraAlgorithm(), result = new DijkstraAlgorithm();
+        expected.init(graph03);
+        result.init(graph03);
+        expected.getPath(graph03.getNode(0), graph03.getNode(graph03.getNodeCount() - 1));
+        result.getPath(graph03.getNode(0), graph03.getNode(graph03.getNodeCount() - 1));
+        assertEquals(expected.getGraphAccCounter(), result.getGraphAccCounter());
+        System.out.println("getGraphAccCounter() ok");
     }
 
     //===============================
@@ -107,8 +158,20 @@ public class DijkstraAlgorithmTest {
         System.out.println("ownDijk() is ok");
     }
 
+    //===============================
+    // BIG TEST
+    //===============================
     @Test
     public void testBIG() throws Exception {
-        // TODO BigTest
+        DijkstraAlgorithm expected = new DijkstraAlgorithm(), result = new DijkstraAlgorithm();
+        Graph bigGraph = generateBigOne(100, 2500);
+
+        expected.init(bigGraph);
+        result.init(bigGraph);
+
+        expected.getPath(bigGraph.getNode(0), bigGraph.getNode(bigGraph.getNodeCount() - 1));
+        result.getPath(bigGraph.getNode(0), bigGraph.getNode(bigGraph.getNodeCount() - 1));
+        assertEquals(expected.toString(), result.toString());
+        System.out.println("testBIG() ist ok");
     }
 }
