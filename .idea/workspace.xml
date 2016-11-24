@@ -4,31 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Tests verbessert&#10;Algorithmus angepasst an Folien">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3-javadoc.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3-sources.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3.pom" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-algo-1.3/gs-algo-1.3.pom.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3-javadoc.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3-sources.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3.pom" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-core-1.3/gs-core-1.3.pom.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3-javadoc.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3-sources.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3.jar.asc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3.pom" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/gs-ui-1.3/gs-ui-1.3.pom.asc" afterPath="" />
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Projektsturktur">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gkap.iml" afterPath="$PROJECT_DIR$/gkap.iml" />
     </list>
@@ -63,8 +39,8 @@
       <file leaf-file-name="DijkstraAlgorithm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3735">
-              <caret line="266" column="15" lean-forward="false" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
+            <state relative-caret-position="45">
+              <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
               <folding>
                 <element signature="e#8742#8743#0" expanded="true" />
                 <element signature="e#8780#8781#0" expanded="true" />
@@ -479,21 +455,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithmen" />
+              <option name="myItemId" value="graph" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -821,7 +783,7 @@
       <workItem from="1479902559516" duration="6708000" />
       <workItem from="1479909884423" duration="3519000" />
       <workItem from="1479929128719" duration="8400000" />
-      <workItem from="1479982264555" duration="2086000" />
+      <workItem from="1479982264555" duration="2244000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -900,13 +862,17 @@
       <option name="project" value="LOCAL" />
       <updated>1479983413106</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Projektsturktur">
+      <created>1479984390047</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1479984390047</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 08m 28s.xml">
-      <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 09m 40s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
@@ -934,9 +900,12 @@
     <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 45m 42s.xml">
       <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="DijkstraAlgorithmTest - 2016.11.24 at 11h 47m 57s.xml">
+      <configuration name="DijkstraAlgorithmTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39454000" />
+    <option name="totallyTimeSpent" value="39612000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1021,7 +990,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Benchmark" />
@@ -1034,7 +1002,8 @@
     <MESSAGE value="ok bugfixx" />
     <MESSAGE value="Tests finish!" />
     <MESSAGE value="Tests verbessert&#10;Algorithmus angepasst an Folien" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests verbessert&#10;Algorithmus angepasst an Folien" />
+    <MESSAGE value="Projektsturktur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Projektsturktur" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1431,8 +1400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3735">
-          <caret line="266" column="15" lean-forward="false" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
+        <state relative-caret-position="45">
+          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding>
             <element signature="e#8742#8743#0" expanded="true" />
             <element signature="e#8780#8781#0" expanded="true" />
