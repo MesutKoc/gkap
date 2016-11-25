@@ -1,11 +1,10 @@
 package startup;
 
-import algorithmen.DijkstraAlgorithm;
-import io.GraphReader;
+import algorithmen.searchPath.FloydWarshall;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -34,36 +33,63 @@ public class Run {
 //			displayMenu();
 //			// Speicher Graphen ab
 //	        saver.saveGraph(pentaCircle, new File("bspGraphen/saved/graph_new.gka"));
-            Graph graph = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
+            //Graph graph = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
             //GraphBuilder.setGraphSettings(graph, true);
             // Graph graph = new SingleGraph("graph");
-//
-//            graph.addNode("v1");
-//            graph.addNode("v2");
-//            graph.addNode("v3");
-//            graph.addNode("v4");
-//            graph.addNode("v5");
-//            graph.addNode("v6");
-//
-//            graph.addEdge("v1v2", "v1", "v2").addAttribute("weight", "1");
-//            graph.addEdge("v1v6", "v1", "v6").addAttribute("weight", "3");
-//            graph.addEdge("v2v3", "v2", "v3").addAttribute("weight", "5");
-//            graph.addEdge("v2v5", "v2", "v5").addAttribute("weight", "3");
-//            graph.addEdge("v2v6", "v2", "v6").addAttribute("weight", "2");
-//
-//            graph.addEdge("v3v6", "v3", "v6").addAttribute("weight", "2");
-//            graph.addEdge("v3v5", "v3", "v5").addAttribute("weight", "2");
-//            graph.addEdge("v3v4", "v3", "v4").addAttribute("weight", "1");
-//            graph.addEdge("v5v4", "v5", "v4").addAttribute("weight", "3");
-//            graph.addEdge("v5v6", "v5", "v6").addAttribute("weight", "1");
+//            Graph test = new SingleGraph("test");
+//            test.addNode("0");
+//            test.addNode("1");
+//            test.addNode("2");
+//            test.addNode("3");
+//            test.addNode("4");
+//            test.addNode("5");
+//            test.addNode("6");
+//            test.addNode("7");
+//            test.addEdge("01", "0", "1", true).addAttribute("weight", 3);
+//            test.addEdge("03", "0", "3", true).addAttribute("weight", 2);
+//            test.addEdge("10", "1", "0", true).addAttribute("weight", 2);
+//            test.addEdge("15", "1", "5", true).addAttribute("weight", 3);
+//            test.addEdge("16", "1", "6", true).addAttribute("weight", 8);
+//            test.addEdge("26", "2", "6", true).addAttribute("weight", 8);
+//            test.addEdge("42", "4", "2", true).addAttribute("weight", 3);
+//            test.addEdge("46", "4", "6", true).addAttribute("weight", 1);
+//            test.addEdge("53", "5", "3", true).addAttribute("weight", 0);
+//            test.addEdge("56", "5", "6", true).addAttribute("weight", 2);
+//            test.addEdge("67", "6", "7", true).addAttribute("weight", 1);
 
-            DijkstraAlgorithm DK = new DijkstraAlgorithm();
+            Graph test = new MultiGraph("test");
+
+            test.addNode("1");
+            test.addNode("2");
+            test.addNode("3");
+            test.addNode("4");
+            test.addNode("5");
+
+            test.addEdge("12", "1", "2").addAttribute("weight", 6);
+            test.addEdge("13", "1", "3").addAttribute("weight", 4);
+            test.addEdge("31", "3", "1").addAttribute("weight", 1);
+            test.addEdge("41", "4", "1").addAttribute("weight", 1);
+            test.addEdge("23", "2", "3").addAttribute("weight", 7);
+            test.addEdge("32", "3", "2").addAttribute("weight", 8);
+            test.addEdge("24", "2", "4").addAttribute("weight", 5);
+            test.addEdge("34", "3", "4").addAttribute("weight", 3);
+            test.addEdge("35", "3", "5").addAttribute("weight", 2);
+            test.addEdge("53", "5", "3").addAttribute("weight", 4);
+            test.addEdge("45", "4", "5").addAttribute("weight", 5);
+
+            FloydWarshall floyd = new FloydWarshall();
+            floyd.init(test);
+            List<Node> path1 = floyd.getShortestPath(test.getNode("1"), test.getNode("4"));
+            System.out.println(floyd);
+            System.out.println(path1.toString());
+
+/*            DijkstraAlgorithm DK = new DijkstraAlgorithm();
             DK.init(graph);
             //DK.getShortestPath(graph.getNode("a"), graph.getNode("g"));
             List<Node> path1 = DK.getShortestPath(graph.getNode("Paderborn"), graph.getNode("Walsrode"));
             System.out.println(path1.toString());
             System.out.println(DK.toString());
-            System.out.println(DK.getDistanceLength());
+            System.out.println(DK.getDistanceLength());*/
             //System.out.println(DK1.getGraphAcc());
 
 //			Dijkstra DK = new Dijkstra();

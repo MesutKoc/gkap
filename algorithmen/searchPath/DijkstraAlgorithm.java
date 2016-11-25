@@ -1,4 +1,4 @@
-package algorithmen;
+package algorithmen.searchPath;
 
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
@@ -96,6 +96,7 @@ public class DijkstraAlgorithm implements Algorithm {
         path.add(step);
 
         while (nonNull(predecessors.get(step))) {
+            System.out.println("step: " + step);
             step = predecessors.get(step);
             path.add(step);
         }
