@@ -150,7 +150,7 @@ public class FlyodWarshallTest {
 	
 	
 	@Test
-	public void testOwnDijk() throws Exception{
+	public void testOwnFlyod() throws Exception{
 		Graph owng = new SingleGraph("owng");
 		
 		//List<Node> Liste2 = new ArrayList<>();
@@ -175,12 +175,47 @@ public class FlyodWarshallTest {
 		owng.addEdge("fg", "f", "g").addAttribute("weight", "3");
 	    
 	    
-		FloydWarshall ownDijk = new FloydWarshall();
-	    ownDijk.init(owng);
-	    List<Node> Liste2 = ownDijk.getShortestPath(owng.getNode("a"), owng.getNode("g"));
+		FloydWarshall ownFloyd = new FloydWarshall();
+		ownFloyd.init(owng);
+	    List<Node> Liste2 = ownFloyd.getShortestPath(owng.getNode("a"), owng.getNode("g"));
 	    assertEquals("[a, b, c, d, f, g]", Liste2.toString());
 	    System.out.println("ownDijk() is ok");
 
+	}
+	
+	
+	@Test
+	public void testOwnFloydDos() throws Exception{
+		
+		
+		
+		Graph owng2 = new MultiGraph("test");
+	     
+		owng2.addNode("1");
+		owng2.addNode("2");
+		owng2.addNode("3");
+		owng2.addNode("4");
+		owng2.addNode("5");
+	     
+		owng2.addEdge("12", "1", "2").addAttribute("weight", "6");
+		owng2.addEdge("13", "1", "3").addAttribute("weight", "4");
+		owng2.addEdge("31", "3", "1").addAttribute("weight", "1");
+		owng2.addEdge("41", "4", "1").addAttribute("weight", "1");
+		owng2.addEdge("23", "2", "3").addAttribute("weight", "7");
+	    owng2.addEdge("32", "3", "2").addAttribute("weight", "8");
+	    owng2.addEdge("24", "2", "4").addAttribute("weight", "5");
+	    owng2.addEdge("34", "3", "4").addAttribute("weight", "3");
+	    owng2.addEdge("35", "3", "5").addAttribute("weight", "2");
+	    owng2.addEdge("53", "5", "3").addAttribute("weight", "4");
+	    owng2.addEdge("45", "4", "5").addAttribute("weight", "5");
+	     
+	     FloydWarshall ownFloyd = new FloydWarshall();
+	     ownFloyd.init(owng2);
+		 List<Node> Liste2 = ownFloyd.getShortestPath(owng2.getNode("1"), owng2.getNode("5"));
+		 assertEquals("", Liste2.toString());
+		 System.out.println("ownFloyd() is ok");
+
+	     
 	}
 	
 	@Test
@@ -198,31 +233,6 @@ public class FlyodWarshallTest {
     }
 	    
 	
-//	@Test
-//	public void testBIG() throws Exception{
-//		
-//		expected = new DijkstraAlgorithm();
-//		result = new DijkstraAlgorithm();
-//		Graph BIG = new SingleGraph("BIG");
-//		int edge = 2500;
-//		BIG.addNode("0");
-//		for(int i = 1; i <= edge; i++){
-//			BIG.addNode("" + i);
-//			BIG.addEdge("" + (i-1) , ""+ (i-1), ""+ i);
-//			System.out.println(i);
-//			for(int w = 1; w <= edge; w++){
-//				BIG.addAttribute("weight", ""+ w+1);
-//			}
-//		}
-//		
-//		init();
-//	//	BIG.display();
-//		expected.getPath(BIG.getNode(2), BIG.getNode(2500));
-//		result.getPath(BIG.getNode(2), BIG.getNode(2500));;
-//		assertEquals(expected.toString(),result.toString());
-//		
-//		System.out.println("testBIG() is ok");
-//	}
 	
 	
 }
