@@ -7,6 +7,7 @@ import org.graphstream.graph.Node;
 import java.util.*;
 
 import static java.lang.Double.parseDouble;
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -72,6 +73,8 @@ public class FloydWarshall implements Algorithm {
                     tempPred.put(nodes.get(j), null);
                 } else
                     tempCost.put(nodes.get(j), nodeI.hasEdgeBetween(nodeJ) ? parseDouble(nodeI.getEdgeBetween(nodeJ).getAttribute("weight").toString()) : Double.POSITIVE_INFINITY);
+
+                tempPred.put(nodes.get(j), null);
             }
             costMap.put(nodes.get(i), tempCost);
             predecessorMap.put(nodes.get(i), tempPred);
@@ -85,10 +88,21 @@ public class FloydWarshall implements Algorithm {
         return getShortestPath(target);
     }
 
-    private ArrayList<Node> getShortestPath(Node target) {
-        // TODO rekursiv?
-        return null;
+    private List<Node> getShortestPath(Node target) {
+        LinkedList<Node> list = new LinkedList<>();
+        Node current = predecessorMap.get(source).get(target);
+
+        list.add(target);
+
+        while (!isNull(current)) {
+            list.add(current);
+            current = predecessorMap.get(source).get(current);
+        }
+
+        Collections.reverse(list);
+        return list;
     }
+
 
     @Override
     public String toString() {
