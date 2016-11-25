@@ -1,6 +1,6 @@
 package tests;
 
-import algorithmen.searchPath.DijkstraAlgorithm;
+import algorithm.searchPath.DijkstraAlgorithm;
 import io.GraphReader;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;

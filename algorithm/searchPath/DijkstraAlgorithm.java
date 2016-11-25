@@ -1,4 +1,4 @@
-package algorithmen.searchPath;
+package algorithm.searchPath;
 
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
@@ -13,6 +13,7 @@ import static java.lang.Double.POSITIVE_INFINITY;
 import static java.lang.Integer.parseInt;
 import static java.util.Collections.reverse;
 import static java.util.Objects.*;
+
 /**
  * <h1>DijkstraAlgorithm.java</h1> Diese Klasse führt den Dijkstra Algorithmus aus
  *
@@ -96,7 +97,6 @@ public class DijkstraAlgorithm implements Algorithm {
         path.add(step);
 
         while (nonNull(predecessors.get(step))) {
-            System.out.println("step: " + step);
             step = predecessors.get(step);
             path.add(step);
         }
@@ -235,13 +235,12 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param v2 a Node
      * @return the runtime value
      */
-    public long dijkstraRtm(Graph g, Node v1, Node v2) throws Exception {
+    public double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
         init(g);
-        long resultTime;
-        long startTime = System.nanoTime();
+        long resultTime, startTime = System.nanoTime();
         getShortestPath(v1, v2);
-        long endTime = System.nanoTime();
-        resultTime = endTime - startTime;
-        return resultTime;
+        long endT = System.nanoTime();
+        resultTime = endT - startTime;
+        return (double) resultTime / 1000000000.0;
     }
 }

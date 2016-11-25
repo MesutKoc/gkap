@@ -1,6 +1,7 @@
 package startup;
 
-import algorithmen.searchPath.DijkstraAlgorithm;
+import algorithm.searchPath.DijkstraAlgorithm;
+import algorithm.searchPath.FloydWarshall;
 import io.GraphReader;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -39,26 +40,37 @@ public class benchmark {
      ====================================*/
     public static void main(String args[]) throws Exception {
         StringBuilder tempResult = new StringBuilder();
-        tempResult.append(String.format("Graph%sAlgorithmus%sLaufzeit%sDistance%sKuerzester Weg%s\n",
+        tempResult.append(String.format("Graph%sAlgorithmus%sLaufzeit(sec)%sDistance%sKuerzester Weg%s\n",
                 DELIMETER, DELIMETER, DELIMETER, DELIMETER, DELIMETER));
 
         for (int i = 0; i < IMPORTLIST.length; i++) {
             Graph g = GraphReader.openFile(new File(IMPORTLIST[i]));
-            // nehme alle Sourcenodes
             Node source = g.getNode(SOURCELIST[i]);
-            // nehme alle Targetnodes
             Node target = g.getNode(TARGETLIST[i]);
-            // Initialisiere Graphen
+
             dijkstra.init(g);
             // Angabe der Graphdatei
             tempResult.append(String.format("%s%s", IMPORTLIST[i].replace("graph/subwerkzeuge/bspGraphen/", ""), DELIMETER));
             tempResult.append(String.format("Dijkstra%s", DELIMETER));
             // Messungen der Laufzeit des Algorithmus
-            tempResult.append(String.format("%d%s", dijkstra.dijkstraRtm(g, source, target), DELIMETER));
+            tempResult.append(String.format("%f%s", dijkstra.algorithmRtm(g, source, target), DELIMETER));
             // Messung für Distance
             tempResult.append(String.format("%s%s", dijkstra.getDistanceLength(), DELIMETER));
             // Darstellung des kürzesten Weges
             List<Node> shortestRouteBF = dijkstra.getShortestPath(source, target);
+            printRoute(shortestRouteBF, tempResult);
+
+            FloydWarshall floyd = new FloydWarshall();
+            floyd.init(g);
+            // Angabe der Graphdatei
+            tempResult.append(String.format("%s%s", IMPORTLIST[i].replace("graph/subwerkzeuge/bspGraphen/", ""), DELIMETER));
+            tempResult.append(String.format("Floyd Warshall%s", DELIMETER));
+            // Messungen der Laufzeit des Algorithmus
+            tempResult.append(String.format("%f%s", floyd.algorithmRtm(g, source, target), DELIMETER));
+            // Messung für Distance
+            tempResult.append(String.format("%s%s", floyd.getDistance(), DELIMETER));
+            // Darstellung des kürzesten Weges
+            List<Node> shortestRouteFW = floyd.getShortestPath(source, target);
             printRoute(shortestRouteBF, tempResult);
         }
         try {

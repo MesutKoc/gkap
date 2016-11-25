@@ -1,15 +1,11 @@
-package algorithmen;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+package algorithm;
 
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+
+import java.util.*;
 
 /**
  * <h1>BreadthFirstSearch.java</h1> Diese Klasse travesiert den Graphen

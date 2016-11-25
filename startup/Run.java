@@ -1,6 +1,6 @@
 package startup;
 
-import algorithmen.searchPath.FloydWarshall;
+import algorithm.searchPath.FloydWarshall;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
@@ -83,6 +83,8 @@ public class Run {
             List<Node> path1 = floyd.getShortestPath(test.getNode("0"), test.getNode("7"));
             System.out.println(floyd);
             System.out.println(path1.toString());
+            System.out.println("Zugriffe: " + floyd.getAcc());
+            System.out.println("length: " + floyd.getDistance());
 
 /*            DijkstraAlgorithm DK = new DijkstraAlgorithm();
             DK.init(graph);
