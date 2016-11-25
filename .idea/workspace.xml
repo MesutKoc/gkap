@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Floyd">
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Floyd verbesserungen">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithmen/searchPath/FloydWarshall.java" afterPath="$PROJECT_DIR$/algorithmen/searchPath/FloydWarshall.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/algorithmen/searchPath/DijkstraAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="222">
-              <caret line="94" column="41" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="41" />
+              <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,8 +69,8 @@
       <file leaf-file-name="FloydWarshall.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithmen/searchPath/FloydWarshall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="91" column="20" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+            <state relative-caret-position="-165">
+              <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -885,7 +884,7 @@
       <workItem from="1479982264555" duration="2530000" />
       <workItem from="1479984833202" duration="1089000" />
       <workItem from="1479993825307" duration="17152000" />
-      <workItem from="1480077233118" duration="10964000" />
+      <workItem from="1480077233118" duration="11096000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1027,7 +1026,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480084720447</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Floyd verbesserungen">
+      <created>1480090126249</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1480090126249</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1063,7 +1069,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69103000" />
+    <option name="totallyTimeSpent" value="69235000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1082,9 +1088,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.49205717" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32605305" sideWeight="0.451946" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2722309" sideWeight="0.4197776" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1591252" sideWeight="0.4725973" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2722309" sideWeight="0.5802224" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15834634" sideWeight="0.5289913" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15834634" sideWeight="0.47100875" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2722309" sideWeight="0.5802224" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12192216" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1140,7 +1146,8 @@
     <MESSAGE value="Dijkstra mit Folien angepasst (diesmal aber wirklich)&#10;Neue Tests&#10;Code verbesserungen &#10;" />
     <MESSAGE value="GraphSaver verbessert + GraphReader + Builder" />
     <MESSAGE value="Floyd" />
-    <option name="LAST_COMMIT_MESSAGE" value="Floyd" />
+    <MESSAGE value="Floyd verbesserungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Floyd verbesserungen" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1478,7 +1485,7 @@
     <entry file="file://$PROJECT_DIR$/algorithmen/searchPath/DijkstraAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
-          <caret line="94" column="41" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="41" />
+          <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1497,8 +1504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithmen/searchPath/FloydWarshall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="91" column="20" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+        <state relative-caret-position="-165">
+          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
