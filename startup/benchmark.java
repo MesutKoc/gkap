@@ -71,7 +71,7 @@ public class benchmark {
             tempResult.append(String.format("%s%s", floyd.getDistance(), DELIMETER));
             // Darstellung des kürzesten Weges
             List<Node> shortestRouteFW = floyd.getShortestPath(source, target);
-            printRoute(shortestRouteBF, tempResult);
+            printRoute(shortestRouteFW, tempResult);
         }
         try {
             Files.write(Paths.get(BENCHMARK_RESULT), tempResult.toString().getBytes());

@@ -96,14 +96,13 @@ public class FloydWarshall implements Algorithm {
     private List<Node> getShortestPath(Node target) {
         LinkedList<Node> list = new LinkedList<>();
         Node current = predecessorMap.get(source).get(target);
-
         list.add(target);
 
         while (nonNull(current)) {
             list.add(current);
             current = predecessorMap.get(source).get(current);
         }
-
+        list.add(source);
         Collections.reverse(list);
         return list;
     }
@@ -141,10 +140,10 @@ public class FloydWarshall implements Algorithm {
     /**
      * Zur Messung bzgl. Laufzeit
      *
+     * @param g ein gültiger Graph
      * @param v1 der Startknoten
      * @param v2 der Endknoten
      * @return Double mit dem Sekunden, wie lange der Algorithmus braucht
-     * @oaram g ein gültiger Graph
      */
     public double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
         init(g);
