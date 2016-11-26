@@ -50,8 +50,8 @@ public class GraphSaver {
      *
      * @return liefert ein String in der Graph-Syntax
 	 */
-    public static String convertsGraph(Edge edge, Boolean showName) {
-        String name = showName ? String.format(" (%s)", edge.getId()) : "",
+	private static String convertsGraph(Edge edge, Boolean showName) {
+		String name = showName ? String.format(" (%s)", edge.getId()) : "",
                 conn = edge.isDirected() ? "-->" : "--",
                 weight = (edge.getAttribute("weight") != null) ? (" : " + edge.getAttribute("weight")) : "";
         return String.format("%s%s%s%s%s;", edge.getNode0(), conn, edge.getNode1(), name, weight);

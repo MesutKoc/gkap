@@ -1,7 +1,7 @@
 Graph;Algorithmus;Laufzeit(sec);Distance;Kuerzester Weg;
-graph03.gka;Dijkstra;0,203128;265.0;Paderborn->Hamburg->Buxtehude
-graph03.gka;Floyd Warshall;0,019887;265.0;Paderborn->Hamburg->Buxtehude
-graph03.gka;Dijkstra;0,009183;250.0;Paderborn->Hameln->Walsrode
-graph03.gka;Floyd Warshall;0,012432;250.0;Paderborn->Hameln->Walsrode
-graph03.gka;Dijkstra;0,001225;101.0;Hamburg->Walsrode
-graph03.gka;Floyd Warshall;0,006849;101.0;Hamburg->Walsrode
+graph03.gka;Dijkstra;0,101117;265.0;Paderborn->Hamburg->Buxtehude
+graph03.gka;Floyd Warshall;0,016810;265.0;Paderborn->Hamburg->Buxtehude
+graph03.gka;Dijkstra;0,001423;250.0;Paderborn->Hameln->Walsrode
+graph03.gka;Floyd Warshall;0,008673;250.0;Paderborn->Hameln->Walsrode
+graph03.gka;Dijkstra;0,009985;101.0;Hamburg->Walsrode
+graph03.gka;Floyd Warshall;0,009225;101.0;Hamburg->Walsrode

@@ -1,6 +1,5 @@
 package algorithm.searchPath;
 
-import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
@@ -17,18 +16,42 @@ import static java.util.Objects.requireNonNull;
  * @version 1.0
  * @since 2016-11-25
  */
-public class FloydWarshall implements Algorithm {
-	private Graph graph;
-	private List<Node> nodes;
-    private Node source, target;
-    private Map<Node, Map<Node, Node>> predecessorMap; // die VorgängerMap
-    private Map<Node, Map<Node, Double>> costMap; // costMap[v]{[v][w] = die Länge der kürzesten Paths von v->w.
+public class FloydWarshall {
+    /**
+     * Wird für die Distance gebraucht
+     */
+    public static double distance;
 
-	/* (non-Javadoc)
-	 * @see org.graphstream.algorithm.Algorithm#compute()
-	 */
-	@Override
-	public void compute() {
+    /**
+     * Diese Methode ist öffentlich für die kürzeste Path suche.
+     *
+     * @param g      ein Graph
+     * @param source der Startknoten
+     * @param target der Zielknoten
+     * @return eine Liste mit den kürzesten Wegen
+     * @throws Exception wenn Graph || source || target ungültig sind!
+     */
+    public static List<Node> getShortestPath(Graph g, Node source, Node target) throws Exception {
+        return compute(requireNonNull(g), requireNonNull(source), requireNonNull(target));
+    }
+
+    /**
+     * Diese Methode führt den eigentlichen Algorithmus aus
+     *
+     * @param g      ein Graph
+     * @param source der Startknoten
+     * @param target der Zielknoten
+     * @return eine Liste mit den kürzesten Wegen
+     */
+    private static List<Node> compute(Graph g, Node source, Node target) {
+        List<Node> nodes = new ArrayList<>();   // beinhaltet alle Knoten
+        Map<Node, Map<Node, Node>> predecessorMap = new HashMap<>(); // die VorgängerMatrix
+        Map<Node, Map<Node, Double>> costMap = new HashMap<>(); // Die DistanceMatrix
+
+        // Nehme alle Knoten und Init die Vorgänger und DistanceMatrix!
+        init(g, predecessorMap, costMap, nodes);
+
+        // Eigentliche Algorithmus
         for (int j = 0; j < nodes.size(); j++) { // Zeilen
             for (int i = 0; i < nodes.size(); i++) { // Spalten
                 for (int k = 0; k < nodes.size(); k++) { // Schritte
@@ -43,31 +66,34 @@ public class FloydWarshall implements Algorithm {
                     }
                 }
                 Double dii = costMap.get(nodes.get(i)).get(nodes.get(i));
-                if (dii != null && dii < 0) return; // negative Kantenlänge
+                if (dii != null && dii < 0) return null; // negative Kantenlänge
             }
         }
+        distance = costMap.get(source).get(target);
+        return getShortestPath(predecessorMap, source, target);
     }
 
-	/* (non-Javadoc)
-	 * @see org.graphstream.algorithm.Algorithm#init(org.graphstream.graph.Graph)
-	 */
-    @Override
-    public void init(Graph g) {
-        this.graph = Objects.requireNonNull(g);
-        // Init
-        predecessorMap = new HashMap<>();
-        costMap = new HashMap<>();
-        nodes = new ArrayList<>();
+    /**
+     * Speichert alle Knoten in eine Liste ab, iteriert über Sie und guckt dementsprechend
+     * ob I == J ist oder falls nicht, ob eine Kante existiert.
+     *
+     * @param g              ein Graph
+     * @param predecessorMap die VorgängerMatrix
+     * @param costMap        die DistanceMatrix
+     * @param nodes          die Liste mit den Knoten
+     */
+    private static void init(Graph g, Map<Node, Map<Node, Node>> predecessorMap,
+                             Map<Node, Map<Node, Double>> costMap, List<Node> nodes) {
         // save all nodes in the list
-        for (Node n : graph.getEachNode()) nodes.add(n);
+        for (Node n : g.getEachNode()) nodes.add(n);
         // Iterate over Nodes
-        Iterator<Node> nodesForI = graph.getNodeIterator();
+        Iterator<Node> nodesForI = g.getNodeIterator();
 
         for (int i = 0; i < nodes.size(); i++) {
             Map<Node, Double> tempCost = new HashMap<>();
             Map<Node, Node> tempPred = new HashMap<>();
 
-            Iterator<Node> nodesForJ = graph.getNodeIterator();
+            Iterator<Node> nodesForJ = g.getNodeIterator();
             Node nodeI = nodesForI.next();
 
             for (Node node : nodes) {
@@ -86,14 +112,13 @@ public class FloydWarshall implements Algorithm {
         }
     }
 
-    public List<Node> getShortestPath(Node source, Node target) throws Exception {
-        this.source = requireNonNull(source);
-        this.target = requireNonNull(target);
-        compute();
-        return getShortestPath(target);
-    }
-
-    private List<Node> getShortestPath(Node target) {
+    /**
+     * @param predecessorMap die VorgängerMatrix
+     * @param source         der Startknoten
+     * @param target         der Zielknoten
+     * @return kürzester Weg
+     */
+    private static List<Node> getShortestPath(Map<Node, Map<Node, Node>> predecessorMap, Node source, Node target) {
         LinkedList<Node> list = new LinkedList<>();
         Node current = predecessorMap.get(source).get(target);
         list.add(target);
@@ -102,39 +127,10 @@ public class FloydWarshall implements Algorithm {
             list.add(current);
             current = predecessorMap.get(source).get(current);
         }
+
         list.add(source);
         Collections.reverse(list);
         return list;
-    }
-
-    @Override
-    public String toString() {
-        return "FloydWarshall{" +
-                " \ngraph=" + graph +
-                " \nnodes=" + nodes +
-                " \nsource=" + source +
-                " \ntarget=" + target +
-                " \npredecessorMap=" + predecessorMap +
-                " \ncostMap=" + costMap +
-                '}';
-    }
-
-    /**
-     * Liefert die gesamt Zugriffe auf den Grphen
-     *
-     * @return int mit dem Zugriffen
-     */
-    public int getAcc() {
-        return nodes.size() * nodes.size();
-    }
-
-    /**
-     * Liefert die Distance zurück
-     *
-     * @return Double mit dem Distance
-     */
-    public Double getDistance() {
-        return costMap.get(source).get(target);
     }
 
     /**
@@ -145,11 +141,10 @@ public class FloydWarshall implements Algorithm {
      * @param v2 der Endknoten
      * @return Double mit dem Sekunden, wie lange der Algorithmus braucht
      */
-    public double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
-        init(g);
+    public static double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
         long resultTime;
         long startTime = System.nanoTime();
-        getShortestPath(v1, v2);
+        getShortestPath(g, v1, v2);
         long endTime = System.nanoTime();
         resultTime = endTime - startTime;
         return (double) resultTime / 1000000000.0;
