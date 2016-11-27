@@ -4,8 +4,6 @@ import org.graphstream.algorithm.Algorithm;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -63,7 +61,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @see org.graphstream.algorithm.Algorithm#init(org.graphstream.graph.Graph)
      */
     @Override
-    public void init(@NotNull Graph g) {
+    public void init( Graph g) {
         this.graph = requireNonNull(g);
     }
 
@@ -88,17 +86,19 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param target der Zielknoten
      * @return der kürzeste Weg zum Zielknoten vom Startknoten
      */
-    @Nullable
+    
     private List<Node> getShortestPath(Node target) {
         LinkedList<Node> path = new LinkedList<>();
-        Node step = target;
+        Node predNode = target;
+        System.out.println("Das ist unser neuer step/target: " + predNode);
+        if (isNull(predecessors.get(predNode))) return null;
+        path.add(predNode);
 
-        if (isNull(predecessors.get(step))) return null;
-        path.add(step);
-
-        while (nonNull(predecessors.get(step))) {
-            step = predecessors.get(step);
-            path.add(step);
+        while (nonNull(predecessors.get(predNode))) {
+        	System.out.println("Current node:"+predNode.toString());
+            predNode = predecessors.get(predNode);
+            path.add(predNode);
+            System.out.println("Unser Weg für Target node"+path.toString());
         }
 
         reverse(path);
@@ -121,14 +121,20 @@ public class DijkstraAlgorithm implements Algorithm {
         return minimum;
     }
 
-    private void calcNewDistances(Node source) {
-        List<Node> adjacentNodes = getNeighbors(source);
+    private void calcNewDistances(Node currentNode) {
+    	System.out.println("current node: " +currentNode);
+        List<Node> adjacentNodes = getNeighbors(currentNode);
         adjacentNodes.stream()
-                .filter(child -> getShortestDistance(child) > getShortestDistance(source) + getDistance(source, child))
-                .forEach(target -> {
-                    distance.put(target, getShortestDistance(source) + getDistance(source, target));
-                    predecessors.put(target, source);
-                    falseNodes.add(target);
+        //Hat der aktuelle Nachbar eine größere Distanz als die Summe der Kantengewichte von den Nodes und die Distanz des aktuellen Nodes.
+                .filter(child -> getShortestDistance(child) > getShortestDistance(currentNode) + getDistance(currentNode, child))                
+                .forEach(child -> {
+                	System.out.println("Child Node  map: " + adjacentNodes.toString());
+                    distance.put(child, getShortestDistance(currentNode) + getDistance(currentNode, child));
+                    System.out.println("Distance map: "+ distance.toString());
+                    predecessors.put(child, currentNode);
+                    System.out.println("Pred map: " + predecessors.toString());
+                    falseNodes.add(child);
+                    System.out.println("False map : " +falseNodes.toString());
                 });
     }
 
@@ -168,7 +174,10 @@ public class DijkstraAlgorithm implements Algorithm {
                     targetNodeEquals = Objects.equals(edge.getTargetNode(), target),
                     targetNodeEqualsSource = Objects.equals(edge.getTargetNode(), source),
                     sourceNodeEqualsTarget = Objects.equals(edge.getSourceNode(), target);
-
+            System.out.println("Source: "+ source +" Gleichheit: "+sourceNodeEquals);
+            System.out.println("Source: "+ target +" Gleichheit: "+targetNodeEquals);
+            System.out.println("Source: "+ source +" Gleichheit: "+targetNodeEqualsSource);
+            System.out.println("Source: "+ target +" Gleichheit: "+sourceNodeEqualsTarget);
             if ((sourceNodeEquals && targetNodeEquals) || (targetNodeEqualsSource && sourceNodeEqualsTarget))
                 return parseInt(edge.getAttribute("weight").toString());
         }
@@ -192,11 +201,12 @@ public class DijkstraAlgorithm implements Algorithm {
     /**
      * Liefert von der Distance Map die Distance vom aktuellen Knoten
      *
-     * @param destination ein Knoten
+     * @param nextNode ein Knoten
      * @return INF if the Distance not settled or if true the Distance value
      */
-    private double getShortestDistance(Node destination) {
-        return !isNull(distance.get(destination)) ? distance.get(destination) : POSITIVE_INFINITY;
+    private double getShortestDistance(Node nextNode) {
+    	System.out.println("Das ist die distance map: " +distance + " Knoten: " + nextNode);
+        return !isNull(distance.get(nextNode)) ? distance.get(nextNode) : POSITIVE_INFINITY;
     }
 
     /**
@@ -209,7 +219,7 @@ public class DijkstraAlgorithm implements Algorithm {
     }
 
     /**
-     * Liefert die gesamt Zugriffe auf den Grphen
+     * Liefert die gesamt Zugriffe auf den Graphen
      *
      * @return int mit dem Zugriffen
      */
