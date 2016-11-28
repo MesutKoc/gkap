@@ -1,6 +1,7 @@
 package tests;
 
 import algorithm.searchPath.DijkstraAlgorithm;
+import algorithm.searchPath.FloydWarshall;
 import io.GraphReader;
 import io.GraphSaver;
 import org.graphstream.graph.Graph;
@@ -147,5 +148,30 @@ public class DijkstraAlgorithmTest {
         res.add(bigGraph.getNode("100"));
         assertEquals(exp, res);
         System.out.println("testBIG() ist ok");
+    }
+    
+    @Test
+    public void testShortestWay() throws Exception{
+    	
+        DijkstraAlgorithm result = new DijkstraAlgorithm();
+    	Graph owng2 = new SingleGraph("owng");
+        owng2.addNode("a");
+        owng2.addNode("b");
+        owng2.addNode("c");
+        owng2.addNode("d");
+        
+        owng2.addEdge("ab", "a", "b").addAttribute("weight", "1");
+        owng2.addEdge("bc", "b", "c").addAttribute("weight", "2");
+        owng2.addEdge("ad", "a", "d").addAttribute("weight", "1");
+        owng2.addEdge("dc", "d", "c").addAttribute("weight", "2");
+        
+        result.init(owng2);
+        List<Node> result01 = result.getShortestPath(owng2.getNode("a"), owng2.getNode("c")); 
+    	List<Node> exp = new ArrayList<>();
+    	exp.add(owng2.getNode("a"));
+    	exp.add(owng2.getNode("d"));
+    	exp.add(owng2.getNode("c"));
+    	assertEquals(exp, result01);
+    	
     }
 }

@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -85,7 +86,7 @@ public class FloydWarshallTest {
     // own Dijkstra with own Graph TESTS
     //===============================
     @Test
-    public void testOwnDijk() throws Exception {
+    public void testOwnFlyod() throws Exception {
         Graph owng = new SingleGraph("owng");
         owng.addNode("a");
         owng.addNode("b");
@@ -131,6 +132,52 @@ public class FloydWarshallTest {
         dk.init(bigGraph);
         dk.getShortestPath(bigGraph.getNode("1"), bigGraph.getNode("100"));
         assertEquals(FloydWarshall.distance, dk.getDistanceLength(), 1e-15);
-        System.out.println("testBIG() ist ok");
+        System.out.println("flyodVSdijkstra() ist ok");
     }
+    
+    @Test
+    public void testShortestWay() throws Exception{
+    	
+    	Graph owng2 = new SingleGraph("owng");
+        owng2.addNode("a");
+        owng2.addNode("b");
+        owng2.addNode("c");
+        owng2.addNode("d");
+        
+        owng2.addEdge("ab", "a", "b").addAttribute("weight", "1");
+        owng2.addEdge("bc", "b", "c").addAttribute("weight", "2");
+        owng2.addEdge("ad", "a", "d").addAttribute("weight", "1");
+        owng2.addEdge("dc", "d", "c").addAttribute("weight", "2");
+        
+        List<Node> result = FloydWarshall.getShortestPath(owng2, owng2.getNode("a"), owng2.getNode("c")); 
+    	List<Node> exp = new ArrayList<>();
+    	exp.add(owng2.getNode("a"));
+    	exp.add(owng2.getNode("b"));
+    	exp.add(owng2.getNode("c"));
+    	assertEquals(exp, result);
+    	System.out.println("testShortestWay() is ok");
+    	
+    }
+    
+    @Test
+    public void testNegShortestWay() throws Exception{
+     
+    	Graph owng2 = new SingleGraph("owng");
+        owng2.addNode("a");
+        owng2.addNode("b");
+        owng2.addNode("c");
+        owng2.addNode("d");
+        
+        owng2.addEdge("ab", "a", "b").addAttribute("weight", "1.0");
+        owng2.addEdge("bc", "b", "c").addAttribute("weight", "2.0");
+        owng2.addEdge("ad", "a", "d").addAttribute("weight", "2.0");
+        owng2.addEdge("dc", "d", "c").addAttribute("weight", "1.0");
+        
+        List<Node> result = FloydWarshall.getShortestPath(owng2, owng2.getNode("a"), owng2.getNode("c")); 
+        List<Node> exp = new ArrayList<>();
+        exp.add(owng2.getNode("a"));
+        System.out.println("testNegShortestWay() is ok");
+}
+    
+    
 }
