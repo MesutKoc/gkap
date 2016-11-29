@@ -1,44 +1,20 @@
 package tests;
 
 import algorithm.searchPath.DijkstraAlgorithm;
-import algorithm.searchPath.FloydWarshall;
+import graph.GraphBuilder;
 import io.GraphReader;
-import io.GraphSaver;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
 public class DijkstraAlgorithmTest {
-    private static Graph generateBigOne(int numNodes, int numEdge) throws IOException {
-        Random random = new Random();
-        Graph result = new MultiGraph("big");
-        int edgeIdent = 0;
-
-        for (int i = 1; i <= numNodes; i++) result.addNode(String.format("%d", i));
-        result.addEdge("1_100", "1", "100", true).addAttribute("weight", 1);
-        while (result.getEdgeCount() < numEdge) {
-            for (int i = 2; i <= numEdge; i++) {
-                int x = random.nextInt(numNodes - 1) + 1;
-                int y = random.nextInt(numNodes - 1) + 1;
-                result.addEdge(String.format("%d%d|%d", x, y, edgeIdent), String.format("%d", x), String.format("%d", y), true)
-                        .addAttribute("weight", random.nextInt(numNodes - 1) + 1);
-                edgeIdent++;
-            }
-        }
-        GraphSaver.saveGraph(result, new File("graph/subwerkzeuge/bspGraphen/saved/biG.gka"));
-        return result;
-    }
-
     //===============================
     // compute TESTS
     //===============================
@@ -123,6 +99,7 @@ public class DijkstraAlgorithmTest {
         exp.init(owng);
         List<Node> listeExpected = exp.getShortestPath(owng.getNode("a"), owng.getNode("g"));
         List<Node> result = new ArrayList<>();
+
         result.add(owng.getNode("a"));
         result.add(owng.getNode("b"));
         result.add(owng.getNode("c"));
@@ -140,7 +117,7 @@ public class DijkstraAlgorithmTest {
     @Test
     public void testBIG() throws Exception {
         DijkstraAlgorithm exp0 = new DijkstraAlgorithm();
-        Graph bigGraph = generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
         exp0.init(bigGraph);
         List<Node> exp = exp0.getShortestPath(bigGraph.getNode("1"), bigGraph.getNode("100"));
         List<Node> res = new ArrayList<>();
@@ -149,29 +126,28 @@ public class DijkstraAlgorithmTest {
         assertEquals(exp, res);
         System.out.println("testBIG() ist ok");
     }
-    
+
     @Test
     public void testShortestWay() throws Exception{
-    	
         DijkstraAlgorithm result = new DijkstraAlgorithm();
-    	Graph owng2 = new SingleGraph("owng");
+        Graph owng2 = new SingleGraph("owng");
         owng2.addNode("a");
         owng2.addNode("b");
         owng2.addNode("c");
         owng2.addNode("d");
-        
+
         owng2.addEdge("ab", "a", "b").addAttribute("weight", "1");
         owng2.addEdge("bc", "b", "c").addAttribute("weight", "2");
         owng2.addEdge("ad", "a", "d").addAttribute("weight", "1");
         owng2.addEdge("dc", "d", "c").addAttribute("weight", "2");
-        
+
         result.init(owng2);
-        List<Node> result01 = result.getShortestPath(owng2.getNode("a"), owng2.getNode("c")); 
-    	List<Node> exp = new ArrayList<>();
-    	exp.add(owng2.getNode("a"));
-    	exp.add(owng2.getNode("d"));
-    	exp.add(owng2.getNode("c"));
-    	assertEquals(exp, result01);
-    	
+        List<Node> result01 = result.getShortestPath(owng2.getNode("a"), owng2.getNode("c"));
+        List<Node> exp = new ArrayList<>();
+        exp.add(owng2.getNode("a"));
+        exp.add(owng2.getNode("b"));
+        exp.add(owng2.getNode("c"));
+        assertEquals(exp, result01);
+
     }
 }

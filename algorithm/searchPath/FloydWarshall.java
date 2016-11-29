@@ -54,23 +54,18 @@ public class FloydWarshall {
         // Eigentlicher Algorithmus
         //Wir gehen Zeile und Spalte durch mit den jeweiligen Schritten k durch.
         //Nehmen uns die Distanzen und verleichen sie auf kleiner spalte + zeile(Distanz).
-        //Falls wir eine neue Distanz haben ersetzen wir die alte Distanz. 
-        //Sobald wir k-1 Schritte erreicht haben ist der Algo beendet oder wir haben eine negative Distanz. 
+        //Falls wir eine neue Distanz haben ersetzen wir die alte Distanz.
+        //Sobald wir k-1 Schritte erreicht haben ist der Algo beendet oder wir haben eine negative Distanz.
         for (int j = 0; j < nodes.size(); j++) { // Zeilen
             for (int i = 0; i < nodes.size(); i++) { // Spalten
                 for (int k = 0; k < nodes.size(); k++) { // Schritte
-                	// j ungleich k darf nicht sein. wir starten bei 0 schritten und gehen bis k-1.
+                    // j ungleich k darf nicht sein. wir starten bei 0 schritten und gehen bis k-1.
                     if (i != j && j != k) {
                         Double dik = costMap.get(nodes.get(i)).get(nodes.get(k));
-                        System.out.println("unser k " + k);
                         Double dij = costMap.get(nodes.get(i)).get(nodes.get(j));
-                        
                         Double djk = costMap.get(nodes.get(j)).get(nodes.get(k));
-                        if 
-                        (dij != null && djk != null && Math.min(dik, dij + djk) != dik) {
-                        	System.out.println("Davor: "+costMap.toString());
+                        if (dij != null && djk != null && Math.min(dik, dij + djk) != dik) {
                             costMap.get(nodes.get(i)).replace(nodes.get(k), dij + djk);
-                            System.out.println("Danach : "+ costMap.toString());
                             predecessorMap.get(nodes.get(i)).replace(nodes.get(k), nodes.get(j));
                         }
                     }
@@ -80,7 +75,6 @@ public class FloydWarshall {
             }
         }
         distance = costMap.get(source).get(target);
-        System.out.println(predecessorMap.toString());
         return getShortestPath(predecessorMap, source, target);
     }
 
@@ -152,7 +146,7 @@ public class FloydWarshall {
      * @param v2 der Endknoten
      * @return Double mit dem Sekunden, wie lange der Algorithmus braucht
      */
-    public static double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
+    static double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
         long resultTime;
         long startTime = System.nanoTime();
         getShortestPath(g, v1, v2);

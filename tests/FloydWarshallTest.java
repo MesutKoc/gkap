@@ -2,43 +2,21 @@ package tests;
 
 import algorithm.searchPath.DijkstraAlgorithm;
 import algorithm.searchPath.FloydWarshall;
+import graph.GraphBuilder;
 import io.GraphReader;
-import io.GraphSaver;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class FloydWarshallTest {
-    private static Graph generateBigOne(int numNodes, int numEdge) throws IOException {
-        Random random = new Random();
-        Graph result = new MultiGraph("big");
-        int edgeIdent = 0;
-
-        for (int i = 1; i <= numNodes; i++) result.addNode(String.format("%d", i));
-        result.addEdge("1_100", "1", "100", true).addAttribute("weight", 1);
-        while (result.getEdgeCount() < numEdge) {
-            for (int i = 2; i <= numEdge; i++) {
-                int x = random.nextInt(numNodes - 1) + 1;
-                int y = random.nextInt(numNodes - 1) + 1;
-                result.addEdge(String.format("%d%d|%d", x, y, edgeIdent), String.format("%d", x), String.format("%d", y), true)
-                        .addAttribute("weight", random.nextInt(numNodes - 1) + 1);
-                edgeIdent++;
-            }
-        }
-        GraphSaver.saveGraph(result, new File("graph/subwerkzeuge/bspGraphen/saved/biG.gka"));
-        return result;
-    }
-
     //===============================
     // compute TESTS
     //===============================
@@ -117,7 +95,7 @@ public class FloydWarshallTest {
     //===============================
     @Test
     public void testBIG() throws Exception {
-        Graph bigGraph = generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
         List<Node> exp = FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         List<Node> res = FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         assertEquals(exp, res);
@@ -127,7 +105,7 @@ public class FloydWarshallTest {
     @Test
     public void floydVSDijkstra() throws Exception {
         DijkstraAlgorithm dk = new DijkstraAlgorithm();
-        Graph bigGraph = generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
         FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         dk.init(bigGraph);
         dk.getShortestPath(bigGraph.getNode("1"), bigGraph.getNode("100"));
@@ -156,28 +134,26 @@ public class FloydWarshallTest {
     	exp.add(owng2.getNode("c"));
     	assertEquals(exp, result);
     	System.out.println("testShortestWay() is ok");
-    	
     }
     
     @Test
     public void testNegShortestWay() throws Exception{
-     
     	Graph owng2 = new SingleGraph("owng");
         owng2.addNode("a");
         owng2.addNode("b");
         owng2.addNode("c");
         owng2.addNode("d");
-        
-        owng2.addEdge("ab", "a", "b").addAttribute("weight", "1.0");
-        owng2.addEdge("bc", "b", "c").addAttribute("weight", "2.0");
-        owng2.addEdge("ad", "a", "d").addAttribute("weight", "2.0");
-        owng2.addEdge("dc", "d", "c").addAttribute("weight", "1.0");
+
+        owng2.addEdge("ab", "a", "b").addAttribute("weight", "1");
+        owng2.addEdge("bc", "b", "c").addAttribute("weight", "2");
+        owng2.addEdge("ad", "a", "d").addAttribute("weight", "2");
+        owng2.addEdge("dc", "d", "c").addAttribute("weight", "1");
         
         List<Node> result = FloydWarshall.getShortestPath(owng2, owng2.getNode("a"), owng2.getNode("c")); 
         List<Node> exp = new ArrayList<>();
         exp.add(owng2.getNode("a"));
+
+        assertNotEquals(result, exp);
         System.out.println("testNegShortestWay() is ok");
-}
-    
-    
+    }
 }

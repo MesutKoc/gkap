@@ -1,12 +1,16 @@
 package graph;
 
+import io.GraphSaver;
 import org.graphstream.graph.EdgeRejectedException;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 
 import static java.util.Objects.isNull;
@@ -96,5 +100,25 @@ public class GraphBuilder {
         System.setProperty("org.graphstream.ui.renderer",
                 "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         graph.display();
+    }
+
+    public static Graph generateBigOne(int numNodes, int numEdge) throws IOException {
+        Random random = new Random();
+        Graph result = new MultiGraph("big");
+        int edgeIdent = 0;
+
+        for (int i = 1; i <= numNodes; i++) result.addNode(String.format("%d", i));
+        result.addEdge("1_100", "1", "100", true).addAttribute("weight", 1);
+        while (result.getEdgeCount() < numEdge) {
+            for (int i = 2; i <= numEdge; i++) {
+                int x = random.nextInt(numNodes - 1) + 1;
+                int y = random.nextInt(numNodes - 1) + 1;
+                result.addEdge(String.format("%d%d|%d", x, y, edgeIdent), String.format("%d", x), String.format("%d", y), true)
+                        .addAttribute("weight", random.nextInt(numNodes - 1) + 1);
+                edgeIdent++;
+            }
+        }
+        GraphSaver.saveGraph(result, new File("graph/subwerkzeuge/bspGraphen/saved/biG.gka"));
+        return result;
     }
 }

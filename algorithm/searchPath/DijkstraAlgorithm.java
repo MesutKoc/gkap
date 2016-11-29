@@ -86,19 +86,17 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param target der Zielknoten
      * @return der kürzeste Weg zum Zielknoten vom Startknoten
      */
-    
+
     private List<Node> getShortestPath(Node target) {
         LinkedList<Node> path = new LinkedList<>();
         Node predNode = target;
-        System.out.println("Das ist unser neuer step/target: " + predNode);
+
         if (isNull(predecessors.get(predNode))) return null;
         path.add(predNode);
 
         while (nonNull(predecessors.get(predNode))) {
-        	System.out.println("Current node:"+predNode.toString());
             predNode = predecessors.get(predNode);
             path.add(predNode);
-            System.out.println("Unser Weg für Target node"+path.toString());
         }
 
         reverse(path);
@@ -122,19 +120,14 @@ public class DijkstraAlgorithm implements Algorithm {
     }
 
     private void calcNewDistances(Node currentNode) {
-    	System.out.println("current node: " +currentNode);
         List<Node> adjacentNodes = getNeighbors(currentNode);
         adjacentNodes.stream()
-        //Hat der aktuelle Nachbar eine größere Distanz als die Summe der Kantengewichte von den Nodes und die Distanz des aktuellen Nodes.
-                .filter(child -> getShortestDistance(child) > getShortestDistance(currentNode) + getDistance(currentNode, child))                
+                //Hat der aktuelle Nachbar eine größere Distanz als die Summe der Kantengewichte von den Nodes und die Distanz des aktuellen Nodes.
+                .filter(child -> getShortestDistance(child) > getShortestDistance(currentNode) + getDistance(currentNode, child))
                 .forEach(child -> {
-                	System.out.println("Child Node  map: " + adjacentNodes.toString());
                     distance.put(child, getShortestDistance(currentNode) + getDistance(currentNode, child));
-                    System.out.println("Distance map: "+ distance.toString());
                     predecessors.put(child, currentNode);
-                    System.out.println("Pred map: " + predecessors.toString());
                     falseNodes.add(child);
-                    System.out.println("False map : " +falseNodes.toString());
                 });
     }
 
@@ -174,10 +167,7 @@ public class DijkstraAlgorithm implements Algorithm {
                     targetNodeEquals = Objects.equals(edge.getTargetNode(), target),
                     targetNodeEqualsSource = Objects.equals(edge.getTargetNode(), source),
                     sourceNodeEqualsTarget = Objects.equals(edge.getSourceNode(), target);
-            System.out.println("Source: "+ source +" Gleichheit: "+sourceNodeEquals);
-            System.out.println("Source: "+ target +" Gleichheit: "+targetNodeEquals);
-            System.out.println("Source: "+ source +" Gleichheit: "+targetNodeEqualsSource);
-            System.out.println("Source: "+ target +" Gleichheit: "+sourceNodeEqualsTarget);
+
             if ((sourceNodeEquals && targetNodeEquals) || (targetNodeEqualsSource && sourceNodeEqualsTarget))
                 return parseInt(edge.getAttribute("weight").toString());
         }
@@ -205,7 +195,6 @@ public class DijkstraAlgorithm implements Algorithm {
      * @return INF if the Distance not settled or if true the Distance value
      */
     private double getShortestDistance(Node nextNode) {
-    	System.out.println("Das ist die distance map: " +distance + " Knoten: " + nextNode);
         return !isNull(distance.get(nextNode)) ? distance.get(nextNode) : POSITIVE_INFINITY;
     }
 
@@ -216,15 +205,6 @@ public class DijkstraAlgorithm implements Algorithm {
      */
     public Double getDistanceLength() {
         return distance.get(target);
-    }
-
-    /**
-     * Liefert die gesamt Zugriffe auf den Graphen
-     *
-     * @return int mit dem Zugriffen
-     */
-    public int getGraphAccCounter() {
-        return graphAccCounter;
     }
 
     /**
@@ -245,7 +225,7 @@ public class DijkstraAlgorithm implements Algorithm {
      * @param v2 a Node
      * @return the runtime value
      */
-    public double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
+    double algorithmRtm(Graph g, Node v1, Node v2) throws Exception {
         init(g);
         long resultTime, startTime = System.nanoTime();
         getShortestPath(v1, v2);
