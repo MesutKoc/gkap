@@ -1,14 +1,10 @@
 package algorithm.optimizedFlow;
 
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * <h1>MaxFlow.java</h1> Diese Klasse implementiert beide Algorithmen
@@ -22,43 +18,27 @@ public class MaxFlow {
     }
 
     /**
-     * @param g       der Graph
-     * @param source  vom Start
-     * @param target  bis zum Ziel
-     * @param variant 1 für FK, 2 für EK
-     * @return maxFlow result je nach Algorithmus
+     *
+     * @param source a
+     * @param sink a
+     * @param selectionBehaviour 1 => Ford Fulkerson, 2 => Edmund Karp
+     * @return Vertex je nach ALGO
      */
-    public static int findMaxFlow(Graph g, Node source, Node target, BY variant) {
-        requireNonNull(g);
-        requireNonNull(source);
-        requireNonNull(target);
-        requireNonNull(variant);
-
+    public static ArrayList<Node> findMaxFlow(Graph graph, Node source, Node sink, BY selectionBehaviour) throws Exception {
         // Nodes buffern
-        Collection<Node> nodes = g.getNodeSet();
-        List<Node> nodeList = new ArrayList<>(nodes);
-        // Edges buffern
-        Collection<Edge> edges = g.getEdgeSet();
-        List<Edge> edgeList = new ArrayList<>(edges);
+        Collection<Node> nodes = graph.getNodeSet();
+        ArrayList<Node> allNodes = new ArrayList<>(nodes);
 
-        // 1. Schritt: die Initialisierung
-        // Der Fluss wird auf 0 gesetzt
-        for (int indexEdges = 0; indexEdges < edgeList.size(); indexEdges = indexEdges + 2)
-            g.setAttribute("fluss", 0, edgeList.get(indexEdges), edgeList.get(indexEdges + 1));
+        // Preconditions
+        if (!preConditions(allNodes, source, sink)) return null;
 
-        // Jede Ecke wird als nicht inspiziert (0) und nicht markiert (0) markiert
-        for (Node currentNode : nodeList) {
-            g.setAttribute("inspiziert", 0, currentNode);
-            g.setAttribute("markiert", 0, currentNode);
-        }
+        return null;
+    }
 
-        // Die Quelle markieren
-        g.setAttribute("markiert", source, 1);
-        g.setAttribute("maxFlow", source, Integer.MAX_VALUE);
-
-        // TODO Schritt 2 Inspektion und Markierung
-        // TODO findMaxFlow
-        return 0;
+    private static boolean preConditions(ArrayList<Node> vertexes, Node source, Node target) {
+        if ((source == null) || (target == null)) return false;
+        if (source == target) return false;
+        return !(!vertexes.contains(source) || !vertexes.contains(target));
     }
 
     public enum BY {
