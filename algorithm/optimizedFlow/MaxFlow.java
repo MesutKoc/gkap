@@ -1,5 +1,6 @@
 package algorithm.optimizedFlow;
 
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
@@ -24,15 +25,32 @@ public class MaxFlow {
      * @param selectionBehaviour 1 => Ford Fulkerson, 2 => Edmund Karp
      * @return Vertex je nach ALGO
      */
-    public static ArrayList<Node> findMaxFlow(Graph graph, Node source, Node sink, BY selectionBehaviour) throws Exception {
+    public static int findMaxFlow(Graph graph, Node source, Node sink, BY selectionBehaviour) throws Exception {
         // Nodes buffern
         Collection<Node> nodes = graph.getNodeSet();
         ArrayList<Node> allNodes = new ArrayList<>(nodes);
 
         // Preconditions
-        if (!preConditions(allNodes, source, sink)) return null;
+        if (!preConditions(allNodes, source, sink)) return 0;
 
-        return null;
+        // Edges buffern
+        Collection<Edge> edges = graph.getEdgeSet();
+        ArrayList<Edge> allEdges = new ArrayList<>(edges);
+
+        // Schritt 1 Initialisierung: Der Fluss wird auf 0 gesetzt
+        for (Edge currEdge : allEdges) currEdge.addAttribute("fluss", 0);
+
+        // Jede Ecke wird als nicht inspiziert (0) und nicht markiert (0) markiert
+        for (Node currentNode : allNodes) {
+            currentNode.addAttribute("inspiziert", 0);
+            currentNode.addAttribute("markiert", 0);
+        }
+
+        // Die Quelle muss markiert werden
+        source.setAttribute("markiert", 1);
+        source.addAttribute("maxFlow", Integer.MAX_VALUE);
+
+        return 0;
     }
 
     private static boolean preConditions(ArrayList<Node> vertexes, Node source, Node target) {

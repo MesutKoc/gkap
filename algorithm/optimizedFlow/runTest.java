@@ -27,7 +27,6 @@ public class runTest {
     private static void run() {
         try {
             //Graph graph = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph03.gka"));
-
             Graph test = new SingleGraph("test");
             test.addNode("q");
             test.addNode("v1");
