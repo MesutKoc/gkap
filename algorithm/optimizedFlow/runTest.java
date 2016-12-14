@@ -3,6 +3,8 @@ package algorithm.optimizedFlow;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 
+import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
+
 /**
  * <h1>Run.java</h1> Diese Klasse startet die Applikation
  *
@@ -34,17 +36,19 @@ public class runTest {
             test.addNode("v3");
             test.addNode("v5");
             test.addNode("s");
-            test.addEdge("qv5", "q", "v5", true).addAttribute("max", 1);
-            test.addEdge("qv1", "q", "v1", true).addAttribute("max", 5);
-            test.addEdge("qv2", "q", "v2", true).addAttribute("max", 4);
-            test.addEdge("v2v3", "v2", "v3", true).addAttribute("max", 2);
-            test.addEdge("v1v3", "v1", "v3", true).addAttribute("max", 1);
-            test.addEdge("v1s", "v1", "s", true).addAttribute("max", 3);
-            test.addEdge("v1v5", "v1", "v5", true).addAttribute("max", 1);
-            test.addEdge("v5s", "v5", "s", true).addAttribute("max", 3);
+            test.addEdge("qv5", "q", "v5", true).addAttribute("capacity", 1.0);
+            test.addEdge("qv1", "q", "v1", true).addAttribute("capacity", 5.0);
+            test.addEdge("qv2", "q", "v2", true).addAttribute("capacity", 4.0);
+            test.addEdge("v2v3", "v2", "v3", true).addAttribute("capacity", 2.0);
+            test.addEdge("v1v3", "v1", "v3", true).addAttribute("capacity", 1.0);
+            test.addEdge("v3s", "v3", "s", true).addAttribute("capacity", 3.0);
+            test.addEdge("v1s", "v1", "s", true).addAttribute("capacity", 3.0);
+            test.addEdge("v1v5", "v1", "v5", true).addAttribute("capacity", 1.0);
+            test.addEdge("v5s", "v5", "s", true).addAttribute("capacity", 3.0);
 
-            MaxFlow.findMaxFlow(test, test.getNode("q"), test.getNode("s"), MaxFlow.BY.FF);
-
+            MaxFlow newTest = new MaxFlow();
+            double t = newTest.findMaxFlow(test, test.getNode("q"), test.getNode("s"), FORD_FULKERSON);
+            System.out.print(t);
         } catch (Exception e) {
             e.printStackTrace();
         }
