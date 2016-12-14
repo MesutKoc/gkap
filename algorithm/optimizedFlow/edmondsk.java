@@ -10,7 +10,6 @@ import java.util.Queue;
 public class edmondsk {
     public static int edmondskarp(Graph graph, Node source, Node target) {
         Queue<Node> queue = new LinkedList<>(graph.getNodeSet());
-        fordf.fordfulkerson(graph, source, target);
         return 0;
     }
 

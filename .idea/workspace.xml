@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="maxFlow finished">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/runTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/FloydBSP.xlsx" afterPath="" />
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Tests + paar Veränderungen">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" afterPath="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,10 +37,42 @@
         <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="142">
-              <caret line="24" column="40" lean-forward="false" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="maxFlowTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1455">
+              <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edmondsk.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,7 +117,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BreadthFirstSearch.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BreadthFirstSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithm/BreadthFirstSearch.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
@@ -179,13 +205,13 @@
         <option value="$PROJECT_DIR$/tests/searchPathTests/FloydWarshallTest.java" />
         <option value="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/runTest.java" />
-        <option value="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
         <option value="$PROJECT_DIR$/tests/fordfTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordfTest.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/fordfTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
         <option value="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" />
+        <option value="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
       </list>
     </option>
   </component>
@@ -533,6 +559,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="optimizedFlow" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -953,7 +1011,7 @@
       <workItem from="1481709414292" duration="9842000" />
       <workItem from="1481719931617" duration="1382000" />
       <workItem from="1481738086073" duration="1556000" />
-      <workItem from="1481741161105" duration="2322000" />
+      <workItem from="1481741161105" duration="2508000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1179,7 +1237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481717349385</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Tests + paar Veränderungen">
+      <created>1481743767312</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1481743767312</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1215,7 +1280,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176685000" />
+    <option name="totallyTimeSpent" value="176871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1262,6 +1327,9 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
   </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -1299,7 +1367,8 @@
     <MESSAGE value="Verbesserungen + optimizedFlow hinzugefügt!" />
     <MESSAGE value="maxFlow update" />
     <MESSAGE value="maxFlow finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="maxFlow finished" />
+    <MESSAGE value="Tests + paar Veränderungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests + paar Veränderungen" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1336,13 +1405,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraImpl.java" />
-    <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/FlyodWarshallTest.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/src.zip!/java/util/Formatter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1438,14 +1500,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordfTest.java" />
-    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/graph03.gka">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1478,16 +1532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1499,7 +1543,7 @@
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
-          <caret line="24" column="40" lean-forward="false" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1601,6 +1645,32 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1455">
+          <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
