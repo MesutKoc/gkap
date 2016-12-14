@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Tests + paar Veränderungen">
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Edmonds">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fordf.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fordf.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+            <state relative-caret-position="128">
+              <caret line="210" column="86" lean-forward="false" selection-start-line="210" selection-start-column="86" selection-end-line="210" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1455">
-              <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+              <caret line="97" column="21" lean-forward="false" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,12 +67,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edmondsk.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edmondsk.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-              <folding />
+            <state relative-caret-position="285">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,10 +210,10 @@
         <option value="$PROJECT_DIR$/tests/fordfTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordfTest.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/fordfTest.java" />
-        <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
         <option value="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
+        <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
       </list>
     </option>
   </component>
@@ -572,6 +574,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="algorithm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -637,7 +653,7 @@
       <recent name="algorithmen" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.maxFlowTest">
+  <component name="RunManager" selected="JUnit.tests.optimizedFlow in gkap">
     <configuration default="false" name="runTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm.optimizedFlow.runTest" />
       <option name="VM_PARAMETERS" />
@@ -944,8 +960,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
         <item index="3" class="java.lang.String" itemvalue="Application.runTest" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.algorithm.searchPath in gkap" />
@@ -1011,7 +1027,7 @@
       <workItem from="1481709414292" duration="9842000" />
       <workItem from="1481719931617" duration="1382000" />
       <workItem from="1481738086073" duration="1556000" />
-      <workItem from="1481741161105" duration="2508000" />
+      <workItem from="1481741161105" duration="2681000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1244,13 +1260,17 @@
       <option name="project" value="LOCAL" />
       <updated>1481743767312</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Edmonds">
+      <created>1481743942943</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1481743942943</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="maxFlowTest - 2016.12.14 at 19h 16m 44s.xml">
-      <configuration name="maxFlowTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="maxFlowTest - 2016.12.14 at 19h 17m 26s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
@@ -1278,9 +1298,12 @@
     <history-entry file="tests_optimizedFlow_in_gkap - 2016.12.14 at 19h 07m 00s.xml">
       <configuration name="tests.optimizedFlow in gkap" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="tests_optimizedFlow_in_gkap - 2016.12.14 at 20h 35m 28s.xml">
+      <configuration name="tests.optimizedFlow in gkap" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176871000" />
+    <option name="totallyTimeSpent" value="177044000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1301,10 +1324,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.41599354" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834634" sideWeight="0.46942016" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.5840065" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.5840065" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16397415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16397415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24798061" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1368,7 +1391,8 @@
     <MESSAGE value="maxFlow update" />
     <MESSAGE value="maxFlow finished" />
     <MESSAGE value="Tests + paar Veränderungen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests + paar Veränderungen" />
+    <MESSAGE value="Edmonds" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edmonds" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1540,16 +1564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/graph10.gka">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1651,7 +1665,7 @@
     <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1455">
-          <caret line="97" column="21" lean-forward="true" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+          <caret line="97" column="21" lean-forward="false" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1668,9 +1682,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-          <folding />
+        <state relative-caret-position="285">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="210" column="86" lean-forward="false" selection-start-line="210" selection-start-column="86" selection-end-line="210" selection-end-column="86" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

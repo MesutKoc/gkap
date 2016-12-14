@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import static java.util.Objects.isNull;
+
 /**
  * <h1>ford.java</h1> Diese Klasse implementiert den FK Algorithmus
  *
@@ -207,7 +209,7 @@ public class fordf {
      */
     private static boolean preConditions(ArrayList<Node> vertexes, ArrayList<Edge> edges, Node source, Node target) {
         for (Edge e : edges) if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME)) return false;
-        return !((source == null) || (target == null)) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
+        return !((isNull(source)) || (isNull(target))) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
     }
 
     /**
