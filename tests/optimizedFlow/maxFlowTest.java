@@ -1,6 +1,7 @@
 package tests.optimizedFlow;
 
 import algorithm.optimizedFlow.MaxFlow;
+import graph.GraphBuilder;
 import io.GraphReader;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
@@ -13,11 +14,7 @@ import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04;
-    private Graph posTest;
-    private Graph negTest;
-    private Graph negTest2;
-    private Graph negTest3;
+    private Graph graph04, posTest, negTest, negTest2, negTest3;
 
     //#####################################################
     // setup
@@ -102,6 +99,13 @@ public class maxFlowTest {
     public void fordfulkerson() throws Exception {
         assertEquals(8, MaxFlow.findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON), 0.001);
         System.out.println("fordfulkerson() done");
+    }
+
+    @Test
+    public void smallNetwork() throws Exception {
+        Graph small = GraphBuilder.createGritNetworkGraph(50);
+        assertEquals(1, MaxFlow.findMaxFlow(small, small.getNode("1"), small.getNode("49"), FORD_FULKERSON), 0.001);
+        System.out.println("smallNetwork() done");
     }
 
     //#####################################################

@@ -115,7 +115,6 @@ public class FloydWarshallTest {
     
     @Test
     public void testShortestWay() throws Exception{
-    	
     	Graph owng2 = new SingleGraph("owng");
         owng2.addNode("a");
         owng2.addNode("b");

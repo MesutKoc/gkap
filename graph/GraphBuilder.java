@@ -121,4 +121,6 @@ public class GraphBuilder {
         GraphSaver.saveGraph(result, new File("graph/subwerkzeuge/bspGraphen/saved/biG.gka"));
         return result;
     }
+
+    // TODO BIG GRAPH
 }

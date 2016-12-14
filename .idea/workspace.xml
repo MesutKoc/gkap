@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Edmonds">
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Ford PreConditions update">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/biG.gka" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph/GraphBuilder.java" afterPath="$PROJECT_DIR$/graph/GraphBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" afterPath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" afterPath="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,14 +37,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fordf.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fordf.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="210" column="86" lean-forward="false" selection-start-line="210" selection-start-column="86" selection-end-line="210" selection-end-column="86" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-2265">
+              <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DijkstraAlgorithmTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,11 +60,43 @@
       <file leaf-file-name="maxFlowTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="21" lean-forward="false" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+            <state relative-caret-position="157">
+              <caret line="105" column="58" lean-forward="true" selection-start-line="105" selection-start-column="58" selection-end-line="105" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="128" column="21" lean-forward="false" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BIG_WITHOUT_WEIGHTS.gka" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BIG_WITHOUT_WEIGHTS.gka">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4515">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaxFlow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,46 +123,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graph09.gka" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/graph09.gka">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FloydWarshall.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/algorithm/searchPath/FloydWarshall.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DijkstraAlgorithm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/algorithm/searchPath/DijkstraAlgorithm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2070">
-              <caret line="150" column="29" lean-forward="false" selection-start-line="141" selection-start-column="8" selection-end-line="150" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Benchmark.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/algorithm/searchPath/Benchmark.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="53" column="67" lean-forward="false" selection-start-line="53" selection-start-column="67" selection-end-line="53" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BreadthFirstSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithm/BreadthFirstSearch.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -127,16 +131,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaxFlow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -197,7 +191,6 @@
         <option value="$PROJECT_DIR$/algorithm/searchPath/FloydWarshall.java" />
         <option value="$PROJECT_DIR$/algorithm/searchPath/Benchmark.java" />
         <option value="$PROJECT_DIR$/algorithm/searchPath/DijkstraAlgorithm.java" />
-        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
         <option value="$PROJECT_DIR$/tests/DijkstraAlgorithmTest.java" />
         <option value="$PROJECT_DIR$/tests/FloydWarshallTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/maxFloww.java" />
@@ -205,15 +198,16 @@
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/Matrix.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" />
         <option value="$PROJECT_DIR$/tests/searchPathTests/FloydWarshallTest.java" />
-        <option value="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/runTest.java" />
         <option value="$PROJECT_DIR$/tests/fordfTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordfTest.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/fordfTest.java" />
-        <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
         <option value="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
+        <option value="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
+        <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
+        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
       </list>
     </option>
   </component>
@@ -574,20 +568,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="algorithm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -653,7 +633,7 @@
       <recent name="algorithmen" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.tests.optimizedFlow in gkap">
+  <component name="RunManager" selected="JUnit.maxFlowTest">
     <configuration default="false" name="runTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm.optimizedFlow.runTest" />
       <option name="VM_PARAMETERS" />
@@ -960,8 +940,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
         <item index="3" class="java.lang.String" itemvalue="Application.runTest" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.algorithm.searchPath in gkap" />
@@ -1027,7 +1007,7 @@
       <workItem from="1481709414292" duration="9842000" />
       <workItem from="1481719931617" duration="1382000" />
       <workItem from="1481738086073" duration="1556000" />
-      <workItem from="1481741161105" duration="2681000" />
+      <workItem from="1481741161105" duration="4855000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1267,43 +1247,50 @@
       <option name="project" value="LOCAL" />
       <updated>1481743942943</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Ford PreConditions update">
+      <created>1481744148642</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1481744148642</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="maxFlowTest - 2016.12.14 at 19h 17m 26s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 46m 10s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 19h 19m 38s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 46m 36s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 07m 09s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 47m 01s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 09m 17s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 50m 19s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 09m 30s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 51m 17s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 18m 53s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 51m 52s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 19m 57s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 53m 19s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.14 at 20h 21m 11s.xml">
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 55m 38s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="tests_optimizedFlow_in_gkap - 2016.12.14 at 19h 07m 00s.xml">
-      <configuration name="tests.optimizedFlow in gkap" configurationId="JUnit" />
+    <history-entry file="maxFlowTest - 2016.12.14 at 20h 55m 43s.xml">
+      <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="tests_optimizedFlow_in_gkap - 2016.12.14 at 20h 35m 28s.xml">
-      <configuration name="tests.optimizedFlow in gkap" configurationId="JUnit" />
+    <history-entry file="maxFlowTest - 2016.12.14 at 21h 00m 45s.xml">
+      <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177044000" />
+    <option name="totallyTimeSpent" value="179218000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1322,12 +1309,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.49205717" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22585669" sideWeight="0.31502423" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.41599354" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.13004847" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834634" sideWeight="0.46942016" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.5840065" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2538941" sideWeight="0.86995155" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16397415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16397415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24798061" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1367,7 +1354,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Benchmark" />
     <MESSAGE value="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;" />
     <MESSAGE value="Dijkstra verbessert. Beste Programmierstil." />
     <MESSAGE value="Paar Fehler bei Benchmark / Dijkstra verbessert" />
@@ -1392,7 +1378,8 @@
     <MESSAGE value="maxFlow finished" />
     <MESSAGE value="Tests + paar Veränderungen" />
     <MESSAGE value="Edmonds" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edmonds" />
+    <MESSAGE value="Ford PreConditions update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ford PreConditions update" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1404,16 +1391,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gkap.iml" />
-    <entry file="file://$PROJECT_DIR$/src/algorithmen/DijkstraAlgorithm.java" />
-    <entry file="file://$PROJECT_DIR$/LICENSE" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gkap.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -1509,20 +1486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordfTest.java" />
     <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/graph03.gka">
       <provider selected="true" editor-type-id="text-editor">
@@ -1540,26 +1503,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="90" column="23" lean-forward="false" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/runTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="30" column="104" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1662,13 +1609,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
+    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="21" lean-forward="false" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+        <state relative-caret-position="285">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/graph01.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/biG.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/lib/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="871" column="0" lean-forward="false" selection-start-line="871" selection-start-column="0" selection-end-line="871" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="908">
+          <caret line="101" column="36" lean-forward="true" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2265">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1680,23 +1683,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java">
+    <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="157">
+          <caret line="105" column="58" lean-forward="true" selection-start-line="105" selection-start-column="58" selection-end-line="105" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java">
+    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="210" column="86" lean-forward="false" selection-start-line="210" selection-start-column="86" selection-end-line="210" selection-end-column="86" />
+        <state relative-caret-position="353">
+          <caret line="128" column="21" lean-forward="false" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BIG_WITHOUT_WEIGHTS.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4515">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,7 +6,6 @@ import org.graphstream.graph.Node;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import static java.util.Objects.isNull;
 
@@ -20,7 +19,6 @@ import static java.util.Objects.isNull;
 public class fordf {
     private static final String FLOW_ARG_NAME = "flow";
     private static final String CAPACITY_ARG_NAME = "capacity";
-    private static final Logger LOG = Logger.getLogger(String.valueOf(fordf.class));
 
     private fordf() {
     }
@@ -63,7 +61,6 @@ public class fordf {
 
                 vi = markedVertices.get(generator.nextInt(markedVertices.size()));
                 vi.setAttribute("inspiziert", 1);
-                LOG.info("Gewaehlte Ecke: " + vi.getId());
 
                 // Vorwaertskante: Fuer jede Kante e mit unmarkierter Ecke vj und
                 // fluss(e) < kapazitaet(e) markiere vj mit +vorgaenger (vi) ("neg" Attribut = 0) und
@@ -124,7 +121,6 @@ public class fordf {
         // Die Quelle wird markiert
         source.setAttribute("markiert", 1);
         source.setAttribute("maxFlow", Integer.MAX_VALUE);
-        LOG.info("init wurde abgeschlossen");
     }
 
     /**
@@ -136,7 +132,6 @@ public class fordf {
     private static void augmentFlow(Node source, Node senke) {
         Node current = senke;
         double flowInkrement = senke.getNumber("maxFlow");
-        LOG.info("mit aktuellem Inkrement: " + flowInkrement);
         while (!(current.equals(source))) {
             Node vorg = current.getAttribute("vorganger");
             Edge edge = vorg.getEdgeBetween(current);
@@ -160,7 +155,6 @@ public class fordf {
         source.addAttribute("maxFlow", Math.min(leavingEdge.getNumber(CAPACITY_ARG_NAME) - leavingEdge.getNumber(FLOW_ARG_NAME), vorg.getNumber("maxFlow")));
         source.setAttribute("markiert", 1);
         source.addAttribute("vorganger", vorg);
-        LOG.warning("Neue Vorwaertskante zu: " + source.getId());
     }
 
     /**
@@ -175,7 +169,6 @@ public class fordf {
         source.addAttribute("vorganger", vorg);
         source.addAttribute("maxFlow", Math.min(enteringEdge.getNumber(FLOW_ARG_NAME), vorg.getNumber("maxFlow")));
         source.setAttribute("markiert", 1);
-        LOG.warning("Neue Rueckwaertskante zu: " + source.getId());
     }
 
     /**
@@ -192,7 +185,6 @@ public class fordf {
                 currentVertex.addAttribute("vorganger", 0);
                 currentVertex.addAttribute("neg", 0);
                 currentVertex.addAttribute("maxFlow", 0);
-                LOG.info("Alle Attribute bis auf von Source wurden resettet!");
             }
         }
     }
