@@ -20,7 +20,10 @@ public class fordf {
     private static final String CAPACITY_ARG_NAME = "capacity";
     private static final Logger LOG = Logger.getLogger(String.valueOf(fordf.class));
 
-    static double fordfulkerson(Graph graph, Node source, Node senke) {
+    private fordf() {
+    }
+
+    public static double fordfulkerson(Graph graph, Node source, Node senke) {
         ArrayList<Node> vertices = new ArrayList<>(graph.getNodeSet()); // Nodes
         ArrayList<Edge> edges = new ArrayList<>(graph.getEdgeSet()); // Edges
         double maxFlow = 0.0;

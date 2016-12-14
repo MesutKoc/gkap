@@ -12,7 +12,7 @@ public class MaxFlow {
      *                wenn == 2 dann edmonskarp
      *                ansonsten 0
      */
-    public double findMaxFlow(Graph graph, Node source, Node target, FlowAlgorithm variant) throws Exception {
+    public static double findMaxFlow(Graph graph, Node source, Node target, FlowAlgorithm variant) throws Exception {
         switch (variant) {
             case FORD_FULKERSON:
                 return fordf.fordfulkerson(graph, source, target);
