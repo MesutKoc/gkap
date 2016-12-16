@@ -24,15 +24,15 @@ public class MaxFlow {
     }
 
     public static double findMaxFlow(Graph graph, Node source, Node senke, FlowAlgorithm variant) {
-        ArrayList<Node> vertices = new ArrayList<>(graph.getNodeSet()); // Nodes
+        ArrayList<Node> nodes = new ArrayList<>(graph.getNodeSet()); // Nodes
         ArrayList<Edge> edges = new ArrayList<>(graph.getEdgeSet()); // Edges
         double maxFlow = 0.0;
 
         // Vorbedingungen
-        if (!preConditions(vertices, edges, source, senke)) return 0;
+        if (!preConditions(nodes, edges, source, senke)) return 0;
 
         // Schritt 1: Die Initialisierung
-        init(source, vertices, edges);
+        init(source, nodes, edges);
 
         // Schritt 2 Inspektion und Markierung
         while (true) {
@@ -47,7 +47,7 @@ public class MaxFlow {
                 ArrayList<Node> markedNodes = new ArrayList<>();
                 Node vi;
 
-                for (Node currentVertex : vertices)
+                for (Node currentVertex : nodes)
                     if (!markedNodes.contains(currentVertex) && currentVertex.getAttribute("markiert").equals(1) && currentVertex.getAttribute("inspiziert").equals(0))
                         markedNodes.add(currentVertex);
 
@@ -90,7 +90,7 @@ public class MaxFlow {
 
             // Anschliessend werden bei allen Ecken mit Ausnahme von v1 die Markierungen entfernt.
             // Gehe zu 2
-            resetAllAttribut(vertices, source);
+            resetAllAttribut(nodes, source);
             source.setAttribute("inspiziert", 0);
         }
         // Schritt 4: Es gibt keinen vergrössernden Weg. Der jetzige Flusswert jeder Kante ist optimal
