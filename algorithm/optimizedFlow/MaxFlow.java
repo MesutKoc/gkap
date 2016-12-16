@@ -44,21 +44,19 @@ public class MaxFlow {
                 // 2b: Wähle die nächste markierte, aber noch nicht inspizierte
                 // Ecke vi aus der Queue (Edmonds) oder eine beliebige markierte Ecke (Ford)
                 // und inspiziere sie wie folgt (Berechnung des Inkrements)
-                ArrayList<Node> markedVertices = new ArrayList<>();
+                ArrayList<Node> markedNodes = new ArrayList<>();
                 Node vi;
 
                 for (Node currentVertex : vertices)
-                    if (!markedVertices.contains(currentVertex) &&
-                            currentVertex.getAttribute("markiert").equals(1) &&
-                            currentVertex.getAttribute("inspiziert").equals(0))
-                        markedVertices.add(currentVertex);
+                    if (!markedNodes.contains(currentVertex) && currentVertex.getAttribute("markiert").equals(1) && currentVertex.getAttribute("inspiziert").equals(0))
+                        markedNodes.add(currentVertex);
 
-                if (markedVertices.size() == 0) {
+                if (markedNodes.size() == 0) {
                     allInspected = true;
                     break;
                 }
 
-                vi = getNodeFromQueueOrRandom(markedVertices, variant);
+                vi = getNodeFromQueueOrRandom(markedNodes, variant);
                 if (vi != null) vi.setAttribute("inspiziert", 1);
 
                 // Vorwärtskante: Fuer jede Kante e mit unmarkierter Ecke vj und
@@ -119,7 +117,7 @@ public class MaxFlow {
 
         // Die Quelle wird markiert + delta (Flusswert) wird auf unendlich gesetzt
         source.setAttribute("markiert", 1);
-        source.setAttribute("maxFlow", Integer.MAX_VALUE);
+        source.setAttribute("maxFlow", Double.POSITIVE_INFINITY);
     }
 
     /**
