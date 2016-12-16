@@ -9,11 +9,12 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.EDMONDS_KARP;
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04, posTest, negTest, negTest2, negTest3;
+    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet;
 
     //#####################################################
     // setup
@@ -88,6 +89,18 @@ public class maxFlowTest {
         negTest3.addEdge("v1v5", "v1", "v5", false).addAttribute("capacity", -1.0);
         negTest3.addEdge("v5s", "v5", "s", false).addAttribute("capacity", -3.0);
 
+        graphFromInternet = new SingleGraph("graphFromInternet");
+        graphFromInternet.addNode("v1");
+        graphFromInternet.addNode("v2");
+        graphFromInternet.addNode("v3");
+        graphFromInternet.addNode("v4");
+        graphFromInternet.addNode("v5");
+
+        graphFromInternet.addEdge("v1v2", "v1", "v2", true).addAttribute("capacity", 8.0);
+        graphFromInternet.addEdge("v2v3", "v2", "v3", true).addAttribute("capacity", 6.0);
+        graphFromInternet.addEdge("v2v4", "v2", "v4", true).addAttribute("capacity", 7.0);
+        graphFromInternet.addEdge("v4v5", "v4", "v5", true).addAttribute("capacity", 8.0);
+
         graph04 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph04.gka"));
     }
 
@@ -97,14 +110,33 @@ public class maxFlowTest {
     @Test
     public void fordfulkerson() throws Exception {
         assertEquals(8, MaxFlow.findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON), 0.001);
+        // Graph from Internet
+        assertEquals(7, MaxFlow.findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), FORD_FULKERSON), 0.001);
         System.out.println("fordfulkerson() done");
     }
 
     @Test
+    public void fordLaufZeit() throws Exception {
+        long runtime = MaxFlow.findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
+        System.out.printf("Runtime for FORD with Graph %s is %d\n", posTest.getId(), runtime);
+        long runtimeEK = MaxFlow.findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
+        System.out.printf("Runtime for EK with Graph %s is %d", posTest.getId(), runtimeEK);
+    }
+
+    @Test
+    public void edmondskarp() throws Exception {
+        assertEquals(8, MaxFlow.findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP), 0.001);
+        // Graph from Internet
+        assertEquals(7, MaxFlow.findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), EDMONDS_KARP), 0.001);
+        System.out.println("edmondskarp() done");
+    }
+
+    // TODO netzwerk mit 50 knoten und ca 800 kanten oder mehr
+    @Test
     public void smallNetwork() throws Exception {
-        //Graph small = GraphBuilder.createGritNetworkGraph(50);
+        //Graph small = GraphBuilder.createNetworkBlaBla..(50);
         //assertEquals(1, MaxFlow.findMaxFlow(small, small.getNode("1"), small.getNode("49"), FORD_FULKERSON), 0.001);
-        System.out.println("smallNetwork() done");
+        System.out.println("smallNetwork() not done");
     }
 
     //#####################################################
