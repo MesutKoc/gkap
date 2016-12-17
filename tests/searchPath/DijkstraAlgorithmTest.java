@@ -117,7 +117,7 @@ public class DijkstraAlgorithmTest {
     @Test
     public void testBIG() throws Exception {
         DijkstraAlgorithm exp0 = new DijkstraAlgorithm();
-        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne();
         exp0.init(bigGraph);
         List<Node> exp = exp0.getShortestPath(bigGraph.getNode("1"), bigGraph.getNode("100"));
         List<Node> res = new ArrayList<>();

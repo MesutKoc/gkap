@@ -1,11 +1,15 @@
 package graph;
 
+import algorithm.BreadthFirstSearch;
 import io.GraphSaver;
+import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.algorithm.generator.GridGenerator;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.EdgeRejectedException;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.graph.implementations.SingleGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -92,23 +96,21 @@ public class GraphBuilder {
     /**
      * Erstellt einen random Graphen mit anzahl der Knoten und Kanten
      *
-     * @param numNodes die Anzahl der Knoten
-     * @param numEdge  die Anzahl der Kanten
      * @return der erstelle Graph
      * @throws IOException falls der Graph nicht gespeichert werden kann
      */
-    public static Graph generateBigOne(int numNodes, int numEdge) throws IOException {
+    public static Graph generateBigOne() throws IOException {
         Graph result = new MultiGraph("big");
         int edgeIdent = 0;
 
-        for (int i = 1; i <= numNodes; i++) result.addNode(format("%d", i));
+        for (int i = 1; i <= 100; i++) result.addNode(format("%d", i));
         result.addEdge("1_100", "1", "100", true).addAttribute("weight", 1);
-        while (result.getEdgeCount() < numEdge) {
-            for (int i = 2; i <= numEdge; i++) {
-                int x = random.nextInt(numNodes - 1) + 1;
-                int y = random.nextInt(numNodes - 1) + 1;
+        while (result.getEdgeCount() < 2500) {
+            for (int i = 2; i <= 2500; i++) {
+                int x = random.nextInt(100 - 1) + 1;
+                int y = random.nextInt(100 - 1) + 1;
                 result.addEdge(format("%d%d|%d", x, y, edgeIdent), format("%d", x), format("%d", y), true)
-                        .addAttribute("weight", random.nextInt(numNodes - 1) + 1);
+                        .addAttribute("weight", random.nextInt(100 - 1) + 1);
                 edgeIdent++;
             }
         }
@@ -117,61 +119,28 @@ public class GraphBuilder {
     }
 
     /**
-     * Erstellt ein Network
-     *
+     * Erstellt ein Graphen als Grid
      * @param nodes Anzahl der Knoten
-     * @return ein Flussnetzwerk
+     * @return ein Graph
+     * @throws Exception falls der Graph nicht gespeichert werden kann
      */
-    public static Graph createNetwork(int nodes, int edgesAnz) throws IOException {
-        MultiGraph resultGraph = new MultiGraph("network");
-        int edges = ((nodes * (nodes - 1)) / 2);
+    public static Graph createNetworkWithGrid(int nodes, String title) throws Exception {
+        Graph graph = new SingleGraph("Random");
+        Generator gen = new GridGenerator(false, false, true, true);
+        gen.addSink(graph);
+        gen.begin();
+        for (int i = 0; i < Math.sqrt(nodes); i++) gen.nextEvents();
+        gen.end();
 
-        for (int i = 1; i <= nodes; i++) {
-            if (i == 1) resultGraph.addNode("q");
-            else if (i != nodes) resultGraph.addNode("v" + i);
-            else resultGraph.addNode("s");
-        }
+        BreadthFirstSearch test = new BreadthFirstSearch();
+        test.init(graph);
+        test.compute();
 
-        while (edgesAnz > 0) {
-            int r1 = random.nextInt(nodes);
-            int r2 = random.nextInt(nodes);
-            int r3 = random.nextInt((nodes - 1) + 1);
-            if (!hasEdge(resultGraph, r1, r2)) {
-                createEdge(resultGraph, r1, r2);
-                resultGraph.getEdge(format("%s_%s", resultGraph.getNode(r1).getId(), resultGraph.getNode(r2).getId())).addAttribute("weight", r3);
-                edgesAnz--;
-            }
-        }
+        for (Edge edge : graph.getEachEdge())
+            edge.addAttribute("capacity", Double.valueOf(edge.getTargetNode().getAttribute("steps").toString()));
 
-        for (Edge test : resultGraph.getEachEdge())
-            test.addAttribute("capacity", test.getAttribute("weight").toString());
-
-        GraphSaver.saveGraph(resultGraph, new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
-        return resultGraph;
-    }
-
-    /**
-     * Überprüft, ob der Graph schon eine Kante hat
-     *
-     * @param g  der Graph
-     * @param r1 die Position
-     * @param r2 die zweite Position
-     * @return true, falls eine Kante existiert, andernfalls false.
-     */
-    private static boolean hasEdge(MultiGraph g, int r1, int r2) {
-        return g.getEdge(g.getNode(r1).getId() + "_" + g.getNode(r2).getId()) != null;
-    }
-
-    /**
-     * Erstellt eine Kante
-     *
-     * @param g  der Graph
-     * @param r1 der erste k. Position von der Kante
-     * @param r2 die zweite k. Position von der Kante
-     * @return die erstellte Kante an pos r1 und r2
-     */
-    private static Edge createEdge(MultiGraph g, int r1, int r2) {
-        return g.addEdge(format("%s_%s", g.getNode(r1).getId(), g.getNode(r2).getId()), g.getNode(r1).getId(), g.getNode(r2).getId(), true);
+        GraphSaver.saveGraph(graph, new File("graph/subwerkzeuge/bspGraphen/saved/ " + title + ".gka"));
+        return graph;
     }
 
     /**

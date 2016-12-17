@@ -8,21 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.EDMONDS_KARP;
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
 import static algorithm.optimizedFlow.MaxFlow.findMaxFlow;
 import static algorithm.optimizedFlow.MaxFlow.findMaxFlowRtm;
-import static graph.GraphBuilder.createNetwork;
+import static graph.GraphBuilder.createNetworkWithGrid;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet,
-            smallNetwork2 = createNetwork(50, 100);
-
-    public maxFlowTest() throws IOException {
-    }
+    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet;
 
     //#####################################################
     // setup
@@ -113,7 +108,7 @@ public class maxFlowTest {
     }
 
     //#####################################################
-    // Positive Tests
+    // FORD Tests
     //#####################################################
     @Test
     public void fordfulkerson() throws Exception {
@@ -123,14 +118,9 @@ public class maxFlowTest {
         System.out.println("fordfulkerson() done");
     }
 
-    @Test
-    public void fordLaufZeit() throws Exception {
-        long runtime = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
-        System.out.printf("Runtime for FORD with Graph %s is %d\n", posTest.getId(), runtime);
-        long runtimeEK = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
-        System.out.printf("Runtime for EK with Graph %s is %d", posTest.getId(), runtimeEK);
-    }
-
+    //#####################################################
+    // EDMONDSKARP Tests
+    //#####################################################
     @Test
     public void edmondskarp() throws Exception {
         assertEquals(8, findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP), 0.001);
@@ -140,12 +130,21 @@ public class maxFlowTest {
     }
 
     //#####################################################
+    // FORD VS EDMONDSKARP  RunTime
+    //#####################################################
+    @Test
+    public void fordLaufZeit() throws Exception {
+        long runtime = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
+        System.out.printf("Runtime for FORD with Graph %s is %d\n", posTest.getId(), runtime);
+        long runtimeEK = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
+        System.out.printf("Runtime for EK with Graph %s is %d\n", posTest.getId(), runtimeEK);
+    }
+
+    //#####################################################
     // Network Tests
     //#####################################################
     @Test
     public void testVerySmallNetwork() throws Exception {
-        //Graph smallNetwork = createNetwork(4, 4);
-        //GraphSaver.saveGraph(smallNetwork, new File("graph/subwerkzeuge/bspGraphen/saved/new.gka"));
         Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka"));
 
         // SICHERUNG!! DAS MUSS HIER BLEIBEN WEGEN DER CONVERTION ZWISCHEN WEIGHT ALIAS CAPACITY!!!!!!!!!
@@ -155,11 +154,10 @@ public class maxFlowTest {
         System.out.println("testVerySmallNetwork() done");
     }
 
-    // TODO ENDLOSSCHLEIFE...
     @Test
     public void smallNetwork() throws Exception {
-        Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
-        assertEquals(0, findMaxFlow(smallNetwork, smallNetwork.getNode("q"), smallNetwork.getNode("s"), FORD_FULKERSON), 0.001);
+        Graph smallNetwork = createNetworkWithGrid(50, "BigNet_50_Neu");
+        assertEquals(2, findMaxFlow(smallNetwork, smallNetwork.getNode(0), smallNetwork.getNode(smallNetwork.getNodeCount() - 1), FORD_FULKERSON), 0.001);
         System.out.println("smallNetwork() done");
     }
 

@@ -95,7 +95,7 @@ public class FloydWarshallTest {
     //===============================
     @Test
     public void testBIG() throws Exception {
-        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne();
         List<Node> exp = FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         List<Node> res = FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         assertEquals(exp, res);
@@ -105,7 +105,7 @@ public class FloydWarshallTest {
     @Test
     public void floydVSDijkstra() throws Exception {
         DijkstraAlgorithm dk = new DijkstraAlgorithm();
-        Graph bigGraph = GraphBuilder.generateBigOne(100, 2500);
+        Graph bigGraph = GraphBuilder.generateBigOne();
         FloydWarshall.getShortestPath(bigGraph, bigGraph.getNode("1"), bigGraph.getNode("100"));
         dk.init(bigGraph);
         dk.getShortestPath(bigGraph.getNode("1"), bigGraph.getNode("100"));
