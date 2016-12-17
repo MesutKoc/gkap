@@ -1,20 +1,28 @@
 package tests.optimizedFlow;
 
-import algorithm.optimizedFlow.MaxFlow;
 import io.GraphReader;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.EDMONDS_KARP;
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
+import static algorithm.optimizedFlow.MaxFlow.findMaxFlow;
+import static algorithm.optimizedFlow.MaxFlow.findMaxFlowRtm;
+import static graph.GraphBuilder.createNetwork;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet;
+    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet,
+            smallNetwork2 = createNetwork(50, 100);
+
+    public maxFlowTest() throws IOException {
+    }
 
     //#####################################################
     // setup
@@ -109,49 +117,78 @@ public class maxFlowTest {
     //#####################################################
     @Test
     public void fordfulkerson() throws Exception {
-        assertEquals(8, MaxFlow.findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON), 0.001);
+        assertEquals(8, findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON), 0.001);
         // Graph from Internet
-        assertEquals(7, MaxFlow.findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), FORD_FULKERSON), 0.001);
+        assertEquals(7, findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), FORD_FULKERSON), 0.001);
         System.out.println("fordfulkerson() done");
     }
 
     @Test
     public void fordLaufZeit() throws Exception {
-        long runtime = MaxFlow.findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
+        long runtime = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
         System.out.printf("Runtime for FORD with Graph %s is %d\n", posTest.getId(), runtime);
-        long runtimeEK = MaxFlow.findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
+        long runtimeEK = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
         System.out.printf("Runtime for EK with Graph %s is %d", posTest.getId(), runtimeEK);
     }
 
     @Test
     public void edmondskarp() throws Exception {
-        assertEquals(8, MaxFlow.findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP), 0.001);
+        assertEquals(8, findMaxFlow(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP), 0.001);
         // Graph from Internet
-        assertEquals(7, MaxFlow.findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), EDMONDS_KARP), 0.001);
+        assertEquals(7, findMaxFlow(graphFromInternet, graphFromInternet.getNode("v1"), graphFromInternet.getNode("v5"), EDMONDS_KARP), 0.001);
         System.out.println("edmondskarp() done");
     }
 
-    // TODO netzwerk mit 50 knoten und ca 800 kanten oder mehr
+    //#####################################################
+    // Network Tests
+    //#####################################################
+    @Test
+    public void testVerySmallNetwork() throws Exception {
+        //Graph smallNetwork = createNetwork(4, 4);
+        //GraphSaver.saveGraph(smallNetwork, new File("graph/subwerkzeuge/bspGraphen/saved/new.gka"));
+        Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka"));
+
+        // SICHERUNG!! DAS MUSS HIER BLEIBEN WEGEN DER CONVERTION ZWISCHEN WEIGHT ALIAS CAPACITY!!!!!!!!!
+        for (Edge e : smallNetwork.getEachEdge()) e.addAttribute("capacity", e.getNumber("weight"));
+
+        assertEquals(6, findMaxFlow(smallNetwork, smallNetwork.getNode("source"), smallNetwork.getNode("sink"), FORD_FULKERSON), 0.001);
+        System.out.println("testVerySmallNetwork() done");
+    }
+
+    // TODO ENDLOSSCHLEIFE...
     @Test
     public void smallNetwork() throws Exception {
-        //Graph small = GraphBuilder.createNetworkBlaBla..(50);
-        //assertEquals(1, MaxFlow.findMaxFlow(small, small.getNode("1"), small.getNode("49"), FORD_FULKERSON), 0.001);
-        System.out.println("smallNetwork() not done");
+        Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
+        assertEquals(0, findMaxFlow(smallNetwork, smallNetwork.getNode("q"), smallNetwork.getNode("s"), FORD_FULKERSON), 0.001);
+        System.out.println("smallNetwork() done");
     }
 
     //#####################################################
     // negative Tests
     //#####################################################
-    @Test
+    @Test(expected = Exception.class)
     public void fordfulkersonNegative() throws Exception {
         // Gewichtung abaer kein Gerichteter Graph
-        assertEquals(0, MaxFlow.findMaxFlow(negTest, negTest.getNode("q"), negTest.getNode("s"), FORD_FULKERSON), 0.001);
+        assertEquals(0, findMaxFlow(negTest, negTest.getNode("q"), negTest.getNode("s"), FORD_FULKERSON), 0.001);
         // Gerichtet aber keine Gewichtung
-        assertEquals(0, MaxFlow.findMaxFlow(negTest2, negTest2.getNode("q"), negTest2.getNode("s"), FORD_FULKERSON), 0.001);
+        assertEquals(0, findMaxFlow(negTest2, negTest2.getNode("q"), negTest2.getNode("s"), FORD_FULKERSON), 0.001);
         // Gewichtung aber mit negativer Gewichtung
-        assertEquals(0, MaxFlow.findMaxFlow(negTest3, negTest3.getNode("q"), negTest3.getNode("s"), FORD_FULKERSON), 0.001);
+        assertEquals(0, findMaxFlow(negTest3, negTest3.getNode("q"), negTest3.getNode("s"), FORD_FULKERSON), 0.001);
         // Graph04 - kein gewichteter Graph
-        assertEquals(0, MaxFlow.findMaxFlow(graph04, graph04.getNode("q"), graph04.getNode("s"), FORD_FULKERSON), 0.001);
+        assertEquals(0, findMaxFlow(graph04, graph04.getNode("q"), graph04.getNode("s"), FORD_FULKERSON), 0.001);
         System.out.println("fordfulkersonNegative() done");
+    }
+
+    @Test(expected = Exception.class)
+    public void edmondskarpNegative() throws Exception {
+        // Graph04!
+        assertEquals(0, findMaxFlow(graph04, graph04.getNode("q"), graph04.getNode("s"), EDMONDS_KARP), 0.001);
+        // Gewichtung aber kein Gerichteter Graph
+        assertEquals(0, findMaxFlow(negTest, negTest.getNode("q"), negTest.getNode("s"), EDMONDS_KARP), 0.001);
+        // Gerichtet aber keine Gewichtung!
+        assertEquals(0, findMaxFlow(negTest2, negTest2.getNode("q"), negTest2.getNode("s"), EDMONDS_KARP), 0.001);
+        // Gewichtung aber mit negativer Gewichtung!
+        assertEquals(0, findMaxFlow(negTest3, negTest3.getNode("q"), negTest3.getNode("s"), EDMONDS_KARP), 0.001);
+        System.out.println("edmondskarpNegative() done");
     }
 }

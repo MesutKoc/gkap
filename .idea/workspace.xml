@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="FordF und EK in einer Datei zusammengefasst + Tests verbessert">
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="rename">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/biG.gka" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/new.gka" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BIG_WITHOUT_WEIGHTS.gka" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/graph01.gka" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/graph_new.gka" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" afterPath="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph/GraphBuilder.java" afterPath="$PROJECT_DIR$/graph/GraphBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" afterPath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +45,30 @@
       <file leaf-file-name="maxFlowTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="117" column="9" lean-forward="true" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
+            <state relative-caret-position="165">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="26" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1470">
+              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,8 +79,8 @@
       <file leaf-file-name="MaxFlow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state relative-caret-position="145">
+              <caret line="64" column="43" lean-forward="false" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,6 +104,10 @@
     <findStrings>
       <find>getDistanceLength</find>
       <find>max</find>
+      <find>source</find>
+      <find>sink</find>
+      <find>capacity</find>
+      <find>s</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -99,7 +134,6 @@
         <option value="$PROJECT_DIR$/algorithmen/BreadthFirstSearch.java" />
         <option value="$PROJECT_DIR$/gkap.iml" />
         <option value="$PROJECT_DIR$/algorithmen/DijkstraImpl.java" />
-        <option value="$PROJECT_DIR$/io/GraphReader.java" />
         <option value="$PROJECT_DIR$/algorithmen/DijkstraAlgorithm.java" />
         <option value="$PROJECT_DIR$/algorithmen/FloydWarshall.java" />
         <option value="$PROJECT_DIR$/algorithmen/searchPath/FloydWarshall.java" />
@@ -125,11 +159,14 @@
         <option value="$PROJECT_DIR$/tests/optimizedFlow/fordfTest.java" />
         <option value="$PROJECT_DIR$/algorithm/BreadthFirstSearch.java" />
         <option value="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
-        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/fordf.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/edmondsk.java" />
-        <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
+        <option value="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/capacity.gka" />
+        <option value="$PROJECT_DIR$/io/GraphReader.java" />
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" />
+        <option value="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka" />
+        <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
+        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
       </list>
     </option>
   </component>
@@ -140,10 +177,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
     <option name="y" value="22" />
-    <option name="width" value="2560" />
-    <option name="height" value="1374" />
+    <option name="width" value="1280" />
+    <option name="height" value="734" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -468,8 +504,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -482,95 +518,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="searchPath" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="optimizedFlow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="searchPath" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gkap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="optimizedFlow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -611,40 +561,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.maxFlowTest">
-    <configuration default="false" name="runTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="algorithm.optimizedFlow.runTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="gkap" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="algorithm.searchPath in gkap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gkap" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="algorithm.searchPath" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="maxFlowTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gkap" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -690,6 +606,46 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="tests.optimizedFlow" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="maxFlowTest.smallNetwork" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gkap" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="tests.optimizedFlow" />
+      <option name="MAIN_CLASS_NAME" value="tests.optimizedFlow.maxFlowTest" />
+      <option name="METHOD_NAME" value="smallNetwork" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="tests.searchPath in gkap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gkap" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="tests.searchPath" />
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
@@ -909,19 +865,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.runTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.algorithm.searchPath in gkap" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.maxFlowTest.smallNetwork" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.tests.searchPath in gkap" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.maxFlowTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
-        <item index="3" class="java.lang.String" itemvalue="Application.runTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.algorithm.searchPath in gkap" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.tests.searchPath in gkap" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.maxFlowTest.smallNetwork" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.tests.optimizedFlow in gkap" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.maxFlowTest.fordfulkersonNegative" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -989,7 +945,10 @@
       <workItem from="1481811915006" duration="2082000" />
       <workItem from="1481883777387" duration="2445000" />
       <workItem from="1481887254586" duration="1923000" />
-      <workItem from="1481889242026" duration="2091000" />
+      <workItem from="1481889242026" duration="2272000" />
+      <workItem from="1481966858616" duration="231000" />
+      <workItem from="1481967115107" duration="11087000" />
+      <workItem from="1481981273927" duration="1825000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1278,43 +1237,50 @@
       <option name="project" value="LOCAL" />
       <updated>1481891326846</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="rename">
+      <created>1481891418347</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1481891418347</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 36m 09s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 47m 47s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 37m 19s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 48m 04s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 41m 06s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 48m 55s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 41m 40s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 49m 24s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 41m 49s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 50m 00s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 49m 49s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 52m 43s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 50m 02s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 54m 15s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 50m 56s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 55m 07s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 12h 51m 35s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 56m 04s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="maxFlowTest - 2016.12.16 at 13h 11m 28s.xml">
+    <history-entry file="maxFlowTest - 2016.12.17 at 14h 56m 11s.xml">
       <configuration name="maxFlowTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188006000" />
+    <option name="totallyTimeSpent" value="201330000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1326,24 +1292,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="22" width="2560" height="1374" extended-state="0" />
+    <frame x="0" y="22" width="1280" height="734" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.49205717" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22542901" sideWeight="0.3129468" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22429906" sideWeight="0.31098545" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14976598" sideWeight="0.14098491" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23987539" sideWeight="0.17528272" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15834634" sideWeight="0.46942016" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14976598" sideWeight="0.8590151" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23987539" sideWeight="0.8247173" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0841938" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18416801" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24781573" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33489096" sideWeight="0.4765751" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33489096" sideWeight="0.4701131" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1351,7 +1317,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.49676898" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.4872915" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06711916" sideWeight="0.477363" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.066978194" sideWeight="0.47092083" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1378,7 +1344,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Paar Fehler bei Benchmark / Dijkstra verbessert" />
     <MESSAGE value="Test for Algorithmus" />
     <MESSAGE value="Zugriffe hinzugefügt&#10;Tests verbessert&#10;Es fehlt noch Transit OK" />
     <MESSAGE value="ok hinzugefügt" />
@@ -1403,7 +1368,8 @@
     <MESSAGE value="Ford PreConditions update" />
     <MESSAGE value="Fordf update" />
     <MESSAGE value="FordF und EK in einer Datei zusammengefasst + Tests verbessert" />
-    <option name="LAST_COMMIT_MESSAGE" value="FordF und EK in einer Datei zusammengefasst + Tests verbessert" />
+    <MESSAGE value="rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1415,35 +1381,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithmen/DijkstraImpl.java" />
-    <entry file="file://$PROJECT_DIR$/tests/FlyodWarshallTest.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/src.zip!/java/util/Formatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="2522" column="37" lean-forward="true" selection-start-line="2522" selection-start-column="37" selection-end-line="2522" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/searchPath/ShortestPath.java" />
     <entry file="file://$PROJECT_DIR$/algorithm/searchPath/AbstractShortestPath.java" />
     <entry file="file://$PROJECT_DIR$/../gkapTest/gkapTest/io/GraphSaver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-473">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1469,13 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
           <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/io/GraphSaver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1533,20 +1469,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithm/BreadthFirstSearch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/graph01.gka">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/graph01.gka" />
     <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/biG.gka" />
     <entry file="jar://$USER_HOME$/lib/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractGraph.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1562,34 +1485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="124" column="21" lean-forward="false" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BIG_WITHOUT_WEIGHTS.gka">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="329" column="8" lean-forward="false" selection-start-line="329" selection-start-column="8" selection-end-line="329" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BIG_WITHOUT_WEIGHTS.gka" />
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1671,10 +1567,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="40" column="98" lean-forward="false" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithm/BreadthFirstSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1897">
+          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/io/GraphSaver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="31" column="23" lean-forward="false" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="579" column="0" lean-forward="false" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/bignet50.gka" />
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/new.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="99" column="8" lean-forward="false" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="9" lean-forward="true" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/io/GraphReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="26" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1683,8 +1652,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="145">
+          <caret line="64" column="43" lean-forward="false" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

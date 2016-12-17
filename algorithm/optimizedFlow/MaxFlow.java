@@ -20,16 +20,16 @@ public class MaxFlow {
     private static final String FLOW_ARG_NAME = "flow";
     private static final String CAPACITY_ARG_NAME = "capacity";
 
-    private MaxFlow() {
+    public MaxFlow() {
     }
 
-    public static double findMaxFlow(Graph graph, Node source, Node senke, FlowAlgorithm variant) {
+    public static double findMaxFlow(Graph graph, Node source, Node senke, FlowAlgorithm variant) throws Exception {
         ArrayList<Node> nodes = new ArrayList<>(graph.getNodeSet()); // Nodes
         ArrayList<Edge> edges = new ArrayList<>(graph.getEdgeSet()); // Edges
         double maxFlow = 0.0;
 
         // Vorbedingungen
-        if (!preConditions(nodes, edges, source, senke)) return 0;
+        if (!preConditions(nodes, edges, source, senke)) throw new Exception("Precondition verletzt");
 
         // Schritt 1: Die Initialisierung
         init(source, nodes, edges);
@@ -239,7 +239,7 @@ public class MaxFlow {
      * @param v2    die Senke
      * @return die Laufzeit in nanosekunden
      */
-    public static long findMaxFlowRtm(Graph graph, Node v1, Node v2, FlowAlgorithm variant) {
+    public static long findMaxFlowRtm(Graph graph, Node v1, Node v2, FlowAlgorithm variant) throws Exception {
         long resultTime;
         long startTime = System.nanoTime();
         findMaxFlow(graph, v1, v2, variant);

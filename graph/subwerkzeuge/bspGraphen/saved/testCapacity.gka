@@ -1,0 +1,5 @@
+source -> u : 4;
+source -> v : 2;
+u -> v : 3;
+v -> sink : 6;
+u -> sink : 1;
