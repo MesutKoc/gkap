@@ -139,8 +139,11 @@ public class GraphBuilder {
         for (Edge edge : graph.getEachEdge())
             edge.addAttribute("capacity", Double.valueOf(edge.getTargetNode().getAttribute("steps").toString()));
 
-        GraphSaver.saveGraph(graph, new File("graph/subwerkzeuge/bspGraphen/saved/ " + title + ".gka"));
         return graph;
+    }
+
+    public static int countOfEdges(int nodes) {
+        return (int) Math.pow((nodes + Math.sqrt(nodes)), 2) / 4;
     }
 
     /**

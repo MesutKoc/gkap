@@ -13,11 +13,13 @@ import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.EDMONDS_KARP;
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
 import static algorithm.optimizedFlow.MaxFlow.findMaxFlow;
 import static algorithm.optimizedFlow.MaxFlow.findMaxFlowRtm;
+import static graph.GraphBuilder.countOfEdges;
 import static graph.GraphBuilder.createNetworkWithGrid;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04, posTest, negTest, negTest2, negTest3, graphFromInternet;
+    private Graph graph04, posTest, negTest,
+            negTest2, negTest3, graphFromInternet;
 
     //#####################################################
     // setup
@@ -146,17 +148,16 @@ public class maxFlowTest {
     @Test
     public void testVerySmallNetwork() throws Exception {
         Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka"));
-
-        // SICHERUNG!! DAS MUSS HIER BLEIBEN WEGEN DER CONVERTION ZWISCHEN WEIGHT ALIAS CAPACITY!!!!!!!!!
         for (Edge e : smallNetwork.getEachEdge()) e.addAttribute("capacity", e.getNumber("weight"));
-
         assertEquals(6, findMaxFlow(smallNetwork, smallNetwork.getNode("source"), smallNetwork.getNode("sink"), FORD_FULKERSON), 0.001);
         System.out.println("testVerySmallNetwork() done");
     }
 
     @Test
     public void smallNetwork() throws Exception {
-        Graph smallNetwork = createNetworkWithGrid(50, "BigNet_50_Neu");
+        int nodes = 50;
+        Graph smallNetwork = createNetworkWithGrid(nodes, "BigNet_50_800_Neu");
+        System.out.printf("smallNetwork created with %d nodes and %d edges\n", nodes, countOfEdges(nodes));
         assertEquals(2, findMaxFlow(smallNetwork, smallNetwork.getNode(0), smallNetwork.getNode(smallNetwork.getNodeCount() - 1), FORD_FULKERSON), 0.001);
         System.out.println("smallNetwork() done");
     }

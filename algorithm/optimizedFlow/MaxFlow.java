@@ -20,7 +20,7 @@ public class MaxFlow {
     private static final String FLOW_ARG_NAME = "flow";
     private static final String CAPACITY_ARG_NAME = "capacity";
 
-    public MaxFlow() {
+    private MaxFlow() {
     }
 
     public static double findMaxFlow(Graph graph, Node source, Node senke, FlowAlgorithm variant) throws Exception {
