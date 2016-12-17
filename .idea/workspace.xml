@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Edmons Test hinzugefügt.&#10;BigNetwork wird generiert, enthält allerdings Endlosschleife falls Algo läuft">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/ BigNet_50_Neu.gka" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/GirdNetwork.gka" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/fuckthis.gka" />
+    <list default="true" id="5528a733-2578-4069-b065-0c4cef662b3f" name="Default" comment="Generator fixx">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph/GraphBuilder.java" afterPath="$PROJECT_DIR$/graph/GraphBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka" afterPath="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" afterPath="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java" afterPath="$PROJECT_DIR$/tests/searchPath/DijkstraAlgorithmTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" afterPath="$PROJECT_DIR$/tests/searchPath/FloydWarshallTest.java" />
     </list>
     <ignored path="gkap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +33,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="maxFlowTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="maxFlowTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="172" column="51" lean-forward="false" selection-start-line="172" selection-start-column="51" selection-end-line="172" selection-end-column="51" />
+            <state relative-caret-position="302">
+              <caret line="158" column="51" lean-forward="false" selection-start-line="158" selection-start-column="51" selection-end-line="158" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="130" column="20" lean-forward="true" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,8 +136,8 @@
         <option value="$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java" />
         <option value="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka" />
         <option value="$PROJECT_DIR$/graph/subwerkzeuge/bspGraphen/saved/fuckthis.gka" />
-        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
         <option value="$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java" />
+        <option value="$PROJECT_DIR$/graph/GraphBuilder.java" />
       </list>
     </option>
   </component>
@@ -482,6 +487,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gkap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -930,7 +949,7 @@
       <workItem from="1481967115107" duration="11087000" />
       <workItem from="1481981273927" duration="1881000" />
       <workItem from="1481987175528" duration="250000" />
-      <workItem from="1481987456493" duration="2525000" />
+      <workItem from="1481987456493" duration="2613000" />
     </task>
     <task id="LOCAL-00001" summary="Bei Dijkstra wurde Viz rausgenommen&#10;Bei Dijkstra einige Codestellen angepasst&#10;Bei Benchmark wuden einige Beispiele hinzugefügt&#10;">
       <created>1479810793804</created>
@@ -1233,7 +1252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481983136218</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Generator fixx">
+      <created>1481990011854</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1481990011854</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1269,7 +1295,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204161000" />
+    <option name="totallyTimeSpent" value="204249000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1333,7 +1359,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Zugriffe hinzugefügt&#10;Tests verbessert&#10;Es fehlt noch Transit OK" />
     <MESSAGE value="ok hinzugefügt" />
     <MESSAGE value="ok bugfixx" />
     <MESSAGE value="Tests finish!" />
@@ -1358,7 +1383,8 @@
     <MESSAGE value="FordF und EK in einer Datei zusammengefasst + Tests verbessert" />
     <MESSAGE value="rename" />
     <MESSAGE value="Edmons Test hinzugefügt.&#10;BigNetwork wird generiert, enthält allerdings Endlosschleife falls Algo läuft" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edmons Test hinzugefügt.&#10;BigNetwork wird generiert, enthält allerdings Endlosschleife falls Algo läuft" />
+    <MESSAGE value="Generator fixx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generator fixx" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1629,16 +1655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="100" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="164" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algorithm/optimizedFlow/MaxFlow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1649,8 +1665,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/optimizedFlow/maxFlowTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="172" column="51" lean-forward="false" selection-start-line="172" selection-start-column="51" selection-end-line="172" selection-end-column="51" />
+        <state relative-caret-position="302">
+          <caret line="158" column="51" lean-forward="false" selection-start-line="158" selection-start-column="51" selection-end-line="158" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph/GraphBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="130" column="20" lean-forward="true" selection-start-line="130" selection-start-column="20" selection-end-line="130" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

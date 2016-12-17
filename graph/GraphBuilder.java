@@ -125,7 +125,7 @@ public class GraphBuilder {
      * @throws Exception falls der Graph nicht gespeichert werden kann
      */
     public static Graph createNetworkWithGrid(int nodes, String title) throws Exception {
-        Graph graph = new SingleGraph("Random");
+        Graph graph = new SingleGraph("RandomNetwork");
         Generator gen = new GridGenerator(false, false, true, true);
         gen.addSink(graph);
         gen.begin();
