@@ -4,6 +4,7 @@ import algorithm.BreadthFirstSearch;
 import io.GraphSaver;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.GridGenerator;
+import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.EdgeRejectedException;
 import org.graphstream.graph.Graph;
@@ -30,6 +31,7 @@ import static java.util.regex.Pattern.compile;
  * @since 2016-10-30
  */
 public class GraphBuilder {
+    private static final String ATTR_ARG_NAME = "capacity";
     private static Random random = new Random();
 
     private GraphBuilder() {
@@ -44,7 +46,7 @@ public class GraphBuilder {
     public static Graph createGraph(List<String> lines) throws FileNotFoundException {
         if (lines.isEmpty()) return null;
 
-        Graph graph = new MultiGraph("Test");
+        Graph graph = new MultiGraph("Graph");
         final String uml = "[_öÖäÄüÜßa-zA-Z0-9]";
         final String ws = "\\p{Blank}*";
         final String edgePattern = format("(%s+)(%s(-[->])%s(%s+))?(%s\\((%s*)\\))?(%s:%s(\\d+))?%s;", uml, ws, ws, uml, ws, uml, ws, ws, ws);
@@ -86,7 +88,7 @@ public class GraphBuilder {
         if (weight.equals("")) // without edgeWeight
             graph.addEdge(edge, node0, node1, isDirected);
         else
-            graph.addEdge(edge, node0, node1, isDirected).setAttribute("weight", Integer.valueOf(weight));
+            graph.addEdge(edge, node0, node1, isDirected).setAttribute(ATTR_ARG_NAME, Integer.valueOf(weight));
     }
 
     private static void createNode(Graph graph, String node0) {
@@ -118,32 +120,42 @@ public class GraphBuilder {
         return result;
     }
 
-    /**
-     * Erstellt ein Graphen als Grid
-     * @param nodes Anzahl der Knoten
-     * @return ein Graph
-     * @throws Exception falls der Graph nicht gespeichert werden kann
-     */
-    public static Graph createNetworkWithGrid(int nodes, String title) throws Exception {
-        Graph graph = new SingleGraph("RandomNetwork");
+    public static Graph createGritNetworkGraph(int nodes) throws IOException {
+        Graph graph = new SingleGraph("Random");
         Generator gen = new GridGenerator(false, false, true, true);
+        int moeglicheEdges = (int) (Math.pow((nodes + Math.sqrt(nodes)), 2) / 4);
+
         gen.addSink(graph);
         gen.begin();
-        for (int i = 0; i < Math.sqrt(nodes); i++) gen.nextEvents();
+        for (int i = 0; i < moeglicheEdges; i++) gen.nextEvents();
         gen.end();
 
-        BreadthFirstSearch test = new BreadthFirstSearch();
-        test.init(graph);
-        test.compute();
+        BreadthFirstSearch bfs = new BreadthFirstSearch();
+        bfs.init(graph);
+        bfs.compute();
 
         for (Edge edge : graph.getEachEdge())
-            edge.addAttribute("capacity", Double.valueOf(edge.getTargetNode().getAttribute("steps").toString()));
+            edge.setAttribute("capacity", Double.valueOf(edge.getTargetNode().getAttribute("steps").toString()));
 
+        GraphSaver.saveGraph(graph, new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800_new.gka"));
         return graph;
     }
 
-    public static int countOfEdges(int nodes) {
-        return (int) Math.pow((nodes + Math.sqrt(nodes)), 2) / 4;
+    public static Graph createRandomNetwork(int nodes, int maxEdges) throws IOException {
+        Graph graph = new SingleGraph("Random");
+        int averageDegree = (maxEdges / nodes) * 2;
+
+        RandomGenerator gen = new RandomGenerator(averageDegree);
+        gen.addSink(graph);
+        gen.addEdgeAttribute("capacity");
+        gen.setDirectedEdges(true, false);
+
+        gen.begin();
+        for (int i = 0; i < nodes; i++) gen.nextEvents();
+        gen.end();
+
+        GraphSaver.saveGraph(graph, new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800_NN.gka"));
+        return graph;
     }
 
     /**

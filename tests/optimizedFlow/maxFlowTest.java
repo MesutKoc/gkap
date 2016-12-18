@@ -1,25 +1,25 @@
 package tests.optimizedFlow;
 
 import io.GraphReader;
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
 
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.EDMONDS_KARP;
 import static algorithm.optimizedFlow.MaxFlow.FlowAlgorithm.FORD_FULKERSON;
 import static algorithm.optimizedFlow.MaxFlow.findMaxFlow;
-import static algorithm.optimizedFlow.MaxFlow.findMaxFlowRtm;
-import static graph.GraphBuilder.countOfEdges;
-import static graph.GraphBuilder.createNetworkWithGrid;
+import static graph.GraphBuilder.createGritNetworkGraph;
 import static org.junit.Assert.assertEquals;
 
 public class maxFlowTest {
-    private Graph graph04, posTest, negTest,
-            negTest2, negTest3, graphFromInternet;
+    private static Graph graph04, posTest, negTest,
+            negTest2, negTest3, graphFromInternet, bigNetTest;
 
     //#####################################################
     // setup
@@ -107,6 +107,7 @@ public class maxFlowTest {
         graphFromInternet.addEdge("v4v5", "v4", "v5", true).addAttribute("capacity", 8.0);
 
         graph04 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph04.gka"));
+        bigNetTest = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
     }
 
     //#####################################################
@@ -132,38 +133,53 @@ public class maxFlowTest {
     }
 
     //#####################################################
-    // FORD VS EDMONDSKARP  RunTime
+    // NETWORK Tests
     //#####################################################
     @Test
-    public void fordLaufZeit() throws Exception {
-        long runtime = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), FORD_FULKERSON);
-        System.out.printf("Runtime for FORD with Graph %s is %d\n", posTest.getId(), runtime);
-        long runtimeEK = findMaxFlowRtm(posTest, posTest.getNode("q"), posTest.getNode("s"), EDMONDS_KARP);
-        System.out.printf("Runtime for EK with Graph %s is %d\n", posTest.getId(), runtimeEK);
+    public void bigNet50() throws Exception {
+        Graph bigBigBig = createGritNetworkGraph(50);
+        assertEquals(2, findMaxFlow(bigBigBig, bigBigBig.getNode("0_0"), bigBigBig.getNode("8_8"), FORD_FULKERSON), 0.001);
+        assertEquals(2, findMaxFlow(bigBigBig, bigBigBig.getNode("0_0"), bigBigBig.getNode("8_8"), EDMONDS_KARP), 0.001);
+        System.out.println("bigNet50() done");
     }
 
     //#####################################################
-    // Network Tests
+    // RUNTIME: FORD VS EDMONDS KARP
     //#####################################################
-    @Test
-    public void testVerySmallNetwork() throws Exception {
-        Graph smallNetwork = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/testCapacity.gka"));
-        for (Edge e : smallNetwork.getEachEdge()) e.addAttribute("capacity", e.getNumber("weight"));
-        assertEquals(6, findMaxFlow(smallNetwork, smallNetwork.getNode("source"), smallNetwork.getNode("sink"), FORD_FULKERSON), 0.001);
-        System.out.println("testVerySmallNetwork() done");
-    }
-
     @Test
     public void smallNetwork() throws Exception {
-        int nodes = 50;
-        Graph smallNetwork = createNetworkWithGrid(nodes, "BigNet_50_800_Neu");
-        System.out.printf("smallNetwork created with %d nodes and %d edges\n", nodes, countOfEdges(nodes));
-        assertEquals(2, findMaxFlow(smallNetwork, smallNetwork.getNode(0), smallNetwork.getNode(smallNetwork.getNodeCount() - 1), FORD_FULKERSON), 0.001);
-        System.out.println("smallNetwork() done");
+        // 50 Knoten und 800 Kanten
+        Graph smallGraph = createGritNetworkGraph(50);
+        Instant start = Instant.now();
+        findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
+        long runtime = Duration.between(start, Instant.now()).toMillis();
+        System.out.println("Runtime for FK with Graph BigNet50 is: " + runtime + "ms");
+
+        Instant start2 = Instant.now();
+        findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), EDMONDS_KARP);
+        long runtimeEK = Duration.between(start2, Instant.now()).toMillis();
+        System.out.println("Runtime for EK with Graph BigNet50 is: " + runtimeEK + "ms");
+    }
+
+    @Test
+    @Ignore
+    public void bigNetwork() throws Exception {
+        // 100x 800 knoten und 300.000 Kanten
+        Graph bigNetwork = createGritNetworkGraph(800);
+
+        Instant start = Instant.now();
+        findMaxFlow(bigNetwork, bigNetwork.getNode("0_0"), bigNetwork.getNode("8_8"), FORD_FULKERSON);
+        long runtime = Duration.between(start, Instant.now()).toMillis();
+        System.out.println("Runtime for FK with " + bigNetwork.getEdgeCount() + " Nodes is: " + runtime + "ms");
+
+        Instant start2 = Instant.now();
+        findMaxFlow(bigNetwork, bigNetwork.getNode("0_0"), bigNetwork.getNode("8_8"), EDMONDS_KARP);
+        long runtimeEK = Duration.between(start2, Instant.now()).toMillis();
+        System.out.println("Runtime for FK with " + bigNetwork.getEdgeCount() + " Nodes is: " + runtimeEK + "ms");
     }
 
     //#####################################################
-    // negative Tests
+    // NEGATIVE Tests
     //#####################################################
     @Test(expected = Exception.class)
     public void fordfulkersonNegative() throws Exception {

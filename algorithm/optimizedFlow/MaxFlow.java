@@ -34,6 +34,7 @@ public class MaxFlow {
         // Schritt 1: Die Initialisierung
         init(source, nodes, edges);
 
+        Random generator = new Random();
         // Schritt 2 Inspektion und Markierung
         while (true) {
             boolean allInspected = false;
@@ -56,7 +57,13 @@ public class MaxFlow {
                     break;
                 }
 
-                vi = getNodeFromQueueOrRandom(markedNodes, variant);
+                if (variant == FlowAlgorithm.EDMONDS_KARP) {
+                    vi = markedNodes.get(0);
+                    markedNodes.remove(0);
+                } else {
+                    vi = markedNodes.get(generator.nextInt(markedNodes.size()));
+                }
+
                 if (vi != null) vi.setAttribute("inspiziert", 1);
 
                 // Vorwärtskante: Fuer jede Kante e mit unmarkierter Ecke vj und
@@ -106,7 +113,7 @@ public class MaxFlow {
      * @param edges    die Kantenliste
      */
     private static void init(Node source, ArrayList<Node> vertices, ArrayList<Edge> edges) {
-        // Für jede Kante wird der Flusswert 0 gesetzt.
+        // Für jede Kante wird der Flusswert 0 gesetzt
         for (Edge currEdge : edges) currEdge.addAttribute(FLOW_ARG_NAME, 0);
 
         // Jeder Knoten wird als nicht inspiziert (0) und nicht markiert (0) markiert
@@ -137,38 +144,6 @@ public class MaxFlow {
             edge.setAttribute(FLOW_ARG_NAME, current.getAttribute("neg").equals(0) ? edge.getNumber(FLOW_ARG_NAME) + flowInkrement : edge.getNumber(FLOW_ARG_NAME) - flowInkrement);
             current = current.getAttribute("vorganger"); // Waehle den Vorgaenger
         }
-    }
-
-    /**
-     * Hier differenzieren wir die Varianten. Sollte FORD augewählt werden, nehmen wir einen beliebigen Knoten.
-     * Bei Edmunds Karp nehmen wir immer der Reihe nach (FIFO PRINZIP)
-     *
-     * @param markedVertices die markierten Knoten
-     * @param variant        FORD_FULKERSON oder EDMONDS_KARP
-     * @return ein Knoten, der entweder beliebig markiert oder aus der Reihe markiert ist.
-     */
-    private static Node getNodeFromQueueOrRandom(ArrayList<Node> markedVertices, FlowAlgorithm variant) {
-        Random generator = new Random();
-        switch (variant) {
-            case FORD_FULKERSON:
-                return markedVertices.get(generator.nextInt(markedVertices.size()));
-            case EDMONDS_KARP:
-                return getNodeFromQueue(markedVertices);
-            default:
-                return null;
-        }
-    }
-
-    /**
-     * Diese Funktion gibt uns immer ein Knoten nach der Reihe von markierten Knoten, für den Algorithmus Edmons Karp.
-     *
-     * @param markedVertices die markierte Liste
-     * @return ein Knoten
-     */
-    private static Node getNodeFromQueue(ArrayList<Node> markedVertices) {
-        Node vi = markedVertices.get(0);
-        markedVertices.remove(0);
-        return vi;
     }
 
     /**
@@ -229,23 +204,6 @@ public class MaxFlow {
     private static boolean preConditions(ArrayList<Node> vertexes, ArrayList<Edge> edges, Node source, Node target) {
         for (Edge e : edges) if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME)) return false;
         return !((isNull(source)) || (isNull(target))) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
-    }
-
-    /**
-     * Zur Messung der Laufzeit
-     *
-     * @param graph der Graph
-     * @param v1    die Quelle
-     * @param v2    die Senke
-     * @return die Laufzeit in nanosekunden
-     */
-    public static long findMaxFlowRtm(Graph graph, Node v1, Node v2, FlowAlgorithm variant) throws Exception {
-        long resultTime;
-        long startTime = System.nanoTime();
-        findMaxFlow(graph, v1, v2, variant);
-        long endTime = System.nanoTime();
-        resultTime = endTime - startTime;
-        return resultTime;
     }
 
     public enum FlowAlgorithm {

@@ -33,10 +33,7 @@ public class GraphReader {
 	public static Graph openFile(File file) throws ParseException, IOException {
 		List<String> result = new ArrayList<>();
 		Scanner scanner = new Scanner(file, "utf-8");
-
-        while (scanner.hasNextLine())
-            result.add(scanner.nextLine());
-
+        while (scanner.hasNextLine()) result.add(scanner.nextLine());
         scanner.close();
 		return GraphBuilder.createGraph(result);
 	}

@@ -2,6 +2,7 @@ package io;
 
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
+import org.jetbrains.annotations.Contract;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,31 +30,29 @@ public class GraphSaver {
 	 * @throws IOException
 	 *             falls nicht der Graph gelesen werden kann
 	 */
+    @Contract("null, _ -> fail")
     public static void saveGraph(Graph graph, File file) throws IOException {
-        if(graph == null) throw new IOException("Graph konnte nicht gelesen werden");
-		if(!file.exists()) file.createNewFile();
+        if (graph == null) throw new IOException("Graph konnte nicht gelesen werden");
+        if(!file.exists()) file.createNewFile();
 
 		Path path = Paths.get(file.toURI());
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for(Edge edge : graph.getEachEdge()) {
-                writer.write(convertsGraph(edge, false));
+                writer.write(convertsGraph(edge));
                 writer.newLine();
-			}
+            }
 		}
 	}
-	
+
 	/**
 	 * @param edge
 	 *            die Kante die konventiert werden soll
-	 * @param showName
-	 *            ob der Name der Kante angezeigt werden soll
-     *
      * @return liefert ein String in der Graph-Syntax
-	 */
-	private static String convertsGraph(Edge edge, Boolean showName) {
-		String name = showName ? String.format(" (%s)", edge.getId()) : "",
-                conn = edge.isDirected() ? "-->" : "--",
-                weight = (edge.getAttribute("weight") != null) ? (" : " + edge.getAttribute("weight")) : "";
+     */
+    private static String convertsGraph(Edge edge) {
+        String name = "",
+                conn = edge.isDirected() ? "->" : "--",
+                weight = (edge.getAttribute("capacity") != null) ? (" : " + edge.getAttribute("capacity")) : "";
         return String.format("%s%s%s%s%s;", edge.getNode0(), conn, edge.getNode1(), name, weight);
     }
 }
