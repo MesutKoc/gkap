@@ -81,10 +81,10 @@ public class MaxFlow {
                 for (Edge enteringEdge : vi.getEachEnteringEdge()) {
                     Node s = enteringEdge.getSourceNode();
                     Node t = enteringEdge.getTargetNode();
-                    if (t.equals(vi) && s.getAttribute("markiert").equals(0) && enteringEdge.getNumber(CAPACITY_ARG_NAME) > 0)
+                    if (t.equals(vi) && s.getAttribute("markiert").equals(0) && enteringEdge.getNumber(FLOW_ARG_NAME) > 0)
                         markBackward(s, t, enteringEdge);
                 }
-            }
+            } //end-while
 
             // 2a: Falls alle markierten Ecken inspiziert wurden, gehe nach 4
             if (allInspected) break;
@@ -99,7 +99,8 @@ public class MaxFlow {
             // Gehe zu 2
             resetAllAttribut(nodes, source);
             source.setAttribute("inspiziert", 0);
-        }
+        } //end-while
+
         // Schritt 4: Es gibt keinen vergrössernden Weg. Der jetzige Flusswert jeder Kante ist optimal
         for (Edge e : source.getEachEdge()) maxFlow += e.getNumber(FLOW_ARG_NAME);
         return maxFlow;

@@ -120,6 +120,14 @@ public class GraphBuilder {
         return result;
     }
 
+    /**
+     * Quelle: graphstream forum / how to dynamically set attributes
+     * Erstellt einen grit Network (random)
+     *
+     * @param nodes Anzahl der Knoten
+     * @return ein Graph
+     * @throws IOException falls nicht gespeichert werden kann
+     */
     public static Graph createGritNetworkGraph(int nodes) throws IOException {
         Graph graph = new SingleGraph("Random");
         Generator gen = new GridGenerator(false, false, true, true);

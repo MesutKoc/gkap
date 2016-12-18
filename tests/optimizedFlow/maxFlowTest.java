@@ -153,12 +153,12 @@ public class maxFlowTest {
         Instant start = Instant.now();
         findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
         long runtime = Duration.between(start, Instant.now()).toMillis();
-        System.out.println("Runtime for FK with Graph BigNet50 is: " + runtime + "ms");
+        System.out.println("Runtime for FK with Graph 50 Nodes is: " + runtime + "ms");
 
         Instant start2 = Instant.now();
         findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), EDMONDS_KARP);
         long runtimeEK = Duration.between(start2, Instant.now()).toMillis();
-        System.out.println("Runtime for EK with Graph BigNet50 is: " + runtimeEK + "ms");
+        System.out.println("Runtime for EK with Graph 50 Nodes is: " + runtimeEK + "ms");
     }
 
     @Test
