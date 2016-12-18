@@ -35,7 +35,7 @@ public class MaxFlow {
         init(source, nodes, edges);
 
         Random generator = new Random();
-        // Schritt 2 Inspektion und Markierung
+        // Schritt 2: Inspektion und Markierung
         while (true) {
             boolean allInspected = false;
             while (true) {
@@ -49,27 +49,31 @@ public class MaxFlow {
                 Node vi;
 
                 for (Node currentVertex : nodes)
-                    if (!markedNodes.contains(currentVertex) && currentVertex.getAttribute("markiert").equals(1) && currentVertex.getAttribute("inspiziert").equals(0))
+                    if (!markedNodes.contains(currentVertex) && currentVertex.getAttribute("markiert").equals(1) &&
+                            currentVertex.getAttribute("inspiziert").equals(0))
                         markedNodes.add(currentVertex);
 
+                // Wenn kein Knoten gefunden wurde, setze allInspected = true und brich die Schleife ab
                 if (markedNodes.size() == 0) {
                     allInspected = true;
                     break;
                 }
 
+                // Abfrage, ob Edmonds Karp oder Ford Fulkerson
                 if (variant == FlowAlgorithm.EDMONDS_KARP) {
-                    vi = markedNodes.get(0);
+                    vi = markedNodes.get(0); //Setze vi auf das vorderste Element der Warteschlange
                     markedNodes.remove(0);
                 } else {
                     vi = markedNodes.get(generator.nextInt(markedNodes.size()));
                 }
 
-                if (vi != null) vi.setAttribute("inspiziert", 1);
+                assert vi != null;
+                vi.setAttribute("inspiziert", 1);
 
                 // Vorwärtskante: Fuer jede Kante e mit unmarkierter Ecke vj und
                 // fluss(e) < kapazitaet(e) markiere vj mit +vorgaenger (vi) ("neg" Attribut = 0) und
                 // maxFlow(min(kapazitaet(e)-fluss(e), maxFlow(vi)))
-                for (Edge leavingEdge : vi.getEachLeavingEdge()) { // Output
+                for (Edge leavingEdge : vi.getEachLeavingEdge()) { //Für jede ausgehende Kante ei aus vi
                     Node s = leavingEdge.getSourceNode();
                     Node t = leavingEdge.getTargetNode();
                     // Wenn das Ziel der Kante e nicht markiert ist und deren Kapazität groesser als der Fluss ist
@@ -78,7 +82,7 @@ public class MaxFlow {
                 }
                 // Rückwärtskante: Fuer jede Kante e mit Ziel vi und unmarkierter Ecke vj und
                 // fluss(e) > 0 markiere vj mit -vorgaenger(vi) ("neg" Attribut = 1) und maxFlow(min(fluss(e), maxFlow(vi)))
-                for (Edge enteringEdge : vi.getEachEnteringEdge()) {
+                for (Edge enteringEdge : vi.getEachEnteringEdge()) { // Für jede eingehende Kante ei in vi
                     Node s = enteringEdge.getSourceNode();
                     Node t = enteringEdge.getTargetNode();
                     if (t.equals(vi) && s.getAttribute("markiert").equals(0) && enteringEdge.getNumber(FLOW_ARG_NAME) > 0)
@@ -101,13 +105,16 @@ public class MaxFlow {
             source.setAttribute("inspiziert", 0);
         } //end-while
 
-        // Schritt 4: Es gibt keinen vergrössernden Weg. Der jetzige Flusswert jeder Kante ist optimal
+        // Schritt 4: Es gibt keinen vergrössernden Weg. Der jetzige Flusswert jeder Kante ist optimal.
+        // Gebe die Summe aller ausgehenden Flüsse aus source als Ergebnis aus
         for (Edge e : source.getEachEdge()) maxFlow += e.getNumber(FLOW_ARG_NAME);
         return maxFlow;
     }
 
     /**
-     * Initialisiert die Attribute für den FF Algorithmus
+     * Initialisiert für jede Kante den Flusswert auf 0
+     * Initialisiert für jeden Knoten ins. & marked auf 0
+     * Markiert die Quelle und setzt delta auf unendlich
      *
      * @param source   Die Quelle
      * @param vertices die Knotenliste
@@ -141,14 +148,14 @@ public class MaxFlow {
             Node vorg = current.getAttribute("vorganger");
             Edge edge = vorg.getEdgeBetween(current);
             if (edge == null) edge = current.getEdgeBetween(vorg);
-            // Wenn wir eine Vorwaertskante oder Rückwärtskante haben (0 für Vorwärts und 1 für Rückwärtskante)
             edge.setAttribute(FLOW_ARG_NAME, current.getAttribute("neg").equals(0) ? edge.getNumber(FLOW_ARG_NAME) + flowInkrement : edge.getNumber(FLOW_ARG_NAME) - flowInkrement);
-            current = current.getAttribute("vorganger"); // Waehle den Vorgaenger
+            current = current.getAttribute("vorganger");
         }
     }
 
     /**
-     * Markiert den Knoten mit der Deltaberechnung
+     * Markiert den Knoten mit einer Vorwärtskante, den Vorgänger und dem neuen Wert für delta
+     * Dabei ist neg { 0 = positiv, 1 = negativ} für die Vor und Rückwärtskante
      *
      * @param source      die Quelle
      * @param vorg        der Vorgänger
@@ -162,7 +169,7 @@ public class MaxFlow {
     }
 
     /**
-     * Markiert den Knoten mit der Deltaberechnung
+     * Markiert den Knoten mit einer Rückwärtskante, den Vorgänger und dem neuen Wert für delta
      *
      * @param source       die Quelle
      * @param vorg         der Vorgänger
@@ -176,7 +183,7 @@ public class MaxFlow {
     }
 
     /**
-     * Resettet alle Attribute
+     * Entfernt von allen Knoten die Attribute bis das von auf Source
      *
      * @param vertices die Liste mit den Knoten
      * @param source   die Quelle
@@ -196,7 +203,7 @@ public class MaxFlow {
     /**
      * Hier wird überprüft, ob der Graph ein gültiger Flussnetzwerk ist
      *
-     * @param vertexes die zuüberprüfende Knotenliste
+     * @param vertexes die zu überprüfende Knotenliste
      * @param edges    die zu überprüfende Kantenliste
      * @param source   die Quelle
      * @param target   das Ziel
@@ -204,7 +211,7 @@ public class MaxFlow {
      */
     private static boolean preConditions(ArrayList<Node> vertexes, ArrayList<Edge> edges, Node source, Node target) {
         for (Edge e : edges)
-            if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME) || e.getNumber(CAPACITY_ARG_NAME) < 0)
+            if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME) || (e.getNumber(CAPACITY_ARG_NAME) < 0))
                 return false;
         return !((isNull(source)) || (isNull(target))) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
     }
