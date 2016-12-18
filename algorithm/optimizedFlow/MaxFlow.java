@@ -193,7 +193,7 @@ public class MaxFlow {
     }
 
     /**
-     * Hier wird überprüft, ob der Graph ein Flussnetzwerk ist
+     * Hier wird überprüft, ob der Graph ein gültiger Flussnetzwerk ist
      *
      * @param vertexes die zuüberprüfende Knotenliste
      * @param edges    die zu überprüfende Kantenliste
@@ -202,7 +202,9 @@ public class MaxFlow {
      * @return true wenn die preconditions gegeben sind ansonsten false.
      */
     private static boolean preConditions(ArrayList<Node> vertexes, ArrayList<Edge> edges, Node source, Node target) {
-        for (Edge e : edges) if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME)) return false;
+        for (Edge e : edges)
+            if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME) || e.getNumber(CAPACITY_ARG_NAME) < 0)
+                return false;
         return !((isNull(source)) || (isNull(target))) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
     }
 
