@@ -23,6 +23,8 @@ public class maxFlowTest {
 
     //#####################################################
     // setup
+    // Graphs from https://www.youtube.com/watch?v=5aii4_4q1qf
+    // and Klauck (Skript GKA)
     //#####################################################
     @Before
     public void setUp() throws Exception {
@@ -43,6 +45,22 @@ public class maxFlowTest {
         posTest.addEdge("v1v5", "v1", "v5", true).addAttribute("capacity", 1.0);
         posTest.addEdge("v5s", "v5", "s", true).addAttribute("capacity", 3.0);
 
+        graphFromInternet = new SingleGraph("graphFromInternet");
+        graphFromInternet.addNode("v1");
+        graphFromInternet.addNode("v2");
+        graphFromInternet.addNode("v3");
+        graphFromInternet.addNode("v4");
+        graphFromInternet.addNode("v5");
+
+        graphFromInternet.addEdge("v1v2", "v1", "v2", true).addAttribute("capacity", 8.0);
+        graphFromInternet.addEdge("v2v3", "v2", "v3", true).addAttribute("capacity", 6.0);
+        graphFromInternet.addEdge("v2v4", "v2", "v4", true).addAttribute("capacity", 7.0);
+        graphFromInternet.addEdge("v4v5", "v4", "v5", true).addAttribute("capacity", 8.0);
+
+        graph04 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph04.gka"));
+        bigNetTest = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
+
+        // negative
         negTest = new SingleGraph("negativeTests");
         negTest.addNode("q");
         negTest.addNode("v1");
@@ -93,21 +111,6 @@ public class maxFlowTest {
         negTest3.addEdge("v1s", "v1", "s", false).addAttribute("capacity", -3.0);
         negTest3.addEdge("v1v5", "v1", "v5", false).addAttribute("capacity", -1.0);
         negTest3.addEdge("v5s", "v5", "s", false).addAttribute("capacity", -3.0);
-
-        graphFromInternet = new SingleGraph("graphFromInternet");
-        graphFromInternet.addNode("v1");
-        graphFromInternet.addNode("v2");
-        graphFromInternet.addNode("v3");
-        graphFromInternet.addNode("v4");
-        graphFromInternet.addNode("v5");
-
-        graphFromInternet.addEdge("v1v2", "v1", "v2", true).addAttribute("capacity", 8.0);
-        graphFromInternet.addEdge("v2v3", "v2", "v3", true).addAttribute("capacity", 6.0);
-        graphFromInternet.addEdge("v2v4", "v2", "v4", true).addAttribute("capacity", 7.0);
-        graphFromInternet.addEdge("v4v5", "v4", "v5", true).addAttribute("capacity", 8.0);
-
-        graph04 = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/graph04.gka"));
-        bigNetTest = GraphReader.openFile(new File("graph/subwerkzeuge/bspGraphen/saved/BigNet_50_800.gka"));
     }
 
     //#####################################################
@@ -151,7 +154,7 @@ public class maxFlowTest {
         // 50 Knoten und 800 Kanten
         Graph smallGraph = createGritNetworkGraph(50);
         Instant start = Instant.now();
-        findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
+        double fkErg = findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
         long runtime = Duration.between(start, Instant.now()).toMillis();
         System.out.println("Runtime for FK with Graph 50 Nodes is: " + runtime + "ms");
 
@@ -164,7 +167,7 @@ public class maxFlowTest {
     @Test
     @Ignore
     public void bigNetwork() throws Exception {
-        // 100x 800 knoten und 300.000 Kanten
+        // 800 knoten und > 300.000 Kanten
         Graph bigNetwork = createGritNetworkGraph(800);
 
         Instant start = Instant.now();

@@ -29,7 +29,7 @@ public class MaxFlow {
         double maxFlow = 0.0;
 
         // Vorbedingungen
-        if (!preConditions(nodes, edges, source, senke)) throw new Exception("Precondition verletzt");
+        if (!preconditions(nodes, edges, source, senke)) throw new Exception("Precondition verletzt");
 
         // Schritt 1: Die Initialisierung
         init(source, nodes, edges);
@@ -148,7 +148,9 @@ public class MaxFlow {
             Node vorg = current.getAttribute("vorganger");
             Edge edge = vorg.getEdgeBetween(current);
             if (edge == null) edge = current.getEdgeBetween(vorg);
-            edge.setAttribute(FLOW_ARG_NAME, current.getAttribute("neg").equals(0) ? edge.getNumber(FLOW_ARG_NAME) + flowInkrement : edge.getNumber(FLOW_ARG_NAME) - flowInkrement);
+            edge.setAttribute(FLOW_ARG_NAME, current.getAttribute("neg").equals(0) ?
+                    (edge.getNumber(FLOW_ARG_NAME) + flowInkrement) :
+                    (edge.getNumber(FLOW_ARG_NAME) - flowInkrement)); // TODO
             current = current.getAttribute("vorganger");
         }
     }
@@ -185,11 +187,11 @@ public class MaxFlow {
     /**
      * Entfernt von allen Knoten die Attribute bis das von auf Source
      *
-     * @param vertices die Liste mit den Knoten
+     * @param nodes die Liste mit den Knoten
      * @param source   die Quelle
      */
-    private static void resetAllAttribut(ArrayList<Node> vertices, Node source) {
-        for (Node currentVertex : vertices) {
+    private static void resetAllAttribut(ArrayList<Node> nodes, Node source) {
+        for (Node currentVertex : nodes) {
             if (!(currentVertex.equals(source))) {
                 currentVertex.addAttribute("markiert", 0);
                 currentVertex.addAttribute("inspiziert", 0);
@@ -203,17 +205,19 @@ public class MaxFlow {
     /**
      * Hier wird überprüft, ob der Graph ein gültiger Flussnetzwerk ist
      *
-     * @param vertexes die zu überprüfende Knotenliste
+     * @param nodes die zu überprüfende Knotenliste
      * @param edges    die zu überprüfende Kantenliste
      * @param source   die Quelle
      * @param target   das Ziel
      * @return true wenn die preconditions gegeben sind ansonsten false.
      */
-    private static boolean preConditions(ArrayList<Node> vertexes, ArrayList<Edge> edges, Node source, Node target) {
+    private static boolean preconditions(ArrayList<Node> nodes, ArrayList<Edge> edges, Node source, Node target) {
         for (Edge e : edges)
             if (!e.isDirected() || !e.hasAttribute(CAPACITY_ARG_NAME) || (e.getNumber(CAPACITY_ARG_NAME) < 0))
                 return false;
-        return !((isNull(source)) || (isNull(target))) && (source != target) && !(!vertexes.contains(source) || !vertexes.contains(target));
+
+        return !((isNull(source)) || (isNull(target))) && (source != target) &&
+                !(!nodes.contains(source) || !nodes.contains(target));
     }
 
     public enum FlowAlgorithm {

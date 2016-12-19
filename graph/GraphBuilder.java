@@ -30,6 +30,8 @@ import static java.util.regex.Pattern.compile;
  * @version 1.4
  * @since 2016-10-30
  */
+
+// TODO: mittels primitiven Datentypen implementieren. FORD mittels
 public class GraphBuilder {
     private static final String ATTR_ARG_NAME = "capacity";
     private static Random random = new Random();
@@ -96,32 +98,48 @@ public class GraphBuilder {
     }
 
     /**
-     * Erstellt einen random Graphen mit anzahl der Knoten und Kanten
+     * Erstellt einen Graphen mit anz. der Knoten und Kanten
      *
      * @return der erstelle Graph
      * @throws IOException falls der Graph nicht gespeichert werden kann
      */
-    public static Graph generateBigOne() throws IOException {
+    public static Graph createDirectedRandomGraph(int nodes, int edges) throws IOException {
         Graph result = new MultiGraph("big");
-        int edgeIdent = 0;
+        if ((nodes * (nodes - 1) / 2)) throw new Exception("Zu viele Kanten! INFO: n(n-1)/2");
 
-        for (int i = 1; i <= 100; i++) result.addNode(format("%d", i));
-        result.addEdge("1_100", "1", "100", true).addAttribute("weight", 1);
-        while (result.getEdgeCount() < 2500) {
-            for (int i = 2; i <= 2500; i++) {
-                int x = random.nextInt(100 - 1) + 1;
-                int y = random.nextInt(100 - 1) + 1;
-                result.addEdge(format("%d%d|%d", x, y, edgeIdent), format("%d", x), format("%d", y), true)
-                        .addAttribute("weight", random.nextInt(100 - 1) + 1);
-                edgeIdent++;
+        for (int i = 1; i <= nodes; i++) {
+            if (i == 1) resultGraph.addNode("q");
+            if (i != nodes) resultGraph.addNode("v" + i);
+            else resultGraph.addNode("s");
+        }
+
+        while (edges > 0) {
+            int r1 = random.nextInt(nodes);
+            int r2 = random.nextInt(nodes);
+            int r3 = random.nextInt((nodes - 1) + 1);
+            if (!hasEdge(resultGraph, r1, r2)) {
+                createEdge(resultGraph, r1, r2);
+                resultGraph.getEdge(format("%s_%s", resultGraph.getNode(r1).getId(), resultGraph.getNode(r2).getId())).addAttribute("weight", r3);
+                edgesAnz--;
+            } else {
+                throw new EdgeRejectedException("Kante schon vorhanden");
             }
         }
         GraphSaver.saveGraph(result, new File("graph/subwerkzeuge/bspGraphen/saved/biG.gka"));
         return result;
     }
 
+    private static boolean hasEdge(MultiGraph g, int r1, int r2) {
+        return g.getEdge(g.getNode(r1).getId() + "_" + g.getNode(r2).getId()) != null;
+    }
+
+    private static Edge createEdge(MultiGraph g, int r1, int r2) {
+        return g.addEdge(format("%s_%s", g.getNode(r1).getId(), g.getNode(r2).getId()), g.getNode(r1).getId(), g.getNode(r2).getId(), true);
+    }
+
     /**
-     * Quelle: graphstream forum / how to dynamically set attributes
+     * Quelle: graphstream / how to dynamically create & set attributes
+     * https://github.com/graphstream/gs-algo/commit/de99cb6df56142d183d5a9cfd9078d865e2e3fab
      * Erstellt einen grit Network (random)
      *
      * @param nodes Anzahl der Knoten
@@ -131,7 +149,7 @@ public class GraphBuilder {
     public static Graph createGritNetworkGraph(int nodes) throws IOException {
         Graph graph = new SingleGraph("Random");
         Generator gen = new GridGenerator(false, false, true, true);
-        int moeglicheEdges = (int) (Math.pow((nodes + Math.sqrt(nodes)), 2) / 4);
+        int moeglicheEdges = nodes * (nodes - 1) / 2;
 
         gen.addSink(graph);
         gen.begin();
