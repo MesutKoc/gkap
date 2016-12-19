@@ -150,7 +150,7 @@ public class MaxFlow {
             if (edge == null) edge = current.getEdgeBetween(vorg);
             edge.setAttribute(FLOW_ARG_NAME, current.getAttribute("neg").equals(0) ?
                     (edge.getNumber(FLOW_ARG_NAME) + flowInkrement) :
-                    (edge.getNumber(FLOW_ARG_NAME) - flowInkrement)); // TODO
+                    (edge.getNumber(FLOW_ARG_NAME) - flowInkrement));
             current = current.getAttribute("vorganger");
         }
     }
@@ -187,8 +187,8 @@ public class MaxFlow {
     /**
      * Entfernt von allen Knoten die Attribute bis das von auf Source
      *
-     * @param nodes die Liste mit den Knoten
-     * @param source   die Quelle
+     * @param nodes  die Liste mit den Knoten
+     * @param source die Quelle
      */
     private static void resetAllAttribut(ArrayList<Node> nodes, Node source) {
         for (Node currentVertex : nodes) {
@@ -205,10 +205,10 @@ public class MaxFlow {
     /**
      * Hier wird überprüft, ob der Graph ein gültiger Flussnetzwerk ist
      *
-     * @param nodes die zu überprüfende Knotenliste
-     * @param edges    die zu überprüfende Kantenliste
-     * @param source   die Quelle
-     * @param target   das Ziel
+     * @param nodes  die zu überprüfende Knotenliste
+     * @param edges  die zu überprüfende Kantenliste
+     * @param source die Quelle
+     * @param target das Ziel
      * @return true wenn die preconditions gegeben sind ansonsten false.
      */
     private static boolean preconditions(ArrayList<Node> nodes, ArrayList<Edge> edges, Node source, Node target) {

@@ -154,7 +154,7 @@ public class maxFlowTest {
         // 50 Knoten und 800 Kanten
         Graph smallGraph = createGritNetworkGraph(50);
         Instant start = Instant.now();
-        double fkErg = findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
+        findMaxFlow(smallGraph, smallGraph.getNode("0_0"), smallGraph.getNode("8_8"), FORD_FULKERSON);
         long runtime = Duration.between(start, Instant.now()).toMillis();
         System.out.println("Runtime for FK with Graph 50 Nodes is: " + runtime + "ms");
 
